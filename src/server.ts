@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import services from './lib/services';
+import { fstat } from 'fs';
 
 const app = express();
+
 const port: number = parseInt(<string>process.env.PORT, 10) || 5050
 
 if (process.env.NODE_ENV === 'production') {
@@ -17,8 +19,12 @@ app.get('/slice', (req, res) => {
 });
 
 app.get('/sliceservice', (req, res) => {
-    services.sliceService();
-    res.send('...working on it...')
+    services.sliceService()
+        .then(resultedReadStream => {
+            res.contentType("application/pdf");
+            res.send(resultedReadStream);
+        });
+    //res.send('...working on it...')
 });
 
 app.listen(port, () => console.log(`Express server running on ${port}.`));

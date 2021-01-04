@@ -19,7 +19,11 @@ app.get('/slice', (req, res) => {
     res.send('...working on it...');
 });
 app.get('/sliceservice', (req, res) => {
-    services_1.default.sliceService();
-    res.send('...working on it...');
+    services_1.default.sliceService()
+        .then(resultedReadStream => {
+        res.contentType("application/pdf");
+        res.send(resultedReadStream);
+    });
+    //res.send('...working on it...')
 });
 app.listen(port, () => console.log(`Express server running on ${port}.`));

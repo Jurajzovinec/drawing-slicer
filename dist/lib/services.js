@@ -15,30 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("../config"));
 const fs_1 = __importDefault(require("fs"));
 const child_process_1 = require("child_process");
-const path_1 = __importDefault(require("path"));
 function services() {
     console.log(config_1.default.PYTHON_INTERPRETER, config_1.default.PYTHON_SLICE_SERVICE);
-    console.log(path_1.default);
 }
 function sendResultedSlicedPDF() {
     console.log("...sendingResultedPDF...");
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-        const readableStreamDataPf = fs_1.default.createReadStream('./public/result.pdf');
-        resolve(readableStreamDataPf);
+        const readableStreamDataPdf = fs_1.default.createReadStream('./public/result.pdf');
+        var data = fs_1.default.readFileSync('./public/result.pdf');
+        resolve(data);
     }));
 }
 function handlePythonMicroService() {
     console.log("...handlingPythonMicroService...");
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
         const pythonSliceMicroService = child_process_1.spawn(config_1.default.PYTHON_INTERPRETER, [config_1.default.PYTHON_SLICE_SERVICE]);
-        pythonSliceMicroService.stdout.on('data', (data) => {
-            console.log(`stdout: ${data}.`);
-        });
         pythonSliceMicroService.stderr.on('data', (data) => {
-            reject(`stderr: ${data}.`);
+            reject({ promiseResultData: data });
         });
         pythonSliceMicroService.on('close', (code) => {
-            resolve(`child process exited with code ${code}.`);
+            resolve({ promiseResultData: `child process exited with code ${code}.` });
         });
     }));
 }
@@ -47,7 +43,6 @@ function sliceService() {
         handlePythonMicroService()
             .then(sendResultedSlicedPDF)
             .then(resultPdfData => {
-            console.log(typeof (resultPdfData));
             resolve(resultPdfData);
         })
             .catch((error) => reject(error));

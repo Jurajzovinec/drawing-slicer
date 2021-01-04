@@ -1,9 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
-    //PROJECT_DIR: __dirname,
-    //PYTHON_INTERPRETER: __dirname + '/pythonServices/environment/Scripts/python',
-    PYTHON_INTERPRETER: '../pythonServices/environment/Scripts/python',
-    //PYTHON_SLICE_SERVICE: __dirname + '/pythonServices/slice_service.py',
-    PYTHON_SLICE_SERVICE: '../pythonServices/slice_service.py',
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = __importDefault(require("path"));
+const config = {
+    PYTHON_INTERPRETER: (path_1.default.resolve(process.cwd(), 'pythonServices\\environment\\Scripts\\python')),
+    PYTHON_SLICE_SERVICE: (path_1.default.resolve(process.cwd(), 'pythonServices\\slice_service.py'))
+};
+exports.default = config;
