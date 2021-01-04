@@ -34,7 +34,4 @@ def generate_layouts(input_object, scaled_object):
             }
             output_field.append(fitted_pdf_object)
 
-    for each in output_field:
-        print(each)
-
     return output_field

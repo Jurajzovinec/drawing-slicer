@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "./pythonServices/environment/Scripts/python",
+    "python.autoComplete.extraPaths": ["./pythonServices/slice_service.py"],
+}

@@ -1,5 +1,11 @@
-const settings = require('../settings');
-const fs = require('fs');
+import config from '../config';
+import fs from 'fs';
+import { spawn } from 'child_process';
+import path from 'path';
+
+function services(){
+    console.log(config.PYTHON_INTERPRETER, config.PYTHON_SLICE_SERVICE)
+}
 
 function sendResultedSlicedPDF() {
     console.log("...sendingResultedPDF...");
@@ -12,15 +18,16 @@ function sendResultedSlicedPDF() {
 function handlePythonMicroService() {
     console.log("...handlingPythonMicroService...");
     return new Promise(async (resolve, reject) => {
-        const { spawn } = require('child_process');
-        const pythonSliceMicroService = spawn(settings.PYTHON_INTERPRETER, [settings.PYTHON_SLICE_SERVICE]);
-        pythonSliceMicroService.stdout.on('data', (data) => {
+        
+        const pythonSliceMicroService = spawn(config.PYTHON_INTERPRETER, [config.PYTHON_SLICE_SERVICE]);
+        console.log(config.PYTHON_INTERPRETER, config.PYTHON_SLICE_SERVICE)
+        pythonSliceMicroService.stdout.on('data', (data:string) => {
             console.log(`stdout: ${data}.`);
         });
-        pythonSliceMicroService.stderr.on('data', (data) => {
+        pythonSliceMicroService.stderr.on('data', (data:string) => {
             reject(`stderr: ${data}.`);
         });
-        pythonSliceMicroService.on('close', (code) => {
+        pythonSliceMicroService.on('close', (code:string) => {
             resolve(`child process exited with code ${code}.`);
         });
     });
@@ -30,10 +37,12 @@ function sliceService() {
     return new Promise(async (resolve, reject) => {
         handlePythonMicroService()
             .then(sendResultedSlicedPDF)
-            .then(resultPdfData => resolve(resultPdfData))
+            .then(resultPdfData => {
+                console.log(typeof(resultPdfData));
+                resolve(resultPdfData);  
+            }) 
             .catch((error) => reject(error));
     });
 }
 
-module.exports = { sliceService };
-
+export default { services , sliceService } 
