@@ -24,7 +24,6 @@ app.get('/sliceservice', (req, res) => {
             res.contentType("application/pdf");
             res.send(resultedReadStream);
         });
-    //res.send('...working on it...')
 });
 
 app.listen(port, () => console.log(`Express server running on ${port}.`));

@@ -1,13 +1,56 @@
 import PyPDF2
 import copy
-from drawing_to_slicer_lib.pdf_slicer_lib import *
+from application_library.pdf_slicer_lib import *
 
 print("...python MicroService is running...")
 
-scale_factor = 5
-input_drawing_file = open('public\\VykresA4.pdf', "rb")
-pdf_reader = PyPDF2.PdfFileReader(input_drawing_file)
-page_one = pdf_reader.getPage(0)
+# scale_factor = 1
+# input_drawing_file = open('public\\VykresA4_1.pdf', "rb")
+
+input_drawing_file = open('VykresA1_1.pdf', "rb")
+
+print(input_drawing_file)
+
+pdfObject = Pdf_slicer(input_drawing_file)
+pdfObject.get_page_dimensions()
+pdfObject.determine_input_drawing_format()
+pdfObject.slice_by_specific_format("a4")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+""" page_one = pdf_reader.getPage(0)
 scaled_page = copy.copy(page_one)
 scaled_page.scaleBy(scale_factor)
 layouts = generate_layouts(page_one, scaled_page)
@@ -30,4 +73,4 @@ for each_page in layouts:
     writer.addPage(copied_drawing)
 
 with open('public\\result.pdf', 'wb') as output_result_file:
-    writer.write(output_result_file)
+    writer.write(output_result_file) """

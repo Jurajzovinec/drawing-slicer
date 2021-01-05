@@ -21,9 +21,9 @@ function services() {
 function sendResultedSlicedPDF() {
     console.log("...sendingResultedPDF...");
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-        const readableStreamDataPdf = fs_1.default.createReadStream('./public/result.pdf');
-        var data = fs_1.default.readFileSync('./public/result.pdf');
-        resolve(data);
+        //const readableStreamDataPdf = fs.createReadStream('./public/result.pdf');
+        const pdfData = fs_1.default.readFileSync('./public/result.pdf');
+        resolve(pdfData);
     }));
 }
 function handlePythonMicroService() {

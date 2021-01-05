@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "./pythonServices/environment/Scripts/python",
+    "python.pythonPath": "C:\\Python39\\python.exe",
     "python.autoComplete.extraPaths": ["./pythonServices/slice_service.py"],
 }
