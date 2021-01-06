@@ -2,22 +2,21 @@ import PyPDF2
 import copy
 from application_library.pdf_slicer_lib import *
 
-print("...python MicroService is running...")
-
 # scale_factor = 1
-input_drawing_file = open('C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\public\\MultipageExample.pdf', "rb")
-
+input_drawing_file = open('C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\public\\VykresA4_1.pdf', "rb")
 # input_drawing_file = open('VykresA1_1.pdf', "rb")b n
-
 
 def slice_service(input_drawing_file, slice_by_format):
 
-    pdfObject = Pdf_slicer(input_drawing_file)
-    pdfObject.get_page_dimensions()
-    pdfObject.determine_input_drawing_format()
-    return pdfObject.slice_by_specific_format(slice_by_format)
+    pdf_object = PdfSlicer(input_drawing_file)
+    pdf_object.get_page_dimensions()
+    pdf_object.determine_input_drawing_format()
+    return pdf_object.slice_by_specific_format(slice_by_format)
 
+def scale_service(input_drawing_file, scale_by_format):
 
+    pdf_object = PdfSlicer(input_drawing_file)
+    return pdf_object.scale_to_specific_format(scale_by_format)
 
 
 
