@@ -5,21 +5,17 @@ from application_library.pdf_slicer_lib import *
 print("...python MicroService is running...")
 
 # scale_factor = 1
-# input_drawing_file = open('public\\VykresA4_1.pdf', "rb")
+input_drawing_file = open('C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\public\\MultipageExample.pdf', "rb")
 
-input_drawing_file = open('VykresA1_1.pdf', "rb")
-
-print(input_drawing_file)
-
-pdfObject = Pdf_slicer(input_drawing_file)
-pdfObject.get_page_dimensions()
-pdfObject.determine_input_drawing_format()
-pdfObject.slice_by_specific_format("a4")
+# input_drawing_file = open('VykresA1_1.pdf', "rb")b n
 
 
+def slice_service(input_drawing_file, slice_by_format):
 
-
-
+    pdfObject = Pdf_slicer(input_drawing_file)
+    pdfObject.get_page_dimensions()
+    pdfObject.determine_input_drawing_format()
+    return pdfObject.slice_by_specific_format(slice_by_format)
 
 
 

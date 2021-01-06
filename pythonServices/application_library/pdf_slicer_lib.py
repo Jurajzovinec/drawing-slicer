@@ -1,30 +1,6 @@
 import PyPDF2
 import copy
-
-
-class InvalidPdfSizeError(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
-
-
-class MultiPageInputPdfError(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
-
-
-class InvalidDrawingInputFormat(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
-
-
-class AcceptedDeviationError(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
-
+from .pdf_slicer_exceptions import *
 
 class Pdf_slicer:
 
@@ -131,7 +107,7 @@ class Pdf_slicer:
         
         slice_format_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats
                                        if drawing_format['drawing_format'] == format_to_slice)
-        acceptedDeviation = max(self.input_drawing_format['dimensions'])*0.002
+        acceptedDeviation = max(self.input_drawing_format['dimensions'])*0.004
 
         if self.input_drawing_format['dimensions'][0] % slice_format_dimensions['dimensions'][0] < acceptedDeviation:
             slicing_parameters = {"name":"width-width", 
