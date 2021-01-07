@@ -39,34 +39,6 @@ class PdfSlicer:
         
         return [heigth_pdf_page, width_pdf_page]
 
-    def generate_layouts_positions(input_object, scaled_object):
-
-        input_dims = get_page_area(input_object)
-        scaled_dims = get_page_area(scaled_object)
-
-        how_many_will_fit_weight = int(scaled_dims[1]/input_dims[1])
-        how_many_will_fit_height = int(scaled_dims[2]/input_dims[2])
-
-        for x in range(how_many_will_fit_weight):
-            for y in range(how_many_will_fit_height):
-                relative_position_x = x
-                relative_position_y = y
-                absolute_position_x_start = (x) * input_dims[1]
-                absolute_position_y_start = (y) * input_dims[2]
-                absolute_position_x_end = (x+1) * input_dims[1]
-                absolute_position_y_end = (y+1) * input_dims[2]
-                fitted_pdf_object = {
-                    "relative_position_x": relative_position_x,
-                    "relative_position_y": relative_position_y,
-                    "absolute_position_x_start": absolute_position_x_start,
-                    "absolute_position_y_start": absolute_position_y_start,
-                    "absolute_position_x_end": absolute_position_x_end,
-                    "absolute_position_y_end": absolute_position_y_end
-                }
-                output_field.append(fitted_pdf_object)
-
-        return output_field
-
     def determine_input_drawing_format(self):
         checked_page_object_dimensions = self.get_page_dimensions()
         
@@ -140,6 +112,8 @@ class PdfSlicer:
                 }
                 output_field.append(fitted_pdf_object)
 
+        print(output_field)
+
         return output_field
 
     def determine_slice_or_scale_method(self, manipulation_format, manipulation_method):
@@ -198,3 +172,21 @@ class PdfSlicer:
         
         print(manipulation_parameters)
         return manipulation_parameters
+
+    def generate_sliced_pdf(self, input_layout_field):
+        
+        writer = PyPDF2.PdfFileWriter()
+
+        for each_page in input_layout_field:
+            copied_drawing = copy.copy(self.first_page_of_pdf_object)
+        copied_drawing.cropBox.lowerLeft = [each_page["absolute_position_x_start"], each_page["absolute_position_y_start"]]
+        copied_drawing.cropBox.upperRight = [each_page["absolute_position_x_end"], each_page["absolute_position_y_end"]]
+        if each_page['relative_position_x'] != 0 and each_page['relative_position_x'] != 4:
+            h = round(float(copied_drawing.mediaBox.getHeight()) * 0.352777777)
+            w = round(float(copied_drawing.mediaBox.getWidth()) * 0.352777777)
+            print(h, w)
+            writer.addPage(copied_drawing)
+
+        with open("result.pdf", 'wb') as output_result_file:
+            writer.write(output_result_file)
+        
