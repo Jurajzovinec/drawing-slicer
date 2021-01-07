@@ -99,8 +99,16 @@ class PdfSlicer:
             horizontal_scale_ratio = int(scaling_parameters['horizontal_offset'] / self.input_drawing_format['dimensions'][0])
         
         scale_ratio = float(vertical_scale_ratio + horizontal_scale_ratio)/2
+
+        self.first_page_of_pdf_object.scaleBy(scale_ratio)
         
         return scale_ratio
+
+    def get_page_area(self, page_object):
+        print(page_object)
+        h = round(float(page_object.mediaBox.getHeight()))
+        w = round(float(page_object.mediaBox.getWidth()))
+        return [w * h, w, h]
 
     def slice_by_specific_format(self, format_to_slice):
         

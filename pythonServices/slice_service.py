@@ -18,6 +18,9 @@ def scale_service(input_drawing_file, scale_by_format):
     pdf_object = PdfSlicer(input_drawing_file)
     return pdf_object.scale_to_specific_format(scale_by_format)
 
+def scale_and_slice_service():
+    pass
+
 
 
 
