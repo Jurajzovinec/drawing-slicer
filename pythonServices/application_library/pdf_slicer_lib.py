@@ -1,10 +1,12 @@
 import PyPDF2
 import copy
+import string
+import random
 from .pdf_slicer_exceptions import *
 
 class PdfSlicer:
 
-    def __init__(self, input_file):
+    def __init__(self, input_file, slice_to_format, **kwargs):
         self.standard_drawing_formats = [
             {"drawing_format": "a0", "dimensions": [841, 1189]},
             {"drawing_format": "a1", "dimensions": [594, 841]},
@@ -17,9 +19,31 @@ class PdfSlicer:
             {"drawing_format": "a8", "dimensions": [52, 74]},
         ]
         self.input_pdf_object = self.init_pdf_file(input_file)
+        self.slice_to_format = slice_to_format
+        self.scale_to_format = self.determine_scale_format(kwargs)
+
         self.first_page_of_pdf_object = self.input_pdf_object.getPage(0)
         self.input_drawing_format = self.determine_input_drawing_format()
         self.determine_number_of_pages()
+        
+        #self.main_run()
+
+    def main_run(self):
+
+        if self.scale_to_format:
+            self.scale_to_specific_format(self.scale_by_format)   
+        return self.generate_sliced_pdf(pdf_object.slice_by_specific_format(self.slice_by_format))
+
+
+    def determine_scale_format(self, kwargs):
+
+        valid_inputs = [drawing_format_dict['drawing_format'] for drawing_format_dict in self.standard_drawing_formats]
+        if not "scale_to_format" in kwargs:
+            return None
+        elif scale_format not in valid_inputs:
+            raise InvalidSlicingFormat(f'Please select on of valid inputs from list {valid_inputs}')
+        else:
+            return kwargs['scale_format']
 
     def init_pdf_file(self, input_file):
         
@@ -30,23 +54,20 @@ class PdfSlicer:
         else:
             return pdf_file
 
-    def get_page_dimensions(self):
+    def get_this_page_dimensions(self):
 
-        heigth_pdf_page = round(
-            float(self.first_page_of_pdf_object.mediaBox.getHeight() * 0.352777777))
-        width_pdf_page = round(
-            float(self.first_page_of_pdf_object.mediaBox.getWidth() * 0.352777777))
-        
+        heigth_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getHeight()) * 0.352777777)
+        width_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getWidth()) * 0.352777777)
         return [heigth_pdf_page, width_pdf_page]
 
     def determine_input_drawing_format(self):
-        checked_page_object_dimensions = self.get_page_dimensions()
+        checked_page_object_dimensions = self.get_this_page_dimensions()
         
         acceptableDeviation = max(checked_page_object_dimensions)*0.002
         try:
             input_drawing_format = next(drawing_format for drawing_format in self.standard_drawing_formats
-                                        if max(drawing_format['dimensions']) == max(checked_page_object_dimensions)
-                                        and min(drawing_format['dimensions']) == min(checked_page_object_dimensions))
+                                        if abs(max(drawing_format['dimensions']) - max(checked_page_object_dimensions)) < acceptableDeviation
+                                        and abs(min(drawing_format['dimensions']) - min(checked_page_object_dimensions)) < acceptableDeviation)
         except StopIteration:
             raise InvalidPdfSizeError(
                 f"This is not standard drawing (A0...A8). Input drawing size is {checked_page_object_dimensions}")
@@ -61,41 +82,33 @@ class PdfSlicer:
                 f'Input PDF is not single paged. In order to slice PDF, extract document to single paged files.')
 
     def scale_to_specific_format(self, format_to_scale):
-        scaling_parameters = self.determine_slice_or_scale_method(format_to_scale, "scale")
 
-        if scaling_parameters['name'] == "width-width": 
-            vertical_scale_ratio = int(scaling_parameters['vertical_offset'] / self.input_drawing_format['dimensions'][1])
-            horizontal_scale_ratio = int(scaling_parameters['horizontal_offset'] / self.input_drawing_format['dimensions'][0])
-        else:
-            vertical_scale_ratio = int(scaling_parameters['vertical_offset'] / self.input_drawing_format['dimensions'][1])
-            horizontal_scale_ratio = int(scaling_parameters['horizontal_offset'] / self.input_drawing_format['dimensions'][0])
-        
-        scale_ratio = float(vertical_scale_ratio + horizontal_scale_ratio)/2
-
+        scaled_to_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats if drawing_format['drawing_format'] == format_to_scale)
+        scale_ratio = max(scaled_to_dimensions['dimensions'])/max(self.input_drawing_format['dimensions'])
         self.first_page_of_pdf_object.scaleBy(scale_ratio)
-        
+        self.input_drawing_format = self.determine_input_drawing_format()
         return scale_ratio
 
     def get_page_area(self, page_object):
-        print(page_object)
         h = round(float(page_object.mediaBox.getHeight()))
         w = round(float(page_object.mediaBox.getWidth()))
         return [w * h, w, h]
 
     def slice_by_specific_format(self, format_to_slice):
         
-        slicing_parameters = self.determine_slice_or_scale_method(format_to_slice, "slice")
+        slicing_parameters = self.determine_slice_method(format_to_slice)
 
         if slicing_parameters['name'] == "width-width":
-            vertical_slices = int(self.input_drawing_format['dimensions'][0] / slicing_parameters['horizontal_offset'])
-            horizontal_slices = int(self.input_drawing_format['dimensions'][1] / slicing_parameters['vertical_offset'])
+            vertical_slices = float(self.input_drawing_format['dimensions'][1] / slicing_parameters['horizontal_offset'])
+            horizontal_slices = float(self.input_drawing_format['dimensions'][0] / slicing_parameters['vertical_offset'])
         else:
-            vertical_slices = int(self.input_drawing_format['dimensions'][0] / slicing_parameters['vertical_offset'])
-            horizontal_slices = int(self.input_drawing_format['dimensions'][1] / slicing_parameters['horizontal_offset'])
+            vertical_slices = float(self.input_drawing_format['dimensions'][1] / slicing_parameters['vertical_offset'])
+            horizontal_slices = float(self.input_drawing_format['dimensions'][0] / slicing_parameters['horizontal_offset'])
         
         output_field = []
-        for x in range(vertical_slices):
-            for y in range(horizontal_slices):
+                
+        for x in range(int(vertical_slices)):
+            for y in range(int(horizontal_slices)):
                 relative_position_x = x
                 relative_position_y = y
                 absolute_position_x_start = (x) * slicing_parameters['horizontal_offset']
@@ -112,53 +125,31 @@ class PdfSlicer:
                 }
                 output_field.append(fitted_pdf_object)
 
-        print(output_field)
-
         return output_field
 
-    def determine_slice_or_scale_method(self, manipulation_format, manipulation_method):
-
-        valid_inputs = ["a8", "a7", "a6", "a5", "a4", "a3", "a2", "a1", "a0"]
-        valid_manipulation_methods = ["slice", "scale"]
-
-        if not manipulation_method in valid_manipulation_methods:
-            raise InvalidManipulationMethod(f"Invalid drawing input. Select one of valid method inputs {valid_manipulation_methods}")
+    def determine_slice_method(self, slicing_format):
+        valid_inputs = [drawing_format_dict['drawing_format'] for drawing_format_dict in self.standard_drawing_formats].reverse()
         
-        if not manipulation_format in valid_inputs:
+        if not slicing_format in valid_inputs:
             raise InvalidDrawingInputFormat(f"Invalid drawing input. Select one of valid format inputs {valid_inputs}")
         
-        if self.input_drawing_format['drawing_format'] == manipulation_format:
+        if self.input_drawing_format['drawing_format'] == slicing_format:
             raise InvalidDrawingInputFormat(f"Slicer format equals current format of input PDF.")
 
-        if valid_inputs.index(manipulation_format) > valid_inputs.index(self.input_drawing_format['drawing_format']) and manipulation_method == "slice":
+        if valid_inputs.index(slicing_format) > valid_inputs.index(self.input_drawing_format['drawing_format']):
             raise InvalidDrawingInputFormat(f"""Slicing format is larger than current format of input PDF.""")
-
-        if valid_inputs.index(manipulation_format) < valid_inputs.index(self.input_drawing_format['drawing_format']) and manipulation_method == "scale":
-            raise InvalidDrawingInputFormat(f"""Scaling format is smaller than current format of input PDF.""")
         
         manipulation_format_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats
-                                        if drawing_format['drawing_format'] == manipulation_format)
-        acceptedDeviation = max(self.input_drawing_format['dimensions'])*0.004
+                                        if drawing_format['drawing_format'] == slicing_format)
+        acceptedDeviation = min(self.input_drawing_format['dimensions'])*0.005
 
-        if self.input_drawing_format['dimensions'][0] % manipulation_format_dimensions['dimensions'][0] < acceptedDeviation and manipulation_method == "slice":
+        if self.input_drawing_format['dimensions'][0] % manipulation_format_dimensions['dimensions'][0] < acceptedDeviation:
             manipulation_parameters = {
                 "name":"width-width", 
-                "horizontal_offset": manipulation_format_dimensions['dimensions'][0], 
-                "vertical_offset": manipulation_format_dimensions['dimensions'][1]
-                }
-        elif self.input_drawing_format['dimensions'][0] % manipulation_format_dimensions['dimensions'][1] < acceptedDeviation and manipulation_method == "slice":
-            manipulation_parameters = {
-                "name":"width-height", 
                 "horizontal_offset": manipulation_format_dimensions['dimensions'][1], 
                 "vertical_offset": manipulation_format_dimensions['dimensions'][0]
                 }
-        elif manipulation_format_dimensions['dimensions'][0] % self.input_drawing_format['dimensions'][0] < acceptedDeviation and manipulation_method == "scale":
-            manipulation_parameters = {
-                "name":"width-width", 
-                "horizontal_offset": manipulation_format_dimensions['dimensions'][0], 
-                "vertical_offset": manipulation_format_dimensions['dimensions'][1]
-                }
-        elif manipulation_format_dimensions['dimensions'][0] % self.input_drawing_format['dimensions'][1] < acceptedDeviation and manipulation_method == "scale":
+        elif self.input_drawing_format['dimensions'][0] % manipulation_format_dimensions['dimensions'][1] < acceptedDeviation:
             manipulation_parameters = {
                 "name":"width-height", 
                 "horizontal_offset": manipulation_format_dimensions['dimensions'][1], 
@@ -170,7 +161,6 @@ class PdfSlicer:
                                         manipulation drawing format drawing format is {manipulation_format_dimensions}, 
                                         input drawing format is {self.input_drawing_format}""" )
         
-        print(manipulation_parameters)
         return manipulation_parameters
 
     def generate_sliced_pdf(self, input_layout_field):
@@ -179,14 +169,24 @@ class PdfSlicer:
 
         for each_page in input_layout_field:
             copied_drawing = copy.copy(self.first_page_of_pdf_object)
-        copied_drawing.cropBox.lowerLeft = [each_page["absolute_position_x_start"], each_page["absolute_position_y_start"]]
-        copied_drawing.cropBox.upperRight = [each_page["absolute_position_x_end"], each_page["absolute_position_y_end"]]
-        if each_page['relative_position_x'] != 0 and each_page['relative_position_x'] != 4:
-            h = round(float(copied_drawing.mediaBox.getHeight()) * 0.352777777)
-            w = round(float(copied_drawing.mediaBox.getWidth()) * 0.352777777)
-            print(h, w)
+            copied_drawing.cropBox.lowerLeft = [each_page["absolute_position_x_start"], each_page["absolute_position_y_start"]]
+            copied_drawing.cropBox.upperRight = [each_page["absolute_position_x_end"], each_page["absolute_position_y_end"]]
+            
             writer.addPage(copied_drawing)
 
-        with open("result.pdf", 'wb') as output_result_file:
+        with open(f"test_results//{self.pdf_name_generator()}.pdf", 'wb') as output_result_file:
             writer.write(output_result_file)
+
         
+    
+    def pdf_name_generator(self, size=6, chars=string.ascii_uppercase + string.digits):
+        return ''.join(random.choice(chars) for _ in range(size))
+
+    def test_output_format(self, tested_page, expected_format):
+
+        tested_page_dimensions = (round(float(tested_page.mediaBox.getHeight()) * 0.352777777), round(float(tested_page.mediaBox.getWidth()) * 0.352777777))
+        expected_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats if drawing_format['drawing_format'] == expected_format)['dimensions']
+        accepted_deviation = max(expected_dimensions)*0.002
+
+        if abs(max(expected_dimensions-accepted_deviation)) > accepted_deviation:
+            raise ResultPDFSizeFailure(f'Output format failed in pdf size test. Expected format is {expected_format} with dimensions: {expected_dimensions}. Result dimensions are {tested_page_dimensions} and accepted deviation is {accepted_deviation}.')
