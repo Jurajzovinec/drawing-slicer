@@ -30,3 +30,7 @@ class ResultPDFSizeFailure(Exception):
 class InvalidSlicingFormat(Exception):
     def __init__(self, message):
         super().__init__(message)
+
+class InvalidScalingFormat(Exception):
+    def __init__(self, message):
+        super().__init__(message)
