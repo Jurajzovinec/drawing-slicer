@@ -1,0 +1,140 @@
+2021-01-13 10:50:04,531 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 10:50:04,532 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 10:50:04,532 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 10:50:04,532 CRITICAL slice_service.py 23 - name 'kwargs' is not defined
+2021-01-13 10:51:22,614 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 10:51:22,614 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 10:51:22,614 CRITICAL slice_service.py 17 - list index out of range
+2021-01-13 10:51:22,614 CRITICAL slice_service.py 22 - name 'kwargs' is not defined
+2021-01-13 10:53:07,823 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 10:53:07,823 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 10:53:36,971 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 10:53:36,973 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 10:54:11,452 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 10:54:11,452 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 10:54:11,452 CRITICAL slice_service.py 20 - list index out of range
+2021-01-13 10:54:11,452 CRITICAL slice_service.py 25 - name 'kwargs' is not defined
+2021-01-13 11:01:00,795 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:01:00,795 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:01:00,796 CRITICAL slice_service.py 17 - 'list' object has no attribute 'len'
+2021-01-13 11:01:00,796 CRITICAL slice_service.py 22 - name 'kwargs' is not defined
+2021-01-13 11:01:10,169 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:01:10,170 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:01:10,170 CRITICAL slice_service.py 17 - 'list' object has no attribute 'len'
+2021-01-13 11:01:10,170 CRITICAL slice_service.py 22 - name 'kwargs' is not defined
+2021-01-13 11:01:15,252 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:01:15,252 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:01:15,253 CRITICAL slice_service.py 17 - 'list' object has no attribute 'len'
+2021-01-13 11:01:15,253 CRITICAL slice_service.py 22 - name 'kwargs' is not defined
+2021-01-13 11:02:00,124 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:02:00,125 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:02:00,126 CRITICAL slice_service.py 17 - list index out of range
+2021-01-13 11:02:00,126 CRITICAL slice_service.py 22 - name 'kwargs' is not defined
+2021-01-13 11:03:05,505 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:03:05,506 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:03:05,506 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:03:05,507 CRITICAL slice_service.py 23 - __init__() takes 3 positional arguments but 4 were given
+2021-01-13 11:03:15,715 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:03:15,715 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:03:15,716 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:03:15,716 CRITICAL slice_service.py 23 - __init__() takes 3 positional arguments but 4 were given
+2021-01-13 11:04:04,058 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:04:04,058 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:04:04,058 CRITICAL slice_service.py 17 - list index out of range
+2021-01-13 11:04:04,058 CRITICAL slice_service.py 22 - name 'kwargs' is not defined
+2021-01-13 11:04:32,532 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:04:32,533 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:04:32,533 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:04:32,533 CRITICAL slice_service.py 23 - application_library.pdf_slicer_lib.PdfSlicer() argument after ** must be a mapping, not NoneType
+2021-01-13 11:04:45,112 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:04:45,112 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:04:45,112 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:04:45,112 CRITICAL slice_service.py 23 - __init__() takes 3 positional arguments but 4 were given
+2021-01-13 11:05:02,557 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:05:02,558 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:05:02,558 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:05:02,591 CRITICAL slice_service.py 23 - argument of type 'NoneType' is not iterable
+2021-01-13 11:05:08,884 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:05:08,884 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:05:08,884 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:05:08,885 CRITICAL slice_service.py 23 - argument of type 'NoneType' is not iterable
+2021-01-13 11:05:19,927 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:05:19,927 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:05:19,927 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:05:19,928 CRITICAL slice_service.py 23 - argument of type 'NoneType' is not iterable
+2021-01-13 11:05:34,863 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:05:34,864 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:05:34,866 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:05:34,898 CRITICAL slice_service.py 23 - [Errno 2] No such file or directory: 'test_results//CGY9NA.pdf'
+2021-01-13 11:09:42,366 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:09:42,367 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:09:42,367 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:09:42,378 CRITICAL slice_service.py 24 - local variable 'output_result_file' referenced before assignment
+2021-01-13 11:10:33,899 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:10:33,900 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:10:33,900 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:10:33,906 CRITICAL slice_service.py 24 - local variable 'output_result_file' referenced before assignment
+2021-01-13 11:11:00,678 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:11:00,678 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:11:00,678 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:11:00,682 CRITICAL slice_service.py 23 - local variable 'output_result_file' referenced before assignment
+2021-01-13 11:11:17,087 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:11:17,087 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:11:17,087 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:21:58,844 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:21:58,844 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:21:58,844 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:22:21,300 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:22:21,300 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:22:21,300 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:28:45,051 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:28:45,052 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:28:45,052 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:28:45,065 INFO slice_service.py 21 - <_io.BufferedWriter name='sliced_pdf_results//sliced_result.pdf'>
+2021-01-13 11:28:45,083 INFO slice_service.py 22 - <class '_io.BufferedWriter'>
+2021-01-13 11:30:36,101 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:30:36,102 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:30:36,102 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:30:36,124 INFO slice_service.py 21 - sliced_result.pdf
+2021-01-13 11:30:36,136 INFO slice_service.py 22 - <class 'str'>
+2021-01-13 11:33:11,298 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:33:11,299 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:33:11,299 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:33:11,349 INFO slice_service.py 21 - <_io.BufferedWriter name='sliced_pdf_results//sliced_result.pdf'>
+2021-01-13 11:33:11,370 INFO slice_service.py 22 - <class '_io.BufferedWriter'>
+2021-01-13 11:35:55,380 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:35:55,380 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:35:55,381 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:36:17,675 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:36:17,676 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:36:17,676 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:42:11,479 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:42:11,479 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:42:11,479 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:42:16,876 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:42:16,876 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:42:16,876 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:42:23,215 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:42:23,215 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:42:23,215 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:42:30,449 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:42:30,449 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:42:30,449 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:42:48,322 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:42:48,324 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:42:48,325 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:42:54,273 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:42:54,273 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/TestWithNode.pdf', 'a5']
+2021-01-13 11:42:54,273 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:43:11,119 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:43:11,120 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/VykresA1_1.pdf', 'a5']
+2021-01-13 11:43:11,120 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:43:19,447 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:43:19,447 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/VykresA1_1.pdf', 'a5']
+2021-01-13 11:43:19,448 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 11:43:37,125 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 11:43:37,128 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/VykresA4_1.pdf', 'a5']
+2021-01-13 11:43:37,129 CRITICAL slice_service.py 18 - list index out of range
+2021-01-13 12:39:19,612 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-13 12:39:19,613 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './public/VykresA4_1.pdf', 'a5']
+2021-01-13 12:39:19,613 CRITICAL slice_service.py 19 - list index out of range

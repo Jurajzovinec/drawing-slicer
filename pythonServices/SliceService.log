@@ -1,0 +1,4 @@
+INFO slice_service.py 8 2021-01-12 14:07:14,595 - Slice_service initilized.
+INFO slice_service.py 9 2021-01-12 14:07:14,595 - Arguments are ['slice_service.py']
+CRITICAL slice_service.py 18 2021-01-12 14:07:14,595 - list index out of range
+CRITICAL slice_service.py 23 2021-01-12 14:07:14,595 - name 'input_drawing_file' is not defined

@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import services from './lib/services';
-import { fstat } from 'fs';
+import  fileUpload  from 'express-fileupload';
+//import fileUpload  = require("../node_modules/@types/express-fileupload");
 
 const app = express();
 
@@ -13,10 +14,14 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors({ origin: "http://localhost:3000" }));
 }
 
-app.get('/slice', (req, res) => {
-    services.services();
-    res.send('...working on it...')
+app.get('/', (req, res) => {
+    res.send('...Hello...')
 });
+
+app.post('/upload', fileUpload(), function(req, res) {  
+    // https://stackoverflow.com/questions/52140939/how-to-send-pdf-file-from-front-end-to-nodejs-server
+    res.send('File uploaded');
+  })
 
 app.get('/sliceservice', (req, res) => {
     services.sliceService()

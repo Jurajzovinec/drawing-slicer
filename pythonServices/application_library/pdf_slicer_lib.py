@@ -189,12 +189,13 @@ class PdfSlicer:
             copied_drawing.cropBox.upperRight = [each_page["absolute_position_x_end"]/0.352777777, each_page["absolute_position_y_end"]/0.352777777]
             writer.addPage(copied_drawing)
 
-        unique_pdf_name = (f"{self.pdf_name_generator()}.pdf")
-
-        with open(f"test_results//{unique_pdf_name}", 'wb') as output_result_file:
+        #result_pdf_name = (f"{self.pdf_name_generator()}.pdf")
+        result_pdf_name = ("sliced_result.pdf")
+        
+        with open(f"sliced_pdf_results//{result_pdf_name}", 'wb') as output_result_file:
             writer.write(output_result_file)
             
-        with open(f"test_results//{unique_pdf_name}", 'rb') as output_result_file_test:
+        with open(f"sliced_pdf_results//{result_pdf_name}", 'rb') as output_result_file_test:
             resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_result_file_test)
             for page_number in range(resulted_tested_pdf_file.getNumPages()):
                 self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)

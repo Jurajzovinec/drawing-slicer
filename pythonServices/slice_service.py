@@ -1,13 +1,25 @@
 from application_library.pdf_slicer_lib import *
+import logging
+import sys
 
-input_drawing_file = open('C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\public\\VykresA1_1.pdf', "rb")
-# input_drawing_file = open('VykresA1_1.pdf', "rb")b n
+LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(lineno)s - %(message)s"
+logging.basicConfig(filename = "SliceService.log", level = logging.DEBUG, format = LOG_FORMAT)
+logger = logging.getLogger()
+logger.info("Slice_service initilized.")
+logger.info(f"Arguments are {str(sys.argv)}")
 
-def slice_service(input_drawing_file, slice_to_format, **kwargs):
-    
-    pdf_object = PdfSlicer(input_drawing_file, slice_to_format, kwargs=kwargs)
-    return pdf_object.main_run()
+if __name__ == "__main__":
+    input_drawing_file = sys.argv[1]
+    slice_to_format = sys.argv[2]
+    kwargs = {}
+    try:
+        kwargs = sys.argv[3]
+        logger.info(kwargs)
+    except Exception as error:
+        logger.critical(error)       
+    try:
+        pdf_object = PdfSlicer(input_drawing_file, slice_to_format, kwargs=kwargs)
+        pdf_object.main_run()
+    except Exception as error:
+        logger.critical(error)
 
-#slice_service(input_drawing_file, "a5", scale_to_format = "a1")
-#slice_service(input_drawing_file, "a4", scale_to_format = "a2")
-#slice_service(input_drawing_file, "a4")

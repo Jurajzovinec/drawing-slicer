@@ -1,6 +1,5 @@
 import unittest
 import io
-from slice_service import *
 from application_library.pdf_slicer_exceptions import *
 from application_library.pdf_slicer_lib import *
 
@@ -27,6 +26,10 @@ def close_files():
     greek_file.close()
     invalid_file_type.close()
 
+def slice_service(input_drawing_file, slice_to_format, **kwargs):
+    
+    pdf_object = PdfSlicer(input_drawing_file, slice_to_format, kwargs=kwargs)
+    return pdf_object.main_run()   
 
 class TestSliceService(unittest.TestCase):
 
