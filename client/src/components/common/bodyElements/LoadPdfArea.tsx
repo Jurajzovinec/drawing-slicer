@@ -8,9 +8,9 @@ interface PageAreaInfs {
 
 export const LoadPdfArea: React.FC<PageAreaInfs> = ({buttonText, dragAndDropText}) => {
     return (
-        <div className="load-pdf-area">
-            <span className="drag-and-drop">{dragAndDropText}</span>
+        <section>
+            <p className="drag-and-drop">{dragAndDropText}</p>
             <LoadPdfButton buttonText={buttonText}/>
-        </div>
+        </section>         
     );
 };

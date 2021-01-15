@@ -1,14 +1,14 @@
 import React from "react";
 
 interface ButtonOptions {
-    buttonText: string;
+    ScaleButtonText: string;
 }
 
-export const CheckScaleOptionButton: React.FC<ButtonOptions> = ({buttonText}) => {
+export const CheckScaleOptionButton: React.FC<ButtonOptions> = ({ScaleButtonText}) => {
     
     return (
         <div className="check-scale-options-button">
-            <button>{buttonText}</button>
+            <button>{ScaleButtonText}</button>
         </div>
     );
 };

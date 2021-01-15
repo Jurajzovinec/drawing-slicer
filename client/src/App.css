@@ -3,35 +3,78 @@ body, #root,  html, .App{
   height: 100%;
   margin: 0;
   padding: 0;
-  --header-height: 10%
+  --header-height: 10%;
+  background-image: linear-gradient(rgb(150, 150, 150),rgb(15, 15, 15));
 }
+
+/* Default classes styling */
+
+button {
+  border: 2px solid #dac616;
+  color: rgb(10, 10, 10);
+  background: none;
+  padding: 0.5em;
+  font-family: verdana;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: 0.5s;
+  border-radius: 0.5em;
+}
+
+button:hover{
+  background:#dac616;
+  box-shadow: 0em 0em 2em #dac616;
+}
+
+p {
+text-align:center; 
+vertical-align: middle;
+font-family: verdana;
+font-size: 1em;
+}
+
+select{
+  font-family: verdana;
+  font-size: 1em;
+  padding: 0.5em 0.5em;
+  background-color:  #dac616;
+  color: black;
+}
+
+
+/* HEADER CSS */
 
 .Header{
   height: var(--header-height);
   display: flex;
   flex:0.5;
-  background-image: linear-gradient(rgb(10, 10, 10),rgb(108, 108, 128));
+  background-color: rgb(112, 112, 112);
   justify-content: space-around;
-}
-
-.Body{
-  background-color: azure;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
+  border-bottom: 0.14em solid  #dac616;
 }
 
 .nav-bar-img{
+  filter: blur(0.1em);
   height:100%;
   opacity: 0.5;
   transition: 0.3s;
 }
 
 .nav-bar-img:hover{
+  filter:none;
   cursor: pointer;
   opacity: 1;
   transition: 0.3s;
 }
+
+/*BODY CSS*/
+
+.Body{
+  flex-direction: column;
+}
+
 
 .body-header{
   text-align: center;
@@ -40,6 +83,8 @@ body, #root,  html, .App{
   font-size: 1em;
   color: black;
   letter-spacing: 0.4em;
+  padding: 3em;
+
 }
 
 .user-interface{
@@ -49,39 +94,28 @@ body, #root,  html, .App{
   justify-content: space-around;
 }
 
-.left-part, .right-part{
-  text-align: center;
-  flex:0.5;
-  padding: 1em;
-}
-
-.load-pdf-area{
+.load-pdf-area-container{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
   border: 0.25em;
   border-style: dashed;
-  border-color:rgb(108, 108, 128);
+  border-color:#dac616;
   border-radius: 1em;
-  display: flex;
-  flex-direction: column;
-  padding: 3em;
-  justify-items: center;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.form-part{
-  display: flex;
+.form-container{
+  flex:1;
+  display:flex;
+  justify-content: space-around;
   flex-direction: column;
-  padding: 3em;
-  justify-items: center;
-}
-
-.drag-and-drop{
-  display: flex;
-  font-family: verdana;
-  font-size: 1em;
-  margin: 1em
 }
 
 .load-pdf-button{
-  margin: 1em
+  margin: 1em;
 }
 
 .input-format-drawing{
@@ -90,13 +124,9 @@ body, #root,  html, .App{
 
 .scale-form, .slice-form{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 2em 3em 2em 3em;
 }
 
-.check-scale-options-button{
-  padding: 1em;
-}
 
-.scaling-format-options{
-  padding: 1em;
-}
+

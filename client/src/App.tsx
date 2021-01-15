@@ -18,11 +18,11 @@ function App() {
       <div className="Body">
         <BodyHeader text={"Welcome!"} />
         <div className="user-interface">
-          <div className="left-part">
+          <div className="load-pdf-area-container">
             <LoadPdfArea buttonText={"Or navigate me !"} dragAndDropText={"Drag and drop your PDF drawing here."} />
           </div>
-          <div className="right-part">
-            <FormPart importedFormat={"a4"} buttonText={"Scale before slice"} />
+          <div className="form-container">
+            <FormPart importedFormat={"a4"} ScaleButtonText={"Scale before slice ? "} SliceButtonText={"Slice drawing"}/>
           </div>
         </div>
       </div>
