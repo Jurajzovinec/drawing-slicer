@@ -9,8 +9,23 @@ body, #root,  html, .App{
 
 /* Default classes styling */
 
+div[aria-disabled]
+{
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+label {
+  padding: 0.5em;
+  font-family: verdana;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.2em;
+}
+
 button {
   border: 2px solid #dac616;
+  border-radius: 0.5em;
   color: rgb(10, 10, 10);
   background: none;
   padding: 0.5em;
@@ -20,28 +35,66 @@ button {
   letter-spacing: 0.2em;
   cursor: pointer;
   transition: 0.5s;
-  border-radius: 0.5em;
+  outline: none;
 }
 
 button:hover{
   background:#dac616;
-  box-shadow: 0em 0em 2em #dac616;
+  box-shadow: 0em 0em 0.5em #dac616;
 }
 
 p {
-text-align:center; 
-vertical-align: middle;
-font-family: verdana;
-font-size: 1em;
+  text-align:center; 
+  vertical-align: middle;
+  font-family: verdana;
+  font-size: 1em;
 }
 
 select{
+  outline: none;
   font-family: verdana;
   font-size: 1em;
   padding: 0.5em 0.5em;
   background-color:  #dac616;
   color: black;
 }
+
+input[type="checkbox"]{
+  outline: none;
+  position: relative;
+  vertical-align: middle;
+  width: 8em;
+  height: 3em;
+  -webkit-appearance: none;
+  background: none;
+  border: 2px solid #dac616;
+  border-radius: 3em;
+  cursor: pointer;
+}
+
+input:checked[type="checkbox"]
+{
+  background: #dac616;
+  box-shadow: 0em 0em 0.5em #dac616;
+}
+
+input[type="checkbox"]:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 3em;
+  height: 2.5em;
+  border: 2px solid #dac616;
+  border-radius: 2.3em;
+  background-image: linear-gradient(rgb(15, 15, 15),rgb(150, 150, 150));
+  transition: 0.5s;
+}
+
+input:checked[type="checkbox"]:before{
+  position: absolute;
+  left: 4.5em;
+}
+
 
 
 /* HEADER CSS */
@@ -99,10 +152,19 @@ select{
   display:flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 0.25em;
+  border: 0.15em;
   border-style: dashed;
   border-color:#dac616;
   border-radius: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.info-pdf-area-container{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
   text-align: center;
   vertical-align: middle;
 }
@@ -127,6 +189,8 @@ select{
   justify-content: space-between;
   padding: 2em 3em 2em 3em;
 }
+
+
 
 
 

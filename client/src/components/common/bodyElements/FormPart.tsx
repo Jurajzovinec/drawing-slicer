@@ -1,27 +1,25 @@
 import React from "react";
-import { CheckScaleOptionButton } from './CheckScaleOptionButton';
-import { SelectFormatOptions } from './SelectFormatOptions';
-import { SliceButton } from "./SliceButton";
+import { CheckScaleOptionButton } from '../interfaceButtons/CheckScaleOptionButton';
+import { SliceButton } from "../interfaceButtons/SliceButton";
+import { SelectScaleOptions } from "../options/SelectScaleOptions";
+import { SelectSliceOptions } from "../options/SelectSliceOptions";
+
 
 interface PageAreaInfs {
     ScaleButtonText: string;
     SliceButtonText: string;
-    importedFormat: string | null;
 }
 
-export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText, importedFormat }) => {
+export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText }) => {  
     return (
         <>
-            <p id="form-p-tag">
-                Your input drawing format is {importedFormat}.
-            </p>
             <div className="scale-form">
                 <CheckScaleOptionButton ScaleButtonText={ScaleButtonText} />
-                <SelectFormatOptions />
+                <SelectScaleOptions />
             </div>
             <div className="slice-form">
                 <SliceButton SliceButtonText={SliceButtonText} />
-                <SelectFormatOptions />
+                <SelectSliceOptions />
             </div>
         </>
     );
