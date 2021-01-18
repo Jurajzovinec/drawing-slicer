@@ -45,6 +45,18 @@ var child_process_1 = require("child_process");
 function services() {
     console.log(config_1["default"].PYTHON_INTERPRETER, config_1["default"].PYTHON_SLICE_SERVICE);
 }
+var ValidInput;
+(function (ValidInput) {
+    ValidInput[ValidInput["a0"] = 0] = "a0";
+    ValidInput[ValidInput["a1"] = 1] = "a1";
+    ValidInput[ValidInput["a2"] = 2] = "a2";
+    ValidInput[ValidInput["a3"] = 3] = "a3";
+    ValidInput[ValidInput["a4"] = 4] = "a4";
+    ValidInput[ValidInput["a5"] = 5] = "a5";
+    ValidInput[ValidInput["a6"] = 6] = "a6";
+    ValidInput[ValidInput["a7"] = 7] = "a7";
+    ValidInput[ValidInput["a8"] = 8] = "a8";
+})(ValidInput || (ValidInput = {}));
 function sendResultedSlicedPDF() {
     var _this = this;
     console.log("...sendingResultedPDF...");
@@ -57,33 +69,39 @@ function sendResultedSlicedPDF() {
         });
     }); });
 }
-function handlePythonMicroService() {
+function handlePythonMicroService(inputs) {
     var _this = this;
     console.log("...handlingPythonMicroService...");
-    var input_drawing_file = './public/VykresA4_1.pdf';
-    var slice_to_format = "a5";
+    var inputDrawingFile = "./uploads/" + inputs.fileToSlice;
+    var sliceToFormat = inputs.slicingFormat;
+    var scaleToFormat = inputs.scalingFormat;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         var pythonSliceMicroService;
         return __generator(this, function (_a) {
-            pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER, [config_1["default"].PYTHON_SLICE_SERVICE, input_drawing_file, slice_to_format, "a0"]);
+            pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER, [config_1["default"].PYTHON_SLICE_SERVICE, inputDrawingFile, sliceToFormat, scaleToFormat]);
             pythonSliceMicroService.stdout.on('data', function (data) {
                 console.log(data);
             });
             pythonSliceMicroService.stderr.on('data', function (data) {
+                console.log(data);
                 reject({ promiseResultData: data });
             });
+            pythonSliceMicroService.stdout.on('end', function (data) {
+                console.log(data);
+            });
             pythonSliceMicroService.on('close', function (code) {
+                console.log(code);
                 resolve({ promiseResultData: "child process exited with code " + code + "." });
             });
             return [2 /*return*/];
         });
     }); });
 }
-function sliceService() {
+function sliceService(inputs) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            handlePythonMicroService()
+            handlePythonMicroService(inputs)
                 .then(sendResultedSlicedPDF)
                 .then(function (resultPdfData) {
                 resolve(resultPdfData);

@@ -10,24 +10,19 @@ interface PageAreaInfs {
 export const LoadPdfArea: React.FC<PageAreaInfs> = ({ buttonText, dragAndDropText }) => {
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file: any) => {
-            
+
             console.log("reaction");
 
             let formData = new FormData();
             formData.append('file', acceptedFiles)
-            
-            // Spravit call na BACKEND -> TEST ONLY -> CHECK INPUT FORMAT, TYPE, SINGLE PAGE
 
-            /* const reader = new FileReader()
-            console.log(typeof (acceptedFiles))
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
-            reader.onload = () => {
-                // Do whatever you want with the file contents
-                const binaryStr = reader.result
-                console.log(typeof (binaryStr))
-            }
-            reader.readAsArrayBuffer(file) */
+            // Spravit call na BACKEND -> TEST ONLY -> CHECK INPUT FORMAT, SINGLE PAGE
+
+            fetch("http://localhost:5050/test", {
+                method: 'POST',
+                body: formData
+            }).then(res=>console.log(res.text()))
+
         })
 
     }, [])

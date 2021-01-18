@@ -6,6 +6,16 @@ function services() {
     console.log(config.PYTHON_INTERPRETER, config.PYTHON_SLICE_SERVICE)
 }
 
+type validInputs = "a0" | "a1" | "a2" | "a3" | "a4" | "a5" | "a6" | "a7" | "a8" ;
+
+enum ValidInput { a0, a1, a2, a3, a4, a5, a6, a7, a8 }
+
+type ServiceOptions = {
+    fileToSlice: string;
+    slicingFormat: validInputs;
+    scalingFormat: validInputs | "none"; 
+}
+
 function sendResultedSlicedPDF() {
     console.log("...sendingResultedPDF...");
     return new Promise(async (resolve, reject) => {
@@ -15,32 +25,39 @@ function sendResultedSlicedPDF() {
     });
 }
 
-function handlePythonMicroService(): Promise<{ promiseResultData: string }> {
+function handlePythonMicroService(inputs:ServiceOptions): Promise<{ promiseResultData: string }> {
     console.log("...handlingPythonMicroService...");
 
-    const input_drawing_file = './public/VykresA4_1.pdf';
-    const slice_to_format = "a5";
+    const inputDrawingFile = `./uploads/${inputs.fileToSlice}`;
+    const sliceToFormat = inputs.slicingFormat;
+    const scaleToFormat = inputs.scalingFormat;
     
     return new Promise(async (resolve, reject) => {
+        const pythonSliceMicroService = spawn(config.PYTHON_INTERPRETER, [config.PYTHON_SLICE_SERVICE, inputDrawingFile, sliceToFormat, scaleToFormat]);       
 
-        const pythonSliceMicroService = spawn(config.PYTHON_INTERPRETER, [config.PYTHON_SLICE_SERVICE, input_drawing_file, slice_to_format, "a0"]);
-        
         pythonSliceMicroService.stdout.on('data', (data: string) => {
             console.log(data);
         });
 
         pythonSliceMicroService.stderr.on('data', (data: string) => {
+            console.log(data)
             reject({ promiseResultData: data });
         });
-        pythonSliceMicroService.on('close', (code: string) => {
-            resolve({ promiseResultData: `child process exited with code ${code}.` });
+
+        pythonSliceMicroService.stdout.on('end', (data: any) => {
+            console.log(data);
         });
+        
+        pythonSliceMicroService.on('close', (code: string) => {
+            console.log(code)
+            resolve({ promiseResultData: `child process exited with code ${code}.` });
+        }); 
     });
 }
 
-function sliceService() {
+function sliceService(inputs:ServiceOptions) {
     return new Promise(async (resolve, reject) => {
-        handlePythonMicroService()
+        handlePythonMicroService(inputs)
             .then(sendResultedSlicedPDF)
             .then(resultPdfData => {
                 resolve(resultPdfData);

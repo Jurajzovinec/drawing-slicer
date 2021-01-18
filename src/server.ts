@@ -1,8 +1,22 @@
 import express from 'express';
 import cors from 'cors';
 import services from './lib/services';
-import  fileUpload  from 'express-fileupload';
-//import fileUpload  = require("../node_modules/@types/express-fileupload");
+import SliceService from './lib/sliceService';
+import multer from 'multer';
+import uuid, { v4 } from 'uuid';
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        const { originalname } = file;
+        cb(null, `${v4()}-${originalname}`);
+    }
+});
+
+const upload = multer({ storage: storage })
 
 const app = express();
 
@@ -14,21 +28,22 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors({ origin: "http://localhost:3000" }));
 }
 
-app.get('/', (req, res) => {
-    res.send('...Hello...')
+app.use(express.static('public'));
+
+app.post('/upload', upload.single('file'), (req, res) => {
+    console.log(req.file.filename);
+    const uploadSliceService = new SliceService(req.file.filename, "a4" , "none")
+    uploadSliceService.runService()
+    .then(resultedReadStream => {
+        res.contentType("application/pdf");
+        res.send(resultedReadStream)
+    })
+    .catch(err=>{res.send({ErrorMsg: err})})
 });
 
-app.post('/upload', fileUpload(), function(req, res) {  
-    // https://stackoverflow.com/questions/52140939/how-to-send-pdf-file-from-front-end-to-nodejs-server
-    res.send('File uploaded');
-  })
 
-app.get('/sliceservice', (req, res) => {
-    services.sliceService()
-        .then(resultedReadStream => {
-            res.contentType("application/pdf");
-            res.send(resultedReadStream);
-        });
+app.get('/', (req, res) => {
+    res.send('...Hello...')
 });
 
 app.listen(port, () => console.log(`Express server running on ${port}.`));
