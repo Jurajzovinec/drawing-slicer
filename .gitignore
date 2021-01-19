@@ -1,7 +1,17 @@
 # node
 node_modules
+/node_modules
 
 # python
 environment
+__pycache__
+pythonServices/__pycache__
 
-.log
+/uploads
+
+*.log
+.env
+.eslintcache
+debug.log
+
+
