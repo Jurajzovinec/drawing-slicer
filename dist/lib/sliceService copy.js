@@ -66,14 +66,14 @@ var SliceService = /** @class */ (function () {
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             var pythonSliceMicroService, outputMessage;
             return __generator(this, function (_a) {
-                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_SLICE_SERVICE_PATH, "./uploads/" + this.fileToSlice, this.slicingFormat, this.scalingFormat]);
+                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER, [config_1["default"].PYTHON_SLICE_SERVICE, "./uploads/" + this.fileToSlice, this.slicingFormat, this.scalingFormat]);
                 outputMessage = "";
                 pythonSliceMicroService.stdout.on('data', function (data) {
                     if (data.toString().includes("Success")) {
-                        outputMessage = data.toString().trim();
+                        outputMessage = data.toString();
                     }
                     else {
-                        reject({ "ErrorMessage": data.toString().trim() });
+                        reject({ "ErrorMessage": data.toString() });
                     }
                 });
                 pythonSliceMicroService.on('close', function (code) {

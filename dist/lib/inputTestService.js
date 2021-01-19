@@ -40,33 +40,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var config_1 = __importDefault(require("../config"));
-var fs_1 = __importDefault(require("fs"));
 var child_process_1 = require("child_process");
-var SliceService = /** @class */ (function () {
-    function SliceService(fileToSlice, slicingFormat, scalingFormat) {
+var InputTestService = /** @class */ (function () {
+    function InputTestService(fileToSlice) {
         this.fileToSlice = fileToSlice;
-        this.slicingFormat = slicingFormat;
-        this.scalingFormat = scalingFormat;
     }
-    SliceService.prototype.runService = function () {
+    InputTestService.prototype.runService = function () {
         var _this = this;
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var _this = this;
             return __generator(this, function (_a) {
                 this.handlePythonMicroService()
-                    .then(function (pyServiceResultData) { return _this.sendResultedSlicedPDF(pyServiceResultData); })
                     .then(resolve)["catch"](function (err) { return reject(err); });
                 return [2 /*return*/];
             });
         }); });
     };
-    SliceService.prototype.handlePythonMicroService = function () {
+    InputTestService.prototype.handlePythonMicroService = function () {
         var _this = this;
         console.log("...handlingPythonMicroService...");
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             var pythonSliceMicroService, outputMessage;
             return __generator(this, function (_a) {
-                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_SLICE_SERVICE_PATH, "./uploads/" + this.fileToSlice, this.slicingFormat, this.scalingFormat]);
+                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_INPUT_TEST_SERVICE_PATH, "./uploads/" + this.fileToSlice]);
                 outputMessage = "";
                 pythonSliceMicroService.stdout.on('data', function (data) {
                     if (data.toString().includes("Success")) {
@@ -79,7 +74,6 @@ var SliceService = /** @class */ (function () {
                 pythonSliceMicroService.on('close', function (code) {
                     if (code == "0") {
                         resolve({
-                            "file": './sliced_pdf_results/sliced_result.pdf',
                             "inputDrawingFormat": outputMessage
                         });
                     }
@@ -88,18 +82,6 @@ var SliceService = /** @class */ (function () {
             });
         }); });
     };
-    SliceService.prototype.sendResultedSlicedPDF = function (pyServiceResultData) {
-        var _this = this;
-        console.log("...sendingResultedPDF...");
-        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var pdfData;
-            return __generator(this, function (_a) {
-                pdfData = fs_1["default"].readFileSync(pyServiceResultData['file']);
-                resolve(pdfData);
-                return [2 /*return*/];
-            });
-        }); });
-    };
-    return SliceService;
+    return InputTestService;
 }());
-exports["default"] = SliceService;
+exports["default"] = InputTestService;

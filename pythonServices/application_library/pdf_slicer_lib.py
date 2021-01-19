@@ -7,7 +7,7 @@ from .pdf_slicer_exceptions import *
 
 class PdfSlicer:
 
-    def __init__(self, input_file, slice_by_format, **kwargs):
+    def __init__(self, input_file, slice_by_format, scale_to_format):
         self.standard_drawing_formats = [
             {"drawing_format": "a0", "dimensions": [841, 1189]},
             {"drawing_format": "a1", "dimensions": [594, 841]},
@@ -20,33 +20,21 @@ class PdfSlicer:
             {"drawing_format": "a8", "dimensions": [52, 74]},
         ]
         self.input_pdf_object = self.init_pdf_file(input_file)
-        self.slice_by_format = slice_by_format
-        self.scale_to_format = self.determine_scale_format(kwargs)
+        self.slice_by_format = self.validate_slice_by_format(slice_by_format)
+        self.scale_to_format = self.validate_scale_to_format(scale_to_format)
 
         self.first_page_of_pdf_object = self.input_pdf_object.getPage(0)
         self.input_drawing_format = self.determine_input_drawing_format()
+        self.determine_number_of_pages()
         
-        
+    # Main Function    
     def main_run(self):
 
-        self.determine_number_of_pages()
         if self.scale_to_format:
             self.scale_to_specific_format(self.scale_to_format)   
         return self.generate_sliced_pdf(self.slice_by_specific_format(self.slice_by_format))
 
-    def determine_scale_format(self, kwargs):
-
-        valid_inputs = [drawing_format_dict['drawing_format'] for drawing_format_dict in self.standard_drawing_formats]
-        
-        if not "scale_to_format" in kwargs['kwargs']:
-            return None
-        elif kwargs['kwargs']['scale_to_format'] == "none":
-            return None    
-        elif kwargs['kwargs']['scale_to_format'] not in valid_inputs:
-            raise InvalidScalingFormat(f'Please select one of valid inputs from list {valid_inputs}')
-        else:
-            return kwargs['kwargs']['scale_to_format']
-
+    # Validation Functions
     def init_pdf_file(self, input_file):
         
         try:
@@ -54,8 +42,40 @@ class PdfSlicer:
         except OSError:
             raise InvalidInputPdfFile("Input file is not formated as PDF.")
         else:
-            return pdf_file
+            return pdf_file    
 
+    def validate_scale_to_format(self, input_scale_to_format):
+        
+        valid_inputs = [drawing_format_dict['drawing_format'] for drawing_format_dict in self.standard_drawing_formats]
+
+        if input_scale_to_format ==  "none":
+            return None
+        elif input_scale_format not in valid_inputs:
+            raise InvalidScalingFormat(f'Please select one of valid inputs from list {valid_inputs}. Received input is ${input_scale_to_format}')
+        else:
+            return input_scale_to_format
+
+    def validate_slice_by_format(self, input_slice_by_format):
+
+        valid_inputs = [drawing_format_dict['drawing_format'] for drawing_format_dict in self.standard_drawing_formats]
+        
+        if input_slice_by_format ==  "none":
+            return None
+        elif input_slice_by_format not in valid_inputs:
+            raise InvalidSlicingFormat(f'Please select one of valid inputs from list {valid_inputs}. Received input is ${input_slice_by_format}')
+        else:
+            return input_slice_by_format
+
+    def test_output_format(self, tested_page, expected_format):
+        
+        tested_page_dimensions = (round(float(tested_page.cropBox.getHeight()) * 0.352777777), round(float(tested_page.cropBox.getWidth()) * 0.352777777))
+        expected_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats if drawing_format['drawing_format'] == expected_format)['dimensions']
+        accepted_deviation = max(expected_dimensions)*0.002
+
+        if abs(max(expected_dimensions) - max(tested_page_dimensions)) > accepted_deviation:
+            raise ResultPDFSizeFailure(f'Output format failed in pdf size test. Expected format is {expected_format} with dimensions: {expected_dimensions}. Result dimensions are {tested_page_dimensions} and accepted deviation is {accepted_deviation}.')
+
+    # Logical functions
     def get_this_page_dimensions(self):
         
         width_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getWidth()) * 0.352777777)
@@ -122,10 +142,6 @@ class PdfSlicer:
                 }
                 output_field.append(fitted_pdf_object)
 
-        for each in output_field:
-            pass
-            #print(each)
-
         return output_field
 
     def determine_slice_method(self, slicing_format):
@@ -182,6 +198,9 @@ class PdfSlicer:
         
         return manipulation_parameters
 
+    def pdf_name_generator(self, size=6, chars=string.ascii_uppercase + string.digits):
+        return ''.join(random.choice(chars) for _ in range(size))
+
     def generate_sliced_pdf(self, input_layout_field):
         
         writer = PyPDF2.PdfFileWriter()
@@ -205,14 +224,6 @@ class PdfSlicer:
         
         return output_result_file
           
-    def pdf_name_generator(self, size=6, chars=string.ascii_uppercase + string.digits):
-        return ''.join(random.choice(chars) for _ in range(size))
 
-    def test_output_format(self, tested_page, expected_format):
-        
-        tested_page_dimensions = (round(float(tested_page.cropBox.getHeight()) * 0.352777777), round(float(tested_page.cropBox.getWidth()) * 0.352777777))
-        expected_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats if drawing_format['drawing_format'] == expected_format)['dimensions']
-        accepted_deviation = max(expected_dimensions)*0.002
 
-        if abs(max(expected_dimensions) - max(tested_page_dimensions)) > accepted_deviation:
-            raise ResultPDFSizeFailure(f'Output format failed in pdf size test. Expected format is {expected_format} with dimensions: {expected_dimensions}. Result dimensions are {tested_page_dimensions} and accepted deviation is {accepted_deviation}.')
+    

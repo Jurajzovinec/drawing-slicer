@@ -1,13 +1,15 @@
 import path from 'path';
 
 interface configVariablesInterface {
-    PYTHON_INTERPRETER: string;
-    PYTHON_SLICE_SERVICE: string;
+    PYTHON_INTERPRETER_PATH: string;
+    PYTHON_SLICE_SERVICE_PATH: string;
+    PYTHON_INPUT_TEST_SERVICE_PATH: string;
 }
 
 const config: configVariablesInterface = {
-    PYTHON_INTERPRETER: (path.resolve(process.cwd(), 'pythonServices\\environment\\Scripts\\python')),
-    PYTHON_SLICE_SERVICE: (path.resolve(process.cwd(), 'pythonServices\\slice_service.py'))
+    PYTHON_INTERPRETER_PATH: (path.resolve(process.cwd(), 'pythonServices\\environment\\Scripts\\python')),
+    PYTHON_SLICE_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices\\slice_service.py')),
+    PYTHON_INPUT_TEST_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices\\input_test_service.py'))
 }
 
 export default config;

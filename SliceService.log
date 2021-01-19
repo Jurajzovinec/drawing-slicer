@@ -1,19 +1,41 @@
-2021-01-18 18:13:09,698 INFO slice_service.py 8 - Slice_service initilized.
-2021-01-18 18:13:09,698 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/b7047cc0-e317-4bb3-b8d5-973e44314d1f-MultipageExample.pdf', 'a4', 'none']
-2021-01-18 18:13:09,699 INFO slice_service.py 17 - none
-2021-01-18 18:13:27,948 INFO slice_service.py 8 - Slice_service initilized.
-2021-01-18 18:13:27,948 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/939d2019-ecf8-4f0b-b472-e5a933cdcc06-MultipageExample.pdf', 'a4', 'none']
-2021-01-18 18:13:27,948 INFO slice_service.py 17 - none
-2021-01-18 18:13:43,502 INFO slice_service.py 8 - Slice_service initilized.
-2021-01-18 18:13:43,502 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/1a44cbe0-4f36-4245-97e6-3ab8904150bf-MultipageExample.pdf', 'a4', 'none']
-2021-01-18 18:13:43,503 INFO slice_service.py 17 - none
-2021-01-18 18:14:55,455 INFO slice_service.py 8 - Slice_service initilized.
-2021-01-18 18:14:55,455 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/a914e46a-f95b-4c7e-be77-a261f29240db-MultipageExample.pdf', 'a4', 'none']
-2021-01-18 18:14:55,455 INFO slice_service.py 17 - none
-2021-01-18 19:15:52,601 INFO slice_service.py 8 - Slice_service initilized.
-2021-01-18 19:15:52,602 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/ce013ebd-5fc8-4420-b55d-1aeacd33dd97-MultipageExample.pdf', 'a4', 'none']
-2021-01-18 19:15:52,602 INFO slice_service.py 17 - none
-2021-01-18 19:16:46,795 INFO slice_service.py 8 - Slice_service initilized.
-2021-01-18 19:16:46,795 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/d64030ee-ba46-4627-9072-de002c14f4d4-VykresA1_1.pdf', 'a4', 'none']
-2021-01-18 19:16:46,796 INFO slice_service.py 17 - none
-2021-01-18 19:16:46,816 INFO slice_service.py 27 - Successful SliceService
+2021-01-19 11:47:47,952 INFO slice_service.py 8 - Slice_service initilized.
+2021-01-19 11:47:47,952 INFO slice_service.py 9 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/84df4ef3-b036-497f-afba-d1fe32faf3d5-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:50:10,348 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:50:10,348 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/5366f32f-d463-4ae3-bee6-dbdebe1d1c68-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:52:26,753 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:52:26,753 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/ab617484-3f68-4f3b-b46d-0bd5b4f6264c-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:53:44,505 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:53:44,506 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/cf351cd8-6dac-47de-a3b8-8d9e4cbb4e40-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:54:03,918 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:54:03,918 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/8ee58023-9431-4b91-8c15-e9bcb0245891-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:54:23,467 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:54:23,468 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/83a33c7f-7e61-4421-9693-45dde625e965-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:55:56,920 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:55:56,921 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/9ac6a19d-c4f6-43d4-87de-b8e1edccfeae-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:55:56,956 INFO slice_service.py 39 - Successful SliceService
+2021-01-19 11:56:46,230 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:56:46,230 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/8e7aaafc-d858-46ff-a630-19da3d6189ce-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:56:46,261 INFO slice_service.py 39 - Successful SliceService
+2021-01-19 11:59:19,546 INFO slice_service.py 12 - Slice_service initilized.
+2021-01-19 11:59:19,547 INFO slice_service.py 13 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/0b8173b4-6fc1-4190-ba8d-c42baae13ec8-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 11:59:19,580 INFO slice_service.py 39 - Successful SliceService
+2021-01-19 12:02:30,339 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:02:30,340 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/11b36a91-adb2-48e3-88dd-a5b57da10f5f-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 12:02:30,370 INFO slice_service.py 42 - Successful SliceService
+2021-01-19 12:03:18,465 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:03:18,465 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/cf0c81e5-6653-43fa-add6-00c5a004647e-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 12:03:18,496 INFO slice_service.py 42 - Successful SliceService
+2021-01-19 12:04:12,890 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:04:12,890 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/f4d49ba8-3fd4-4b9f-af8d-6050802f909a-MultipageExample.pdf', 'a4', 'none']
+2021-01-19 12:05:01,410 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:05:01,410 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/363dd256-acc7-4527-9f78-643e55a494f5-MultipageExample.pdf', 'a4', 'none']
+2021-01-19 12:05:30,074 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:05:30,074 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/9e7443e1-e0bb-4c1d-9457-315a1d387a31-ANSI_D_INCH.pdf', 'a4', 'none']
+2021-01-19 12:08:41,885 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:08:41,886 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/2740b77a-bf12-4eb7-8889-682cdc841218-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 12:08:41,922 INFO slice_service.py 43 - Successful SliceService
+2021-01-19 12:39:22,078 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:39:22,078 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/aab9494a-2f4a-460f-937e-5042cb6ebdf1-VykresA1_1.pdf', 'a4', 'none']
+2021-01-19 12:39:22,130 INFO slice_service.py 43 - Successful SliceService
+2021-01-19 12:39:55,536 INFO slice_service.py 13 - Slice_service initilized.
+2021-01-19 12:39:55,536 INFO slice_service.py 14 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\slice_service.py', './uploads/445139cb-3330-41a7-a282-e55dcfcf1721-MultipageExample.pdf', 'a4', 'none']

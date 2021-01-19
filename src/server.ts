@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import services from './lib/services';
 import SliceService from './lib/sliceService';
+import InputTestService from './lib/inputTestService';
 import multer from 'multer';
 import uuid, { v4 } from 'uuid';
 
@@ -30,15 +30,31 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static('public'));
 
-app.post('/upload', upload.single('file'), (req, res) => {
-    console.log(req.file.filename);
-    const uploadSliceService = new SliceService(req.file.filename, "a4" , "none")
+app.post('/upload/:params', upload.single('file'), (req, res) => {
+
+    let newConfigParameters = JSON.parse(req.params.params);
+    console.log(newConfigParameters)
+    
+    const uploadSliceService = new SliceService(req.file.filename, "a4", "none")
     uploadSliceService.runService()
-    .then(resultedReadStream => {
-        res.contentType("application/pdf");
-        res.send(resultedReadStream)
-    })
-    .catch(err=>{res.send({ErrorMsg: err})})
+        .then(resultedReadStream => {
+            res.contentType("application/pdf");
+            res.send(resultedReadStream)
+        })
+        .catch(err => { res.send({ ErrorMsg: err['ErrorMessage'] }) })
+
+});
+
+app.post('/test/:params', upload.single('file'), (req, res) => {
+
+    let newConfigParameters = JSON.parse(req.params.params);
+    console.log(newConfigParameters)
+    
+    const uploadSliceService = new InputTestService(req.file.filename)
+    uploadSliceService.runService()
+        .then((outputMessage) => res.send(outputMessage))
+        .catch(err => { res.send({ ErrorMsg: err['ErrorMessage'] }) })
+
 });
 
 

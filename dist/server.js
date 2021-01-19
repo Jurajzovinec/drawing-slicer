@@ -6,6 +6,7 @@ exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var sliceService_1 = __importDefault(require("./lib/sliceService"));
+var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
 var multer_1 = __importDefault(require("multer"));
 var uuid_1 = require("uuid");
 var storage = multer_1["default"].diskStorage({
@@ -27,14 +28,22 @@ else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
 app.use(express_1["default"].static('public'));
-app.post('/upload', upload.single('file'), function (req, res) {
-    console.log(req.file.filename);
+app.post('/upload/:params', upload.single('file'), function (req, res) {
+    var newConfigParameters = JSON.parse(req.params.params);
+    console.log(newConfigParameters);
     var uploadSliceService = new sliceService_1["default"](req.file.filename, "a4", "none");
     uploadSliceService.runService()
         .then(function (resultedReadStream) {
         res.contentType("application/pdf");
         res.send(resultedReadStream);
-    })["catch"](function (err) { res.send({ ErrorMsg: err }); });
+    })["catch"](function (err) { res.send({ ErrorMsg: err['ErrorMessage'] }); });
+});
+app.post('/test/:params', upload.single('file'), function (req, res) {
+    var newConfigParameters = JSON.parse(req.params.params);
+    console.log(newConfigParameters);
+    var uploadSliceService = new inputTestService_1["default"](req.file.filename);
+    uploadSliceService.runService()
+        .then(function (outputMessage) { return res.send(outputMessage); })["catch"](function (err) { res.send({ ErrorMsg: err['ErrorMessage'] }); });
 });
 app.get('/', function (req, res) {
     res.send('...Hello...');
