@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+import { v4 } from 'uuid';
 import SliceService from './lib/sliceService';
 import InputTestService from './lib/inputTestService';
-import multer from 'multer';
-import uuid, { v4 } from 'uuid';
 
 
 const storage = multer.diskStorage({
@@ -30,36 +32,55 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static('public'));
 
-app.post('/upload/:params', upload.single('file'), (req, res) => {
-
-    let newConfigParameters = JSON.parse(req.params.params);
-    console.log(newConfigParameters)
-    
-    const uploadSliceService = new SliceService(req.file.filename, "a4", "none")
-    uploadSliceService.runService()
-        .then(resultedReadStream => {
-            res.contentType("application/pdf");
-            res.send(resultedReadStream)
-        })
-        .catch(err => { res.send({ ErrorMsg: err['ErrorMessage'] }) })
-
-});
-
 app.post('/test/:params', upload.single('file'), (req, res) => {
 
-    let newConfigParameters = JSON.parse(req.params.params);
-    console.log(newConfigParameters)
-    
-    const uploadSliceService = new InputTestService(req.file.filename)
-    uploadSliceService.runService()
-        .then((outputMessage) => res.send(outputMessage))
-        .catch(err => { res.send({ ErrorMsg: err['ErrorMessage'] }) })
+    const testSliceService = new InputTestService(req.file.filename)
+    console.log('Here it still works...')
+    testSliceService.runService()
+        .then(response => res.send(response))
+        .catch(err => res.send(err))
+
+});
+
+app.get('/resultdata', (req, res) => {
+
+    res.contentType("application/pdf");
+    res.send(fs.readFileSync(req.headers.requestedfile!.toString()));
 
 });
 
 
-app.get('/', (req, res) => {
-    res.send('...Hello...')
+app.get('/clearpdfdata', (req, res) => {
+
+    const directory = 'uploads';
+
+    fs.readdir('uploads', (err, files) => {
+        if (err) throw err;
+        for (const file of files) {
+            fs.unlink(path.join(directory, file), err => {
+                if (err) throw err;
+            });
+        }
+    });
+
+});
+
+app.post('/slice/:params', upload.single('file'), (req, res) => {
+
+    let postedParams = JSON.parse(req.params.params);
+    console.log(postedParams)
+
+    const testSliceService = new SliceService
+        (
+            req.file.filename,
+            (postedParams.ScaleBeforeSlice === 'true') ? postedParams.ScaleToFormat : "none",
+            postedParams.SliceByFormat
+        )
+    console.log('Here it still works...')
+    testSliceService.runService()
+        .then(response => res.send(response))
+        .catch(err => res.send(err))
+
 });
 
 app.listen(port, () => console.log(`Express server running on ${port}.`));

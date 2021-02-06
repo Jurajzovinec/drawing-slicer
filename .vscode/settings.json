@@ -1,4 +1,7 @@
 {
     "python.pythonPath": "C:\\Python39\\python.exe",
-    "python.autoComplete.extraPaths": ["./pythonServices/slice_service.py"],
+    "python.autoComplete.extraPaths": [
+        "./pythonServices/slice_service.py"
+    ],
+    "typescript.tsdk": "node_modules\\typescript\\lib",
 }

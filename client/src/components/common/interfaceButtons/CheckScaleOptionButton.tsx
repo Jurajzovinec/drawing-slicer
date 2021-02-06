@@ -2,18 +2,22 @@ import React from "react";
 
 interface ButtonOptions {
     ScaleButtonText: string;
+    setScaleBeforeSlice: Function;
 }
 
-const isCheckedScaleOption = () => {
-    (document.getElementById("scale-format-options") as HTMLSelectElement).disabled = false;
-    if ((document.getElementById("check-scale-options-button-id") as HTMLInputElement).checked) {
+export const CheckScaleOptionButton: React.FC<ButtonOptions> = ({ ScaleButtonText, setScaleBeforeSlice }) => {
+
+    const isCheckedScaleOption = () => {
         (document.getElementById("scale-format-options") as HTMLSelectElement).disabled = false;
-    } else {
-        (document.getElementById("scale-format-options") as HTMLSelectElement).disabled = true;
+        if ((document.getElementById("check-scale-options-button-id") as HTMLInputElement).checked) {
+            (document.getElementById("scale-format-options") as HTMLSelectElement).disabled = false;
+            setScaleBeforeSlice(true);
+        } else {
+            (document.getElementById("scale-format-options") as HTMLSelectElement).disabled = true;
+            setScaleBeforeSlice(false);
+        }
     }
-}
 
-export const CheckScaleOptionButton: React.FC<ButtonOptions> = ({ ScaleButtonText }) => {
     return (
         <div className="check-scale-options-button">
             <label>{ScaleButtonText}</label>

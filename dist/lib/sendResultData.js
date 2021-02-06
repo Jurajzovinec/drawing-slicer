@@ -39,59 +39,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var config_1 = __importDefault(require("../config"));
-var child_process_1 = require("child_process");
-var SliceService = /** @class */ (function () {
-    function SliceService(fileToSlice, scalingFormat, slicingFormat) {
-        this.fileToSlice = fileToSlice;
-        this.scalingFormat = scalingFormat;
-        this.slicingFormat = slicingFormat;
+var fs_1 = __importDefault(require("fs"));
+var SendResultData = /** @class */ (function () {
+    function SendResultData(fileToSend) {
+        this.fileToSend = fileToSend;
     }
-    SliceService.prototype.runService = function () {
+    SendResultData.prototype.runService = function () {
         var _this = this;
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.handlePythonMicroService()
-                    .then(resolve)["catch"](function (err) { return reject(err); });
+                this.readStreamData()
+                    .then(resolve)["catch"](reject);
                 return [2 /*return*/];
             });
         }); });
     };
-    SliceService.prototype.handlePythonMicroService = function () {
+    SendResultData.prototype.readStreamData = function () {
         var _this = this;
-        console.log("...handlingPythonMicroService...");
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var pythonSliceMicroService, outputMessage, upcomingData;
             return __generator(this, function (_a) {
-                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_SLICE_SERVICE_PATH, "./uploads/" + this.fileToSlice, this.scalingFormat, this.slicingFormat]);
-                outputMessage = {};
-                pythonSliceMicroService.stdout.on('data', function (data) {
-                    if (data.toString().includes("Ooops!")) {
-                        console.log(data.toString());
-                        reject({
-                            "ErrorMessage": data.toString().trim(),
-                            "Status": "Fail"
-                        });
-                    }
-                    else {
-                        upcomingData = (data.toString()).replace(/'/g, '\"').trim();
-                        upcomingData = upcomingData.replace(/(\r\n|\n|\r)/gm, "");
-                        upcomingData = upcomingData.replace("}{", "}SplittingDelimiter{");
-                        upcomingData.split(/SplittingDelimiter/g).forEach(function (element) {
-                            outputMessage = Object.assign({}, outputMessage, JSON.parse(element));
-                        });
-                    }
-                });
-                pythonSliceMicroService.on('close', function (code) {
-                    if (code == "0") {
-                        outputMessage = (Object.assign({}, outputMessage, { Status: "Success" }));
-                        resolve(outputMessage);
-                    }
-                });
+                try {
+                    resolve(fs_1["default"].readFileSync(this.fileToSend));
+                }
+                catch (error) {
+                    reject(error);
+                }
                 return [2 /*return*/];
             });
         }); });
     };
-    return SliceService;
+    return SendResultData;
 }());
-exports["default"] = SliceService;
+exports["default"] = SendResultData;

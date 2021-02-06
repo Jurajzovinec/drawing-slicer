@@ -50,6 +50,13 @@ p {
   font-size: 1em;
 }
 
+h2 {
+  text-align:center; 
+  vertical-align: middle;
+  font-family: verdana;
+  font-size: 1.5em;
+}
+
 select{
   outline: none;
   font-family: verdana;
@@ -94,8 +101,6 @@ input:checked[type="checkbox"]:before{
   position: absolute;
   left: 4.5em;
 }
-
-
 
 /* HEADER CSS */
 
@@ -176,6 +181,11 @@ input:checked[type="checkbox"]:before{
   flex-direction: column;
 }
 
+.restart-button-container {
+  margin: 4em;
+  text-align: center;
+}
+
 .load-pdf-button{
   margin: 1em;
 }
@@ -189,6 +199,9 @@ input:checked[type="checkbox"]:before{
   justify-content: space-between;
   padding: 2em 3em 2em 3em;
 }
+
+
+
 
 
 

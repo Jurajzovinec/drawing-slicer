@@ -57,25 +57,31 @@ var InputTestService = /** @class */ (function () {
     };
     InputTestService.prototype.handlePythonMicroService = function () {
         var _this = this;
-        console.log("...handlingPythonMicroService...");
+        console.log("...handlingTestPythonMicroService...");
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var pythonSliceMicroService, outputMessage;
+            var pythonSliceMicroService, outputMessage, upcomingData;
             return __generator(this, function (_a) {
                 pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_INPUT_TEST_SERVICE_PATH, "./uploads/" + this.fileToSlice]);
-                outputMessage = "";
+                outputMessage = {};
                 pythonSliceMicroService.stdout.on('data', function (data) {
-                    if (data.toString().includes("Success")) {
-                        outputMessage = data.toString().trim();
+                    if (data.toString().includes("Ooops!")) {
+                        reject({
+                            "ErrorMessage": data.toString().trim(),
+                            "Status": "Fail"
+                        });
                     }
                     else {
-                        reject({ "ErrorMessage": data.toString().trim() });
+                        upcomingData = (data.toString()).replace(/'/g, '\"').trim();
+                        upcomingData = upcomingData.replace(/(\r\n|\n|\r)/gm, "");
+                        upcomingData = upcomingData.replace("}{", "}SplittingDelimiter{");
+                        upcomingData.split(/SplittingDelimiter/g).forEach(function (element) {
+                            outputMessage = Object.assign({}, outputMessage, JSON.parse(element));
+                        });
                     }
                 });
                 pythonSliceMicroService.on('close', function (code) {
                     if (code == "0") {
-                        resolve({
-                            "inputDrawingFormat": outputMessage
-                        });
+                        resolve(Object.assign({}, outputMessage, { Status: "Success" }));
                     }
                 });
                 return [2 /*return*/];

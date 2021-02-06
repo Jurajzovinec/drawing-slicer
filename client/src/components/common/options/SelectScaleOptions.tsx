@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { DrawingFormats } from '../bodyElements/DrawingFormats';
 
-const formats = ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8"]
+interface ScaleOptionsProps {
+    setScaleToFormat: Function;
+}
 
-export const SelectScaleOptions: React.FC = () => {
-
-    return (        
-            <select id="scale-format-options" disabled>
-                {formats.map((drawingFormat) => <option key={drawingFormat} value={drawingFormat}>{drawingFormat}</option>)}
-            </select>        
+export const SelectScaleOptions: React.FC<ScaleOptionsProps> = ({ setScaleToFormat }) => {
+    const setScaleOption = (event:any) => setScaleToFormat(event.target.value.toLowerCase());
+    return (
+        <select id="scale-format-options" disabled onChange={setScaleOption}>
+            {DrawingFormats.map((drawingFormat) => <option key={drawingFormat} value={drawingFormat}>{drawingFormat}</option>)}
+        </select>
     );
 };
 

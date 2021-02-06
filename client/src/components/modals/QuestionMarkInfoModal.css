@@ -1,0 +1,83 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    cursor: pointer;
+}
+
+.modal-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+    cursor: auto;
+}
+
+.modal-title {
+    color: #9E25FC;
+    font-size: 30px;
+}
+
+.modal-content {
+    margin-top: 30px;
+    color: #6B6B6B;
+    font-size: 16px;
+}
+
+ 
+.modal-close {
+    position: absolute;
+    top: 10px;
+    left:10px;
+    right: 10px;
+}
+
+.close-modal-img{
+    max-width:7%;
+    height:auto;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.download-pdf-img{
+    max-width:10%;
+    height:auto;
+    padding: 0.2em;
+    filter: brightness(130%);
+}
+
+.modal-download{
+    text-align: center;
+}
+
+.modal-close:hover, .download-pdf-img:hover{
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 800px) {
+    .modal-box {
+        max-width: 600px;
+        margin: 0 60px;
+}
+}

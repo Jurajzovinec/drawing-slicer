@@ -1,11 +1,15 @@
 import React from "react";
+import { DrawingFormats } from '../bodyElements/DrawingFormats';
 
-const formats = ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8"]
+interface SliceOptionsProps {
+    setSliceByFormat: Function;
+}
 
-export const SelectSliceOptions: React.FC = () => {
+export const SelectSliceOptions: React.FC<SliceOptionsProps> = ({setSliceByFormat}) => {
+    const setSliceOption = (event:any) => setSliceByFormat(event.target.value.toLowerCase());
     return (
-            <select id="slice-format-options">
-                {formats.map((drawingFormat) => <option key={drawingFormat} value={drawingFormat}>{drawingFormat}</option>)}
+            <select id="slice-format-options" onChange={setSliceOption}>
+                {DrawingFormats.map((drawingFormat) => <option key={drawingFormat} value={drawingFormat}>{drawingFormat}</option>)}
             </select>
     );
 };

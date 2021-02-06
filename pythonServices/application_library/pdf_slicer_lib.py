@@ -19,20 +19,22 @@ class PdfSlicer:
             {"drawing_format": "a7", "dimensions": [74, 105]},
             {"drawing_format": "a8", "dimensions": [52, 74]},
         ]
+        self.input_file_name = input_file
         self.input_pdf_object = self.init_pdf_file(input_file)
         self.slice_by_format = self.validate_slice_by_format(slice_by_format)
         self.scale_to_format = self.validate_scale_to_format(scale_to_format)
 
         self.first_page_of_pdf_object = self.input_pdf_object.getPage(0)
         self.input_drawing_format = self.determine_input_drawing_format()
-        self.determine_number_of_pages()
+        self.number_of_pages = self.determine_number_of_pages()
         
     # Main Function    
     def main_run(self):
 
         if self.scale_to_format:
-            self.scale_to_specific_format(self.scale_to_format)   
-        return self.generate_sliced_pdf(self.slice_by_specific_format(self.slice_by_format))
+            self.scale_to_specific_format(self.scale_to_format)
+        if self.slice_by_format: 
+            return self.generate_sliced_pdf(self.slice_by_specific_format(self.slice_by_format))
 
     # Validation Functions
     def init_pdf_file(self, input_file):
@@ -44,16 +46,16 @@ class PdfSlicer:
         else:
             return pdf_file    
 
-    def validate_scale_to_format(self, input_scale_to_format):
+    def validate_scale_to_format(self, input_scale_format):
         
         valid_inputs = [drawing_format_dict['drawing_format'] for drawing_format_dict in self.standard_drawing_formats]
 
-        if input_scale_to_format ==  "none":
+        if input_scale_format ==  "none":
             return None
         elif input_scale_format not in valid_inputs:
             raise InvalidScalingFormat(f'Please select one of valid inputs from list {valid_inputs}. Received input is ${input_scale_to_format}')
         else:
-            return input_scale_to_format
+            return input_scale_format
 
     def validate_slice_by_format(self, input_slice_by_format):
 
@@ -103,6 +105,8 @@ class PdfSlicer:
         if (self.input_pdf_object.getNumPages() != 1):
             raise MultiPageInputPdfError(
                 f'Input PDF is not single paged. In order to slice PDF, extract document to single paged files. Input PDF has {str(self.input_pdf_object.getNumPages())} pages.')
+        else:
+            return "1"
 
     def scale_to_specific_format(self, format_to_scale):
 
@@ -212,8 +216,10 @@ class PdfSlicer:
             writer.addPage(copied_drawing)
 
         #result_pdf_name = (f"{self.pdf_name_generator()}.pdf")
-        result_pdf_name = ("sliced_result.pdf")
+        #result_pdf_name = ("sliced_result.pdf")
+        result_pdf_name = self.input_file_name
         
+        """
         with open(f"sliced_pdf_results//{result_pdf_name}", 'wb') as output_result_file:
             writer.write(output_result_file)
             
@@ -221,8 +227,16 @@ class PdfSlicer:
             resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_result_file_test)
             for page_number in range(resulted_tested_pdf_file.getNumPages()):
                 self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)
-        
-        return output_result_file
+        """
+        with open(result_pdf_name, 'wb') as output_result_file:
+            writer.write(output_result_file)
+            
+        with open(result_pdf_name, 'rb') as output_result_file_test:
+            resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_result_file_test)
+            for page_number in range(resulted_tested_pdf_file.getNumPages()):
+                self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)
+
+        return result_pdf_name
           
 
 
