@@ -1,16 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
 import './QuestionMarkInfoModal.css';
-import JSZip from 'jszip';
-import FileSaver from 'file-saver';
-import fs from 'fs';
-
 
 const closeIcon = process.env.PUBLIC_URL + "/closeIcon.png";
 const downloadIcon = process.env.PUBLIC_URL + "/downloadIcon.png";
-const pdfFolderToZip = process.env.PUBLIC_URL + "/pdf_Examples";
-const pdfFileToZip = process.env.PUBLIC_URL + "/pdf_Examples/FruitFlyDispenser_A3_format_1_page.pdf";
-
 
 Modal.setAppElement('#root');
 
@@ -19,37 +12,28 @@ interface QuestionMarkInfoModalProps {
     onClose: () => void;
 }
 
-const zipAndDownloadFolder = () => {
+const requestExampleData = (): Promise<(string)> => {
+    console.log("...askingForExamplePDF...");
+    return new Promise(async (resolve, reject) => {
 
-    const convertFileToBase64 = (filePath: string) => {
-        return new Promise((resolve, reject) => {
+        const urlToFetch =  process.env.NODE_ENV === 'production'?  "https://drawing-slicer.herokuapp.com/exampledata" : "http://localhost:5050/exampledata";
 
-            const blobbityBlob = new Blob([filePath])
-            const fileReader = new FileReader();
-            // fileReader.readAsDataURL(filePath);
-            fileReader.readAsArrayBuffer(blobbityBlob);
-
-            fileReader.addEventListener('loadend', () => resolve(fileReader.result))
-            fileReader.addEventListener('error', (error) => reject(error))
+        fetch(urlToFetch, {
+            method: 'GET',
         })
-    }
-
-    const zipPDF = (readedBase64Data:any) => {
-        const zip = new JSZip();
-        zip.file("Test.pdf", readedBase64Data, { base64: true });
-        zip.generateAsync({ type: "base64" }).then(function (content) {
-            FileSaver.saveAs(content, "pdfExamples.zip");
-        });
-    }
-
-    convertFileToBase64(pdfFileToZip)
-    .then(zipPDF)
-
-
+            .then(response => response.blob())
+            .then(blobityBlob => {
+                const blobUrl = window.URL.createObjectURL(blobityBlob);
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.setAttribute('download', 'resultedSlicedPdf.zip');
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode!.removeChild(link);
+            })
+            .catch(err => reject(err))
+    })
 }
-
-
-
 
 export const QuestionMarkInfoModal: React.FC<QuestionMarkInfoModalProps> = ({ isShown, onClose }) =>
     isShown ?
@@ -66,7 +50,7 @@ export const QuestionMarkInfoModal: React.FC<QuestionMarkInfoModalProps> = ({ is
                         <p>In case you just want to test the functionality of the application and have not any drawings you can try download files in attachment below.</p>
                     </div>
                     <div className="modal-download btn" >
-                        <img src={downloadIcon} className="download-pdf-img" alt={'Download PDF'} onClick={zipAndDownloadFolder} />
+                        <img src={downloadIcon} className="download-pdf-img" alt={'Download PDF'} onClick={requestExampleData} />
                     </div>
                 </div>
             </div>

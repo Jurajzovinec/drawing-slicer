@@ -22,7 +22,10 @@ export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfN
         formData.append('file', file);
 
         return new Promise(async (resolve, reject) => {
-            fetch(`http://localhost:5050/test/{"hello":"world"}`, {
+
+            const urlToFetch =  process.env.NODE_ENV === 'production'?  "https://drawing-slicer.herokuapp.com/testfile" : "http://localhost:5050/testfile";
+
+            fetch(urlToFetch, {
                 method: 'POST',
                 body: formData
             })

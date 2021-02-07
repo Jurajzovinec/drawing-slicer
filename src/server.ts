@@ -4,8 +4,10 @@ import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 import { v4 } from 'uuid';
+import fileSystem from 'fs';
 import SliceService from './lib/sliceService';
 import InputTestService from './lib/inputTestService';
+
 
 
 const storage = multer.diskStorage({
@@ -32,10 +34,9 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static('public'));
 
-app.post('/test/:params', upload.single('file'), (req, res) => {
+app.post('/testfile', upload.single('file'), (req, res) => {
 
     const testSliceService = new InputTestService(req.file.filename)
-    console.log('Here it still works...')
     testSliceService.runService()
         .then(response => res.send(response))
         .catch(err => res.send(err))
@@ -49,19 +50,39 @@ app.get('/resultdata', (req, res) => {
 
 });
 
+app.get('/exampledata', (req, res) => {
+
+    const pdfExamplesZipFolder = "public/pdf_Examples.zip";
+
+    const stat = fileSystem.statSync(pdfExamplesZipFolder);
+
+    res.writeHead(200, {
+        'Content-Type': 'application/zip',
+        'Content-Length': stat.size
+    });
+
+    const readStream = fileSystem.createReadStream(pdfExamplesZipFolder);
+    readStream.pipe(res);
+
+});
+
 
 app.get('/clearpdfdata', (req, res) => {
 
     const directory = 'uploads';
+    try {
+        fs.readdir('uploads', (err, files) => {
+            if (err) throw err;
+            for (const file of files) {
+                fs.unlink(path.join(directory, file), err => {
+                    if (err) throw err;
+                });
+            }
+        });
+    } catch (err) {
+        console.log('Error has occured: ' + err)
+    }
 
-    fs.readdir('uploads', (err, files) => {
-        if (err) throw err;
-        for (const file of files) {
-            fs.unlink(path.join(directory, file), err => {
-                if (err) throw err;
-            });
-        }
-    });
 
 });
 
@@ -80,8 +101,11 @@ app.post('/slice/:params', upload.single('file'), (req, res) => {
     testSliceService.runService()
         .then(response => res.send(response))
         .catch(err => res.send(err))
-
 });
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+}
 
 app.listen(port, () => console.log(`Express server running on ${port}.`));
 

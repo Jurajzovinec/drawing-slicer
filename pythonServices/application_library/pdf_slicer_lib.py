@@ -40,8 +40,8 @@ class PdfSlicer:
     def init_pdf_file(self, input_file):
         
         try:
-            pdf_file = PyPDF2.PdfFileReader(input_file)
-        except OSError:
+            pdf_file = PyPDF2.PdfFileReader(input_file, strict=False)
+        except:
             raise InvalidInputPdfFile("Input file is not formated as PDF.")
         else:
             return pdf_file    
@@ -72,7 +72,7 @@ class PdfSlicer:
         
         tested_page_dimensions = (round(float(tested_page.cropBox.getHeight()) * 0.352777777), round(float(tested_page.cropBox.getWidth()) * 0.352777777))
         expected_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats if drawing_format['drawing_format'] == expected_format)['dimensions']
-        accepted_deviation = max(expected_dimensions)*0.002
+        accepted_deviation = max(expected_dimensions)*0.01
 
         if abs(max(expected_dimensions) - max(tested_page_dimensions)) > accepted_deviation:
             raise ResultPDFSizeFailure(f'Output format failed in pdf size test. Expected format is {expected_format} with dimensions: {expected_dimensions}. Result dimensions are {tested_page_dimensions} and accepted deviation is {accepted_deviation}.')
@@ -80,26 +80,49 @@ class PdfSlicer:
     # Logical functions
     def get_this_page_dimensions(self):
         
-        width_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getWidth()) * 0.352777777)
-        heigth_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getHeight()) * 0.352777777)
+        # width_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getWidth()) * 0.352777777 * 0.352777777)
+        # heigth_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getHeight()) * 0.352777777 * 0.352777777)
         
+        width_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getWidth()))
+        heigth_pdf_page = round(float(self.first_page_of_pdf_object.mediaBox.getHeight()))
+
         return [width_pdf_page, heigth_pdf_page]
 
-    def determine_input_drawing_format(self):
-        checked_page_object_dimensions = self.get_this_page_dimensions()
+    def recursive_size_validation_test(self, repetions, current_width, current_height):
         
-        acceptableDeviation = max(checked_page_object_dimensions)*0.002
-        try:
-            input_drawing_format = next(drawing_format for drawing_format in self.standard_drawing_formats
-                                        if abs(max(drawing_format['dimensions']) - max(checked_page_object_dimensions)) < acceptableDeviation
-                                        and abs(min(drawing_format['dimensions']) - min(checked_page_object_dimensions)) < acceptableDeviation)
-        except StopIteration:
+        multiply_constant = 0.352777777
+        current_width = current_width * multiply_constant
+        current_height = current_height * multiply_constant
+        checked_page_object_dimensions = [current_width, current_height]
+        acceptableDeviation = max(checked_page_object_dimensions)*0.004
+
+        if repetions != 0:
+            try:
+                input_drawing_format = next(drawing_format for drawing_format in self.standard_drawing_formats
+                                            if abs(max(drawing_format['dimensions']) - max(checked_page_object_dimensions)) < acceptableDeviation
+                                            and abs(min(drawing_format['dimensions']) - min(checked_page_object_dimensions)) < acceptableDeviation)
+            except StopIteration:
+                return self.recursive_size_validation_test(repetions-1, current_width, current_height)
+            else:
+                if checked_page_object_dimensions[0] > checked_page_object_dimensions[1]:    
+                    return {
+                        "drawing_format": input_drawing_format['drawing_format'],
+                        "dimensions": [max(input_drawing_format['dimensions']), min(input_drawing_format['dimensions'])]
+                        }
+                else:
+                    return {
+                        "drawing_format": input_drawing_format['drawing_format'],
+                        "dimensions": [min(input_drawing_format['dimensions']), max(input_drawing_format['dimensions'])]
+                        }
+        else:
             raise InvalidPdfSizeError(
-                f"This is not standard drawing (A0...A8). Input drawing size is {checked_page_object_dimensions}")
-        
-        return {
-            "drawing_format": input_drawing_format['drawing_format'],
-            "dimensions": checked_page_object_dimensions}
+                f"This is not standard drawing (A0...A8). Input drawing size is {checked_page_object_dimensions}")            
+
+    def determine_input_drawing_format(self):
+
+        checked_page_object_dimensions = self.get_this_page_dimensions() # [width, height]
+
+        return self.recursive_size_validation_test(3, checked_page_object_dimensions[0], checked_page_object_dimensions[1])
 
     def determine_number_of_pages(self):
         if (self.input_pdf_object.getNumPages() != 1):
@@ -164,7 +187,7 @@ class PdfSlicer:
         
         manipulation_format_dimensions = next(drawing_format for drawing_format in self.standard_drawing_formats
                                         if drawing_format['drawing_format'] == slicing_format)
-        acceptedDeviation = min(self.input_drawing_format['dimensions'])*0.005
+        accepted_deviation = min(self.input_drawing_format['dimensions'])*0.002
 
         comparing_dimensions = {
             "input_drawing_width":self.input_drawing_format['dimensions'][0],
@@ -172,7 +195,7 @@ class PdfSlicer:
             "min_dim_slice_format": min(manipulation_format_dimensions['dimensions'])
         }
 
-        if (max([comparing_dimensions['input_drawing_width'], comparing_dimensions['max_dim_slice_format']])) % (min([comparing_dimensions['input_drawing_width'], comparing_dimensions['max_dim_slice_format']])) < acceptedDeviation:
+        if (max([comparing_dimensions['input_drawing_width'], comparing_dimensions['max_dim_slice_format']])) % (min([comparing_dimensions['input_drawing_width'], comparing_dimensions['max_dim_slice_format']])) < accepted_deviation:
 
             manipulation_parameters = {
                 "slicing_method":"landscape", 
@@ -183,7 +206,7 @@ class PdfSlicer:
                 "vertical_offset": min(manipulation_format_dimensions['dimensions'])
                 }
         
-        elif (max([comparing_dimensions['input_drawing_width'], comparing_dimensions['min_dim_slice_format']])) % (min([comparing_dimensions['input_drawing_width'], comparing_dimensions['min_dim_slice_format']])) < acceptedDeviation:
+        elif (max([comparing_dimensions['input_drawing_width'], comparing_dimensions['min_dim_slice_format']])) % (min([comparing_dimensions['input_drawing_width'], comparing_dimensions['min_dim_slice_format']])) < accepted_deviation:
         
             manipulation_parameters = {
                 "slicing_method":"portrait", 
@@ -193,10 +216,10 @@ class PdfSlicer:
                 "horizontal_offset": min(manipulation_format_dimensions['dimensions']),
                 "vertical_offset": max(manipulation_format_dimensions['dimensions'])
                 }
-        
+                
         else:
             raise AcceptedDeviationError(f""" Program has not found right manipulation_method to slice/scale objects. 
-                                        Accepted deviation is {acceptedDeviation}, 
+                                        Accepted deviation is {accepted_deviation}, 
                                         manipulation drawing format drawing format is {manipulation_format_dimensions}, 
                                         input drawing format is {self.input_drawing_format}""" )
         
@@ -215,19 +238,10 @@ class PdfSlicer:
             copied_drawing.cropBox.upperRight = [each_page["absolute_position_x_end"]/0.352777777, each_page["absolute_position_y_end"]/0.352777777]
             writer.addPage(copied_drawing)
 
-        #result_pdf_name = (f"{self.pdf_name_generator()}.pdf")
-        #result_pdf_name = ("sliced_result.pdf")
+        # Switch to Random generating name when testing
+        # result_pdf_name = (f"UnitTestOutputFiles/{self.pdf_name_generator()}.pdf")
         result_pdf_name = self.input_file_name
-        
-        """
-        with open(f"sliced_pdf_results//{result_pdf_name}", 'wb') as output_result_file:
-            writer.write(output_result_file)
-            
-        with open(f"sliced_pdf_results//{result_pdf_name}", 'rb') as output_result_file_test:
-            resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_result_file_test)
-            for page_number in range(resulted_tested_pdf_file.getNumPages()):
-                self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)
-        """
+     
         with open(result_pdf_name, 'wb') as output_result_file:
             writer.write(output_result_file)
             

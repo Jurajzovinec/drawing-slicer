@@ -21,9 +21,11 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
 
 
     const requestResultedData = (fileResultPath: string): Promise<(string)> => {
+
         console.log("...askingForResultPDF...");
+        const urlToFetch =  process.env.NODE_ENV === 'production'?  "https://drawing-slicer.herokuapp.com/resultdata" : "http://localhost:5050/resultdata";    
         return new Promise(async (resolve, reject) => {
-            fetch(`http://localhost:5050/resultdata/`, {
+            fetch(urlToFetch, {
                 method: 'GET',
                 headers: {
                     requestedFile: fileResultPath
@@ -47,11 +49,18 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
     }
 
     const clearBackendStorageAPI = (result: string): void => {
+
         console.log("...sendingRequestToClearBackendStorage...");
-        fetch(`http://localhost:5050/clearpdfdata`)
+        const urlToFetch =  process.env.NODE_ENV === 'production'?  "https://drawing-slicer.herokuapp.com/clearpdfdata" : "http://localhost:5050/clearpdfdata";
+        fetch(urlToFetch)
     }
 
     const fetchFunction = () => {
+        const urlToFetch =  process.env.NODE_ENV === 'production'?  
+            `https://drawing-slicer.herokuapp.com/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}` : 
+            `http://localhost:5050/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}`;
+        
+        
         fetch(`http://localhost:5050/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}`, {
             method: 'POST',
             body: LoadedPdfData

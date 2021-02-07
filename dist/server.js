@@ -9,6 +9,7 @@ var multer_1 = __importDefault(require("multer"));
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var uuid_1 = require("uuid");
+var fs_2 = __importDefault(require("fs"));
 var sliceService_1 = __importDefault(require("./lib/sliceService"));
 var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
 var storage = multer_1["default"].diskStorage({
@@ -30,9 +31,8 @@ else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
 app.use(express_1["default"].static('public'));
-app.post('/test/:params', upload.single('file'), function (req, res) {
+app.post('/testfile', upload.single('file'), function (req, res) {
     var testSliceService = new inputTestService_1["default"](req.file.filename);
-    console.log('Here it still works...');
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
 });
@@ -40,19 +40,34 @@ app.get('/resultdata', function (req, res) {
     res.contentType("application/pdf");
     res.send(fs_1["default"].readFileSync(req.headers.requestedfile.toString()));
 });
+app.get('/exampledata', function (req, res) {
+    var pdfExamplesZipFolder = "public/pdf_Examples.zip";
+    var stat = fs_2["default"].statSync(pdfExamplesZipFolder);
+    res.writeHead(200, {
+        'Content-Type': 'application/zip',
+        'Content-Length': stat.size
+    });
+    var readStream = fs_2["default"].createReadStream(pdfExamplesZipFolder);
+    readStream.pipe(res);
+});
 app.get('/clearpdfdata', function (req, res) {
     var directory = 'uploads';
-    fs_1["default"].readdir('uploads', function (err, files) {
-        if (err)
-            throw err;
-        for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
-            var file = files_1[_i];
-            fs_1["default"].unlink(path_1["default"].join(directory, file), function (err) {
-                if (err)
-                    throw err;
-            });
-        }
-    });
+    try {
+        fs_1["default"].readdir('uploads', function (err, files) {
+            if (err)
+                throw err;
+            for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
+                var file = files_1[_i];
+                fs_1["default"].unlink(path_1["default"].join(directory, file), function (err) {
+                    if (err)
+                        throw err;
+                });
+            }
+        });
+    }
+    catch (err) {
+        console.log('Error has occured: ' + err);
+    }
 });
 app.post('/slice/:params', upload.single('file'), function (req, res) {
     var postedParams = JSON.parse(req.params.params);
@@ -62,4 +77,7 @@ app.post('/slice/:params', upload.single('file'), function (req, res) {
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
 });
+if (process.env.NODE_ENV === 'production') {
+    app.use(express_1["default"].static('client/build'));
+}
 app.listen(port, function () { return console.log("Express server running on " + port + "."); });
