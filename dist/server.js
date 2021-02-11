@@ -72,6 +72,13 @@ app.get('/clearpdfdata', function (req, res) {
     catch (err) {
         console.log('Error has occured: ' + err);
     }
+    res.send('Cleared.');
+});
+app.get('/listpdfdata', function (req, res) {
+    var uploads_folder = 'uploads';
+    fs_1["default"].readdir(uploads_folder, function (err, files) {
+        res.send(files);
+    });
 });
 app.post('/slice/:params', upload.single('file'), function (req, res) {
     var postedParams = JSON.parse(req.params.params);

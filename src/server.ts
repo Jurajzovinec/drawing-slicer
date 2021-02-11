@@ -82,7 +82,16 @@ app.get('/clearpdfdata', (req, res) => {
     } catch (err) {
         console.log('Error has occured: ' + err)
     }
+    res.send('Cleared.')
+});
 
+app.get('/listpdfdata', (req, res) => {
+
+    const uploads_folder = 'uploads';
+
+    fs.readdir(uploads_folder, (err, files) => {
+        res.send(files);
+    });
 
 });
 
@@ -110,7 +119,7 @@ app.use(function (err, req, res, next) {
         let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
         reportToAdmin.sendReport()
     }
-    
+
 })
 
 if (process.env.NODE_ENV === 'production') {
