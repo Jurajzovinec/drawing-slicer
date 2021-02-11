@@ -6,7 +6,7 @@ environment
 __pycache__
 pythonServices/__pycache__
 # pdfs in uploads folder
-uploads/*
+# uploads/*
 # file types
 *.log
 .env
