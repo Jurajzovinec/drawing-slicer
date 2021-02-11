@@ -15,7 +15,7 @@ var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
 var sendReport_1 = __importDefault(require("./lib/sendReport"));
 var storage = multer_1["default"].diskStorage({
     destination: function (req, file, cb) {
-        cb(null, ('uploads'));
+        cb(null, ('/uploads'));
     },
     filename: function (req, file, cb) {
         var originalname = file.originalname;
@@ -76,6 +76,7 @@ app.get('/clearpdfdata', function (req, res) {
 });
 app.get('/listpdfdata', function (req, res) {
     var uploads_folder = 'uploads';
+    // console.log(upload.storage.getFilename);
     fs_1["default"].readdir(uploads_folder, function (err, files) {
         res.send(files);
     });

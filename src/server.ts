@@ -11,7 +11,7 @@ import SendReportMessageToAdmin from './lib/sendReport';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, ('uploads'));
+        cb(null, ('/uploads'));
     },
     filename: (req, file, cb) => {
         const { originalname } = file;
@@ -88,7 +88,7 @@ app.get('/clearpdfdata', (req, res) => {
 app.get('/listpdfdata', (req, res) => {
 
     const uploads_folder = 'uploads';
-
+    // console.log(upload.storage.getFilename);
     fs.readdir(uploads_folder, (err, files) => {
         res.send(files);
     });
