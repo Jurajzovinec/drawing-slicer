@@ -32,6 +32,12 @@ else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
 app.use(express_1["default"].static('public'));
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    var reportToAdmin = new sendReport_1["default"](err, "ERROR");
+    reportToAdmin.sendReport();
+    res.status(500).send('Something broke!');
+});
 app.post('/testfile', upload.single('file'), function (req, res) {
     var testSliceService = new inputTestService_1["default"](req.file.filename);
     testSliceService.runService()

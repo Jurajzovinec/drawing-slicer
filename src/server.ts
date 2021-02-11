@@ -34,6 +34,13 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static('public'));
 
+app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
+    reportToAdmin.sendReport()
+    res.status(500).send('Something broke!')
+})
+
 app.post('/testfile', upload.single('file'), (req, res) => {
 
     const testSliceService = new InputTestService(req.file.filename)
@@ -68,7 +75,6 @@ app.get('/exampledata', (req, res) => {
     readStream.pipe(res);
 
 });
-
 
 app.get('/clearpdfdata', (req, res) => {
 

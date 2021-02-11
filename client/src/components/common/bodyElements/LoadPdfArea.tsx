@@ -41,6 +41,7 @@ export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfN
             sendFileOnBackend(acceptedFiles[0])
                 .then(response => {
                     console.log(response)
+                    console.log("Iteration1")
                     response = JSON.parse(response);
 
                     if (response.Status === "Success") {
