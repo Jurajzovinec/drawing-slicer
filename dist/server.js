@@ -31,15 +31,9 @@ if (process.env.NODE_ENV === 'production') {
 else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
-app.use(express_1["default"].static(path_1["default"].join(__dirname, 'public')));
+app.use(express_1["default"].static('public'));
 app.post('/testfile', upload.single('file'), function (req, res) {
-    if (process.env.NODE_ENV === 'production') {
-        var pathToFile_1 = (path_1["default"].join(__dirname, 'uploads' + req.file.filename));
-    }
-    else {
-        app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
-    }
-    var pathToFile = (path_1["default"].join(__dirname, 'uploads' + req.file.filename));
+    var pathToFile = (path_1["default"].join('uploads' + req.file.filename));
     var testSliceService = new inputTestService_1["default"](pathToFile);
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) {

@@ -31,17 +31,11 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors({ origin: "http://localhost:3000" }));
 }
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.post('/testfile', upload.single('file'), (req, res) => {
-    
-    if (process.env.NODE_ENV === 'production') {
-        const pathToFile = (path.join(__dirname, 'uploads' + req.file.filename))
-    } else {
-        app.use(cors({ origin: "http://localhost:3000" }));
-    }
-    
-    const pathToFile = (path.join(__dirname, 'uploads' + req.file.filename))
+        
+    const pathToFile = (path.join('uploads' + req.file.filename))
     const testSliceService = new InputTestService(pathToFile)
     testSliceService.runService()
         .then(response => res.send(response))
@@ -108,8 +102,6 @@ app.get('/listrootdata', (req, res) => {
     });
 
 });
-
-
 
 app.post('/slice/:params', upload.single('file'), (req, res) => {
 
