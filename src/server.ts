@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/testfile', upload.single('file'), (req, res) => {
 
-    const pathToFile = (path.join(__dirname, 'uploads'+req.file.filename))
+    const pathToFile = (path.join(__dirname, 'uploads' + req.file.filename))
     const testSliceService = new InputTestService(pathToFile)
     testSliceService.runService()
         .then(response => res.send(response))
@@ -104,12 +104,13 @@ app.post('/slice/:params', upload.single('file'), (req, res) => {
 });
 
 app.use(function (err, req, res, next) {
-    
-    if (res.status=500){
-        res.send('Sory something has broken :(. 500')
+
+    if (res.status != 200) {
+        res.send('Sory something has broken :(.')
         let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
         reportToAdmin.sendReport()
     }
+    
 })
 
 if (process.env.NODE_ENV === 'production') {

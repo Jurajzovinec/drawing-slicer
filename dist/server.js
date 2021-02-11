@@ -82,8 +82,8 @@ app.post('/slice/:params', upload.single('file'), function (req, res) {
         .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
 });
 app.use(function (err, req, res, next) {
-    if (res.status = 500) {
-        res.send('Sory something has broken :(. 500');
+    if (res.status != 200) {
+        res.send('Sory something has broken :(.');
         var reportToAdmin = new sendReport_1["default"](err, "ERROR");
         reportToAdmin.sendReport();
     }
