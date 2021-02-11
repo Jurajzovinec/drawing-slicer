@@ -12,6 +12,7 @@ var uuid_1 = require("uuid");
 var fs_2 = __importDefault(require("fs"));
 var sliceService_1 = __importDefault(require("./lib/sliceService"));
 var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
+var sendReport_1 = __importDefault(require("./lib/sendReport"));
 var storage = multer_1["default"].diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads');
@@ -34,7 +35,11 @@ app.use(express_1["default"].static('public'));
 app.post('/testfile', upload.single('file'), function (req, res) {
     var testSliceService = new inputTestService_1["default"](req.file.filename);
     testSliceService.runService()
-        .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
+        .then(function (response) { return res.send(response); })["catch"](function (err) {
+        var reportToAdmin = new sendReport_1["default"](err, "ERROR");
+        reportToAdmin.sendReport();
+        res.send(err);
+    });
 });
 app.get('/resultdata', function (req, res) {
     res.contentType("application/pdf");

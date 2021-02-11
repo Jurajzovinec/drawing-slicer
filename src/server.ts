@@ -7,7 +7,7 @@ import { v4 } from 'uuid';
 import fileSystem from 'fs';
 import SliceService from './lib/sliceService';
 import InputTestService from './lib/inputTestService';
-
+import SendReportMessageToAdmin from './lib/sendReport';
 
 
 const storage = multer.diskStorage({
@@ -39,8 +39,11 @@ app.post('/testfile', upload.single('file'), (req, res) => {
     const testSliceService = new InputTestService(req.file.filename)
     testSliceService.runService()
         .then(response => res.send(response))
-        .catch(err => res.send(err))
-
+        .catch(err => {
+            let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
+            reportToAdmin.sendReport()
+            res.send(err)
+        })
 });
 
 app.get('/resultdata', (req, res) => {
