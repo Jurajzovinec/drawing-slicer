@@ -1,17 +1,15 @@
 # node
 node_modules
-/node_modules
-
+Ad/node_modules
 # python
 environment
 __pycache__
 pythonServices/__pycache__
-
-/uploads
-
+# pdfs in uploads folder
+uploads/*
+# file types
 *.log
 .env
 .eslintcache
-debug.log
-
-
+# vs code
+.vscode/*

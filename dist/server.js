@@ -86,6 +86,11 @@ app.get('/listpdfdata', function (req, res) {
         res.send(files);
     });
 });
+app.get('/listrootdata', function (req, res) {
+    fs_1["default"].readdir(__dirname, function (err, files) {
+        res.send(files);
+    });
+});
 app.post('/slice/:params', upload.single('file'), function (req, res) {
     var postedParams = JSON.parse(req.params.params);
     console.log(postedParams);

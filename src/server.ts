@@ -101,6 +101,16 @@ app.get('/listpdfdata', (req, res) => {
 
 });
 
+app.get('/listrootdata', (req, res) => {
+
+    fs.readdir(__dirname, (err, files) => {
+        res.send(files);
+    });
+
+});
+
+
+
 app.post('/slice/:params', upload.single('file'), (req, res) => {
 
     let postedParams = JSON.parse(req.params.params);
