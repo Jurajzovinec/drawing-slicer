@@ -34,7 +34,13 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/testfile', upload.single('file'), (req, res) => {
-
+    
+    if (process.env.NODE_ENV === 'production') {
+        const pathToFile = (path.join(__dirname, 'uploads' + req.file.filename))
+    } else {
+        app.use(cors({ origin: "http://localhost:3000" }));
+    }
+    
     const pathToFile = (path.join(__dirname, 'uploads' + req.file.filename))
     const testSliceService = new InputTestService(pathToFile)
     testSliceService.runService()
