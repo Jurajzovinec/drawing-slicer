@@ -26,7 +26,7 @@ export default class SendReportMessageToAdmin {
         let mailOptions = {
             from: '"Drawing Slicer Reporter " <DrawingSlicerAppSender@outlook.com>', 
             to: 'juraj.zovinecc@gmail.com', 
-            subject: 'Drawing Slicer Issue report', 
+            subject: 'Drawing Slicer Issue '+ this.level, 
             text: 'Issue ' + this.level,
             html: '<b>Issue message: </b><br> ' + this.reportMessage 
         };

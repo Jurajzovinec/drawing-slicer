@@ -32,18 +32,10 @@ else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
 app.use(express_1["default"].static('public'));
-app.use(function (err, req, res, next) {
-    console.error(err.stack);
-    var reportToAdmin = new sendReport_1["default"](err, "ERROR");
-    reportToAdmin.sendReport();
-    res.status(500).send('Something broke!');
-});
 app.post('/testfile', upload.single('file'), function (req, res) {
     var testSliceService = new inputTestService_1["default"](req.file.filename);
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) {
-        var reportToAdmin = new sendReport_1["default"](err, "ERROR");
-        reportToAdmin.sendReport();
         res.send(err);
     });
 });
@@ -87,6 +79,13 @@ app.post('/slice/:params', upload.single('file'), function (req, res) {
     console.log('Here it still works...');
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
+});
+app.use(function (err, req, res, next) {
+    res.status(500).send('Something broke!');
+    if (res.status = 500) {
+        var reportToAdmin = new sendReport_1["default"](err, "ERROR");
+        reportToAdmin.sendReport();
+    }
 });
 if (process.env.NODE_ENV === 'production') {
     app.use(express_1["default"].static('client/build'));

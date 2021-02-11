@@ -8,6 +8,7 @@ import fileSystem from 'fs';
 import SliceService from './lib/sliceService';
 import InputTestService from './lib/inputTestService';
 import SendReportMessageToAdmin from './lib/sendReport';
+import { stringify } from 'querystring';
 
 
 const storage = multer.diskStorage({
@@ -34,21 +35,12 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static('public'));
 
-app.use(function (err, req, res, next) {
-    console.error(err.stack)
-    let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
-    reportToAdmin.sendReport()
-    res.status(500).send('Something broke!')
-})
-
 app.post('/testfile', upload.single('file'), (req, res) => {
 
     const testSliceService = new InputTestService(req.file.filename)
     testSliceService.runService()
         .then(response => res.send(response))
         .catch(err => {
-            let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
-            reportToAdmin.sendReport()
             res.send(err)
         })
 });
@@ -111,6 +103,16 @@ app.post('/slice/:params', upload.single('file'), (req, res) => {
         .then(response => res.send(response))
         .catch(err => res.send(err))
 });
+
+app.use(function (err, req, res, next) {
+    
+    res.status(500).send('Something broke!')
+
+    if (res.status=500){
+        let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
+        reportToAdmin.sendReport()
+    }
+})
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
