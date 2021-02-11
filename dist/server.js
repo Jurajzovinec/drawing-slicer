@@ -15,7 +15,7 @@ var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
 var sendReport_1 = __importDefault(require("./lib/sendReport"));
 var storage = multer_1["default"].diskStorage({
     destination: function (req, file, cb) {
-        cb(null, (path_1["default"].join(__dirname, 'uploads')));
+        cb(null, ('uploads'));
     },
     filename: function (req, file, cb) {
         var originalname = file.originalname;

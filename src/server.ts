@@ -11,7 +11,7 @@ import SendReportMessageToAdmin from './lib/sendReport';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, (path.join(__dirname, 'uploads')));
+        cb(null, ('uploads'));
     },
     filename: (req, file, cb) => {
         const { originalname } = file;
