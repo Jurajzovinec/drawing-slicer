@@ -15,7 +15,7 @@ var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
 var sendReport_1 = __importDefault(require("./lib/sendReport"));
 var storage = multer_1["default"].diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads');
+        cb(null, (path_1["default"].join(__dirname, 'uploads')));
     },
     filename: function (req, file, cb) {
         var originalname = file.originalname;
@@ -31,9 +31,10 @@ if (process.env.NODE_ENV === 'production') {
 else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
-app.use(express_1["default"].static('public'));
+app.use(express_1["default"].static(path_1["default"].join(__dirname, 'public')));
 app.post('/testfile', upload.single('file'), function (req, res) {
-    var testSliceService = new inputTestService_1["default"](req.file.filename);
+    var pathToFile = (path_1["default"].join(__dirname, 'uploads' + req.file.filename));
+    var testSliceService = new inputTestService_1["default"](pathToFile);
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) {
         res.send(err);
@@ -81,8 +82,8 @@ app.post('/slice/:params', upload.single('file'), function (req, res) {
         .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
 });
 app.use(function (err, req, res, next) {
-    res.status(500).send('Something broke!');
     if (res.status = 500) {
+        res.send('Sory something has broken :(. 500');
         var reportToAdmin = new sendReport_1["default"](err, "ERROR");
         reportToAdmin.sendReport();
     }

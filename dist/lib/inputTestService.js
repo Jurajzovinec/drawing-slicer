@@ -61,7 +61,7 @@ var InputTestService = /** @class */ (function () {
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             var pythonSliceMicroService, outputMessage, upcomingData;
             return __generator(this, function (_a) {
-                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_INPUT_TEST_SERVICE_PATH, "./uploads/" + this.fileToSlice]);
+                pythonSliceMicroService = child_process_1.spawn(config_1["default"].PYTHON_INTERPRETER_PATH, [config_1["default"].PYTHON_INPUT_TEST_SERVICE_PATH, this.fileToSlice]);
                 outputMessage = {};
                 pythonSliceMicroService.stdout.on('data', function (data) {
                     if (data.toString().includes("Ooops!")) {

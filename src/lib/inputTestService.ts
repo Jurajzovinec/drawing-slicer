@@ -1,5 +1,6 @@
 import config from '../config';
 import { spawn } from 'child_process';
+import path from 'path';
 
 export default class InputTestService {
     constructor(
@@ -18,8 +19,7 @@ export default class InputTestService {
 
         console.log("...handlingTestPythonMicroService...");
         return new Promise(async (resolve, reject) => {
-            
-            const pythonSliceMicroService = spawn(config.PYTHON_INTERPRETER_PATH, [config.PYTHON_INPUT_TEST_SERVICE_PATH, `./uploads/${this.fileToSlice}`]);
+            const pythonSliceMicroService = spawn(config.PYTHON_INTERPRETER_PATH, [config.PYTHON_INPUT_TEST_SERVICE_PATH, this.fileToSlice]);
             let outputMessage: object = {}
             let upcomingData: string;
 

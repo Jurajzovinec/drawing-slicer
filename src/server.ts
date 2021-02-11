@@ -8,12 +8,10 @@ import fileSystem from 'fs';
 import SliceService from './lib/sliceService';
 import InputTestService from './lib/inputTestService';
 import SendReportMessageToAdmin from './lib/sendReport';
-import { stringify } from 'querystring';
-
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads');
+        cb(null, (path.join(__dirname, 'uploads')));
     },
     filename: (req, file, cb) => {
         const { originalname } = file;
@@ -33,11 +31,12 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors({ origin: "http://localhost:3000" }));
 }
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/testfile', upload.single('file'), (req, res) => {
 
-    const testSliceService = new InputTestService(req.file.filename)
+    const pathToFile = (path.join(__dirname, 'uploads'+req.file.filename))
+    const testSliceService = new InputTestService(pathToFile)
     testSliceService.runService()
         .then(response => res.send(response))
         .catch(err => {
@@ -106,9 +105,8 @@ app.post('/slice/:params', upload.single('file'), (req, res) => {
 
 app.use(function (err, req, res, next) {
     
-    res.status(500).send('Something broke!')
-
     if (res.status=500){
+        res.send('Sory something has broken :(. 500')
         let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
         reportToAdmin.sendReport()
     }
