@@ -35,7 +35,8 @@ app.use(express.static('public'));
 
 app.post('/testfile', upload.single('file'), (req, res) => {
         
-    const pathToFile = (path.join('uploads' + req.file.filename))
+    const pathToFile = ('uploads' + req.file.filename)
+    
     const testSliceService = new InputTestService(pathToFile)
     testSliceService.runService()
         .then(response => res.send(response))

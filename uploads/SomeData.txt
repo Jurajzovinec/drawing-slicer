@@ -1,0 +1,2 @@
+I am here to invoke creation of folder on Heroku, because it seems like Heroku won't do that without me.
+https://stackoverflow.com/questions/50566277/uploading-image-to-heroku-using-node-and-multer-not-work

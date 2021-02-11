@@ -33,7 +33,7 @@ else {
 }
 app.use(express_1["default"].static('public'));
 app.post('/testfile', upload.single('file'), function (req, res) {
-    var pathToFile = (path_1["default"].join('uploads' + req.file.filename));
+    var pathToFile = ('uploads' + req.file.filename);
     var testSliceService = new inputTestService_1["default"](pathToFile);
     testSliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (err) {
