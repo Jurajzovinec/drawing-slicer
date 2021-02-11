@@ -1,5 +1,4 @@
 import config from '../config';
-import fs from 'fs';
 import { spawn } from 'child_process';
 
 export default class InputTestService {

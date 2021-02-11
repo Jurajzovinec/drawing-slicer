@@ -28,6 +28,7 @@
     "dev": "ts-node ./src/server.ts",
     "proto": "ts-node-dev src/server.ts",
     "watch": "tsc -W",
+    "init-python-environemt": "cd python Services && python -m venv environment && .environment",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build" 
