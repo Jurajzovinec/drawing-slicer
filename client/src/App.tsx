@@ -46,7 +46,7 @@ function App() {
       </div>
 
       <div className="Body">
-        <BodyHeader text={"Welcome to Drawing Slicer !"} />
+        <BodyHeader text={"Welcome to Drawing Slicer ! Debug it. 1"} />
         <div className="user-interface">
           {
             !isPdfConfirmed ?
