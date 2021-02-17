@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var nodemailer_1 = __importDefault(require("nodemailer"));
+var config_1 = __importDefault(require("../config"));
 var SendReportMessageToAdmin = /** @class */ (function () {
     function SendReportMessageToAdmin(reportMessage, level) {
         this.reportMessage = reportMessage;
@@ -15,8 +16,8 @@ var SendReportMessageToAdmin = /** @class */ (function () {
             port: 587,
             secure: false,
             auth: {
-                user: 'DrawingSlicerAppSender@outlook.com',
-                pass: 'Hfca9Xyzx6vdCF5'
+                user: config_1["default"].NODE_MAILER_ACC,
+                pass: config_1["default"].NODE_MAILER_PASS
             },
             tls: {
                 ciphers: 'SSLv3',
@@ -24,8 +25,8 @@ var SendReportMessageToAdmin = /** @class */ (function () {
             }
         });
         var mailOptions = {
-            from: '"Drawing Slicer Reporter " <DrawingSlicerAppSender@outlook.com>',
-            to: 'juraj.zovinecc@gmail.com',
+            from: "\"Drawing Slicer Reporter \" <" + config_1["default"].NODE_MAILER_ACC + ">",
+            to: config_1["default"].NODE_MAILER_ADMIN_ACC,
             subject: 'Drawing Slicer Issue ' + this.level,
             text: 'Issue ' + this.level,
             html: '<b>Issue message: </b><br> ' + this.reportMessage

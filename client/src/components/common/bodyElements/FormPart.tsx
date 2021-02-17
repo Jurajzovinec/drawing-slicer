@@ -8,12 +8,12 @@ import { DrawingFormats } from '../bodyElements/DrawingFormats';
 interface PageAreaInfs {
     ScaleButtonText: string;
     SliceButtonText: string;
-    LoadedPdfData: undefined | File;
+    LoadedPdfName: undefined | string;
     setIsErrorInfoModalOpen: Function;
     setInfoModalMessage: Function;
 }
 
-export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText, LoadedPdfData, setIsErrorInfoModalOpen, setInfoModalMessage }) => {
+export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText, LoadedPdfName, setIsErrorInfoModalOpen, setInfoModalMessage }) => {
 
     const [scaleBeforeSlice, setScaleBeforeSlice] = useState<boolean>(() => false);
     const [scaleToFormat, setScaleToFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
@@ -23,13 +23,11 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
     const requestResultedData = (fileResultPath: string): Promise<(string)> => {
 
         console.log("...askingForResultPDF...");
-        const urlToFetch =  process.env.NODE_ENV === 'production'?  "https://drawing-slicer.herokuapp.com/resultdata" : "http://localhost:5050/resultdata";    
+        const urlToFetch = process.env.NODE_ENV === 'production' ? `https://drawing-slicer.herokuapp.com/filetodownload/{"requestedFileName":"${fileResultPath}"}`
+            : `http://localhost:5050/filetodownload/{"requestedFileName":"${fileResultPath}"}`;
         return new Promise(async (resolve, reject) => {
             fetch(urlToFetch, {
                 method: 'GET',
-                headers: {
-                    requestedFile: fileResultPath
-                }
             })
                 .then(response => response.blob())
                 .then(blobObj => {
@@ -51,19 +49,18 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
     const clearBackendStorageAPI = (result: string): void => {
 
         console.log("...sendingRequestToClearBackendStorage...");
-        const urlToFetch =  process.env.NODE_ENV === 'production'?  "https://drawing-slicer.herokuapp.com/clearpdfdata" : "http://localhost:5050/clearpdfdata";
+        const urlToFetch = process.env.NODE_ENV === 'production' ? "https://drawing-slicer.herokuapp.com/clearpdfdata" : "http://localhost:5050/clearpdfdata";
         fetch(urlToFetch)
     }
 
     const fetchFunction = () => {
-        const urlToFetch =  process.env.NODE_ENV === 'production'?  
-            `https://drawing-slicer.herokuapp.com/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}` : 
-            `http://localhost:5050/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}`;
-        
-        
-        fetch(`http://localhost:5050/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}`, {
-            method: 'POST',
-            body: LoadedPdfData
+        // console.log(LoadedPdfName)
+        const urlToFetch = process.env.NODE_ENV === 'production' ?
+            `https://drawing-slicer.herokuapp.com/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}` :
+            `http://localhost:5050/slice/{"Filename":"${LoadedPdfName}","ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}`;
+
+        fetch(urlToFetch, {
+            method: 'GET'
         })
             .then(response => {
                 return response.text()
@@ -77,8 +74,9 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
                     setInfoModalMessage(response.ErrorMessage)
                     setIsErrorInfoModalOpen(true)
                 } else {
+                    console.log(response.ResultPdfName)
                     requestResultedData(response.ResultPdfName)
-                        .then(result=> clearBackendStorageAPI(result))
+                        // .then(result => clearBackendStorageAPI(result))
                 }
             })
             .catch(error => console.log(error))

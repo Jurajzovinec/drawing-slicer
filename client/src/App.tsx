@@ -23,6 +23,7 @@ function App() {
   const [isQuestionMarkInfoModalOpen, setIsQuestionMarkInfoModalOpen] = useState<boolean>(() => false);
 
   const [loadedPdfFile, setLoadedPdfFile] = useState<undefined | File>(() => undefined);
+  const [loadedPdfFileName, setloadedPdfFileName] = useState<undefined | string>(() => undefined);
 
   const toggleErrorInfoModal = () => setIsErrorInfoModalOpen(!isErrorInfoModalOpen);
   const toggleQuestionMarkInfoModal = () => setIsQuestionMarkInfoModalOpen(!isQuestionMarkInfoModalOpen);
@@ -32,6 +33,7 @@ function App() {
     setPdfNumberOfPages(undefined);
     setPdfFormat(undefined);
     setLoadedPdfFile(undefined);
+    setloadedPdfFileName(undefined);
   }
 
   return (
@@ -58,7 +60,7 @@ function App() {
                   setInfoModalMessage={(value: string | undefined) => setInfoModalMessage(value)}
                   setIsErrorInfoModalOpen={(value: boolean) => setIsErrorInfoModalOpen(value)}
                   setLoadedPdfFile={(value: any) => setLoadedPdfFile(value)}
-                  buttonText={"Or navigate me !"}
+                  setloadedPdfFileName={(value: any) => setloadedPdfFileName(value)}
                   dragAndDropText={"Drag and drop your PDF drawing here."} />
               </div> : null
           }
@@ -73,7 +75,7 @@ function App() {
             <FormPart
               ScaleButtonText={"Scale before slice ? "}
               SliceButtonText={"Slice drawing"}
-              LoadedPdfData={loadedPdfFile}
+              LoadedPdfName={loadedPdfFileName}
               setInfoModalMessage={(value: string | undefined) => setInfoModalMessage(value)}
               setIsErrorInfoModalOpen={(value: boolean) => setIsErrorInfoModalOpen(value)}
             />

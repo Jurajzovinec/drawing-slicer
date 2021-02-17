@@ -1,13 +1,10 @@
 # node
 node_modules
-Ad/node_modules
-# python
-environment
-__pycache__
-pythonServices/__pycache__
-# pdfs in uploads folder
 
-# uploads/*
+# python
+python_modules
+pythonServices/unit_test_input_files/*
+pythonServices/unit_test_output_files/*
 
 # file types
 *.log

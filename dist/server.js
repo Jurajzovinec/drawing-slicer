@@ -5,40 +5,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
-var multer_1 = __importDefault(require("multer"));
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
-var uuid_1 = require("uuid");
 var fs_2 = __importDefault(require("fs"));
-var sliceService_1 = __importDefault(require("./lib/sliceService"));
-var inputTestService_1 = __importDefault(require("./lib/inputTestService"));
+var express_fileupload_1 = __importDefault(require("express-fileupload"));
+var callPythonSliceFileService_1 = __importDefault(require("./lib/callPythonSliceFileService"));
+var callPythonValidateFileService_1 = __importDefault(require("./lib/callPythonValidateFileService"));
 var sendReport_1 = __importDefault(require("./lib/sendReport"));
-var storage = multer_1["default"].diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, ('/uploads'));
-    },
-    filename: function (req, file, cb) {
-        var originalname = file.originalname;
-        cb(null, uuid_1.v4() + "-" + originalname);
-    }
-});
-var upload = multer_1["default"]({ storage: storage });
+var uploadFileToAWS_1 = __importDefault(require("./lib/uploadFileToAWS"));
+var downloadFileFromAWS_1 = __importDefault(require("./lib/downloadFileFromAWS"));
 var app = express_1["default"]();
 var port = parseInt(process.env.PORT, 10) || 5050;
+app.use(express_fileupload_1["default"]());
+app.use(express_1["default"].static('public'));
 if (process.env.NODE_ENV === 'production') {
     app.use(cors_1["default"]());
 }
 else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
-app.use(express_1["default"].static('public'));
-app.post('/testfile', upload.single('file'), function (req, res) {
-    var pathToFile = ('uploads' + req.file.filename);
-    var testSliceService = new inputTestService_1["default"](pathToFile);
-    testSliceService.runService()
-        .then(function (response) { return res.send(response); })["catch"](function (err) {
-        res.send(err);
-    });
+app.post('/testfile', function (req, res) {
+    if (req.files.pdffile != undefined) {
+        uploadFileToAWS_1["default"](req.files.pdffile)
+            .then(function (resolvedMessage) {
+            var testSliceService = new callPythonValidateFileService_1["default"](resolvedMessage.uploadedFile);
+            return testSliceService.runService();
+        })
+            .then(function (response) { return res.send(response); })["catch"](function (rejectedMessage) { return res.send(rejectedMessage); });
+    }
+    else {
+        res.send('Could not handle request. No recognized data attached.');
+    }
+});
+app.get('/slice/:params', function (req, res) {
+    var postedParams = JSON.parse(req.params.params);
+    var sliceService = new callPythonSliceFileService_1["default"](postedParams.Filename, (postedParams.ScaleBeforeSlice === 'true') ? postedParams.ScaleToFormat : "none", postedParams.SliceBytFormat);
+    sliceService.runService()
+        .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
+    console.log(postedParams);
 });
 app.get('/resultdata', function (req, res) {
     res.contentType("application/pdf");
@@ -86,17 +90,36 @@ app.get('/listrootdata', function (req, res) {
         res.send(files);
     });
 });
-app.post('/slice/:params', upload.single('file'), function (req, res) {
-    var postedParams = JSON.parse(req.params.params);
-    console.log(postedParams);
-    var testSliceService = new sliceService_1["default"](req.file.filename, (postedParams.ScaleBeforeSlice === 'true') ? postedParams.ScaleToFormat : "none", postedParams.SliceByFormat);
-    console.log('Here it still works...');
-    testSliceService.runService()
-        .then(function (response) { return res.send(response); })["catch"](function (err) { return res.send(err); });
+app.post('/fileupload', function (req, res) {
+    console.log('file upload with AWS S3 invoked.');
+    if (req.files.uploadedPdf != undefined) {
+        uploadFileToAWS_1["default"](req.files.uploadedPdf)
+            .then(function (resolvedMessage) { return res.send(resolvedMessage.status); })["catch"](function (rejectedMessage) { return res.send(rejectedMessage.status); });
+    }
+    else {
+        res.send('Could not handle request. No recognized data attached.');
+    }
 });
-app.use(function (err, req, res, next) {
+app.get('/filedownload/:filetodownload', function (req, res) {
+    console.log('... File download  with S3 invoked. ...');
+    var newConfigParameters = JSON.parse(req.params.filetodownload);
+    console.log(newConfigParameters);
+    if (JSON.parse(req.params.filetodownload)['requestedFileName']) {
+        downloadFileFromAWS_1["default"](JSON.parse(req.params.filetodownload)['requestedFileName'])
+            .then(function (data) {
+            // testPdfReaderCapabilty(data.Body);
+            res.contentType("application/pdf; charset=utf-8");
+            res.setHeader('Content-Length', data.ContentLength);
+            res.end(data.Body);
+        })["catch"](function (rejectedMessage) { return res.send(rejectedMessage); });
+    }
+    else {
+        res.send('Could not handle request. Check for missing parameter {requestedFilename: fileToGet} in the URL.');
+    }
+});
+app.use(function (err, req, res) {
     if (res.status != 200) {
-        res.send('Sory something has broken :(.');
+        res.send('Sorry something has broken :(.');
         var reportToAdmin = new sendReport_1["default"](err, "ERROR");
         reportToAdmin.sendReport();
     }

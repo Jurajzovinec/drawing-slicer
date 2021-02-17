@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import config from '../config';
 
 export default class SendReportMessageToAdmin {
     constructor(
@@ -14,8 +15,8 @@ export default class SendReportMessageToAdmin {
             port: 587,
             secure: false,
             auth: {
-                user: 'DrawingSlicerAppSender@outlook.com',
-                pass: 'Hfca9Xyzx6vdCF5'
+                user: config.NODE_MAILER_ACC,
+                pass: config.NODE_MAILER_PASS
             },
             tls: {
                 ciphers: 'SSLv3',
@@ -24,8 +25,8 @@ export default class SendReportMessageToAdmin {
         })
 
         let mailOptions = {
-            from: '"Drawing Slicer Reporter " <DrawingSlicerAppSender@outlook.com>', 
-            to: 'juraj.zovinecc@gmail.com', 
+            from: `"Drawing Slicer Reporter " <${config.NODE_MAILER_ACC}>`, 
+            to: config.NODE_MAILER_ADMIN_ACC, 
             subject: 'Drawing Slicer Issue '+ this.level, 
             text: 'Issue ' + this.level,
             html: '<b>Issue message: </b><br> ' + this.reportMessage 

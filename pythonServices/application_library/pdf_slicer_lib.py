@@ -2,12 +2,14 @@ import PyPDF2
 import copy
 import string
 import random
+import io
+
 from .pdf_slicer_exceptions import *
 
 
 class PdfSlicer:
 
-    def __init__(self, input_file, slice_by_format, scale_to_format):
+    def __init__(self, input_file, slice_by_format, scale_to_format, filename=None):
         self.standard_drawing_formats = [
             {"drawing_format": "a0", "dimensions": [841, 1189]},
             {"drawing_format": "a1", "dimensions": [594, 841]},
@@ -19,8 +21,8 @@ class PdfSlicer:
             {"drawing_format": "a7", "dimensions": [74, 105]},
             {"drawing_format": "a8", "dimensions": [52, 74]},
         ]
-        self.input_file_name = input_file
-        self.input_pdf_object = self.init_pdf_file(input_file)
+        self.input_file_name = self.determine_input_file_name(input_file, filename)
+        self.input_pdf_object = self.init_pdf_file(input_file, filename)
         self.slice_by_format = self.validate_slice_by_format(slice_by_format)
         self.scale_to_format = self.validate_scale_to_format(scale_to_format)
 
@@ -35,9 +37,16 @@ class PdfSlicer:
             self.scale_to_specific_format(self.scale_to_format)
         if self.slice_by_format: 
             return self.generate_sliced_pdf(self.slice_by_specific_format(self.slice_by_format))
-
+    
     # Validation Functions
-    def init_pdf_file(self, input_file):
+    def determine_input_file_name(self, input_file, filename):
+        
+        if filename:
+            return filename
+        else:
+            return input_file
+
+    def init_pdf_file(self, input_file, filename):
         
         try:
             pdf_file = PyPDF2.PdfFileReader(input_file, strict=False)
@@ -53,7 +62,7 @@ class PdfSlicer:
         if input_scale_format ==  "none":
             return None
         elif input_scale_format not in valid_inputs:
-            raise InvalidScalingFormat(f'Please select one of valid inputs from list {valid_inputs}. Received input is ${input_scale_to_format}')
+            raise InvalidScalingFormat(f'Please select one of valid scale format inputs from list {valid_inputs}. Received input is {input_scale_to_format}')
         else:
             return input_scale_format
 
@@ -64,7 +73,7 @@ class PdfSlicer:
         if input_slice_by_format ==  "none":
             return None
         elif input_slice_by_format not in valid_inputs:
-            raise InvalidSlicingFormat(f'Please select one of valid inputs from list {valid_inputs}. Received input is ${input_slice_by_format}')
+            raise InvalidSlicingFormat(f'Please select one of valid slice format inputs from list {valid_inputs}. Received input is {input_slice_by_format}')
         else:
             return input_slice_by_format
 
@@ -238,19 +247,36 @@ class PdfSlicer:
             copied_drawing.cropBox.upperRight = [each_page["absolute_position_x_end"]/0.352777777, each_page["absolute_position_y_end"]/0.352777777]
             writer.addPage(copied_drawing)
 
-        # Switch to Random generating name when testing
-        # result_pdf_name = (f"UnitTestOutputFiles/{self.pdf_name_generator()}.pdf")
-        result_pdf_name = self.input_file_name
-     
-        with open(result_pdf_name, 'wb') as output_result_file:
-            writer.write(output_result_file)
-            
-        with open(result_pdf_name, 'rb') as output_result_file_test:
-            resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_result_file_test)
-            for page_number in range(resulted_tested_pdf_file.getNumPages()):
-                self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)
+        # Switch case for Testing
+        testing = False
+        
+        if testing:
 
-        return result_pdf_name
+            result_pdf_name = (f"unit_test_output_files/{self.pdf_name_generator()}.pdf")
+
+            with open(result_pdf_name, 'wb') as output_result_file:
+                writer.write(output_result_file)
+            
+            resulted_tested_pdf_file = PyPDF2.PdfFileReader(result_pdf_name)
+            
+            with open(result_pdf_name, 'rb') as output_result_file_test:
+                for page_number in range(resulted_tested_pdf_file.getNumPages()):
+                    self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)
+
+            return result_pdf_name
+        
+        else:
+            
+            result_pdf_name = self.input_file_name+"_sliced"
+            writer.write(output_filestream)
+            output_filestream = io.BytesIO()
+
+            resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_filestream)
+            
+            for page_number in range(resulted_tested_pdf_file.getNumPages()):
+                    self.test_output_format(resulted_tested_pdf_file.getPage(page_number), self.slice_by_format)
+            
+            return {"file_stream":output_filestream ,"filename":result_pdf_name }
           
 
 

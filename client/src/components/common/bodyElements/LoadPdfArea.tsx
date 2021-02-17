@@ -9,17 +9,17 @@ interface PageAreaInfs {
     setIsErrorInfoModalOpen: Function;
     setInfoModalMessage: Function;
     setLoadedPdfFile: Function;
-    buttonText: string;
+    setloadedPdfFileName: Function;
     dragAndDropText: string;
 }
 
-export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfNumberOfPages, setPdfFormat, setIsErrorInfoModalOpen, setInfoModalMessage, setLoadedPdfFile, buttonText, dragAndDropText }) => {
+export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfNumberOfPages, setPdfFormat, setIsErrorInfoModalOpen, setInfoModalMessage, setLoadedPdfFile, dragAndDropText, setloadedPdfFileName }) => {
 
     function sendFileOnBackend(file: any): Promise<any> {
 
         let formData = new FormData();
         setLoadedPdfFile(formData);
-        formData.append('file', file);
+        formData.append('pdffile', file);
 
         return new Promise(async (resolve, reject) => {
 
@@ -40,15 +40,13 @@ export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfN
         acceptedFiles.forEach((file: any) => {
             sendFileOnBackend(acceptedFiles[0])
                 .then(response => {
-                    console.log(response)
-                    console.log("Iteration1")
                     response = JSON.parse(response);
 
                     if (response.Status === "Success") {
                         setIsPdfConfirmed(true);
                         setPdfNumberOfPages(response.NumberOfPages);
                         setPdfFormat(response.DrawingFormat.toUpperCase())
-
+                        setloadedPdfFileName(response.Filename)
                     } else {
                         setInfoModalMessage(response.ErrorMessage)
                         setIsErrorInfoModalOpen(true)
