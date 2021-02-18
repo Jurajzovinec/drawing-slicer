@@ -25,6 +25,7 @@ else {
     app.use(cors_1["default"]({ origin: "http://localhost:3000" }));
 }
 app.post('/testfile', function (req, res) {
+    console.log('test file invoked');
     if (req.files.pdffile != undefined) {
         uploadFileToAWS_1["default"](req.files.pdffile)
             .then(function (resolvedMessage) {

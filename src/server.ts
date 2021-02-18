@@ -26,7 +26,8 @@ if (process.env.NODE_ENV === 'production') {
 
 
 app.post('/testfile', (req:any, res) => {
-        
+    console.log('test file invoked')
+    
     if (req.files.pdffile != undefined) {
         uploadFileToAWS(req.files!.pdffile)
             .then(resolvedMessage => {
@@ -40,7 +41,7 @@ app.post('/testfile', (req:any, res) => {
     }
 });
 
-
+ 
 app.get('/slice/:params',  (req, res) => {
     
     const postedParams = JSON.parse(req.params.params);

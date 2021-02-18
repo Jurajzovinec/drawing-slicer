@@ -40,19 +40,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var aws_sdk_1 = __importDefault(require("aws-sdk"));
-var config_1 = __importDefault(require("../config"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
 function uploadFileToAWS(file) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         var s3bucket;
         return __generator(this, function (_a) {
             s3bucket = new aws_sdk_1["default"].S3({
-                accessKeyId: config_1["default"].AWS_ACCESS_KEY,
-                secretAccessKey: config_1["default"].AWS_SECRET_KEY
+                accessKeyId: process.env.AWS_ACCESS_KEY,
+                secretAccessKey: process.env.AWS_SECRET_KEY
             });
             s3bucket.createBucket(function () {
                 var params = {
-                    Bucket: config_1["default"].AWS_BUCKET_NAME,
+                    Bucket: process.env.AWS_BUCKET_NAME,
                     Key: file.name,
                     Body: file.data
                 };

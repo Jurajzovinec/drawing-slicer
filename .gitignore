@@ -10,5 +10,7 @@ pythonServices/unit_test_output_files/*
 *.log
 .env
 .eslintcache
+desktop.ini
+
 # vs code
 .vscode/*
