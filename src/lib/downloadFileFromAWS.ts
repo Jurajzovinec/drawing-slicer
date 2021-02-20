@@ -22,5 +22,4 @@ export default function downloadFileFromAWS(fileName:string) {
             });
         });   
     });
-    
 }

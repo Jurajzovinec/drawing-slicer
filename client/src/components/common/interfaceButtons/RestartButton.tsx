@@ -10,8 +10,8 @@ export const RestartButton: React.FC<ButtonOptions> = ({ ResetButtonText, ClearS
     const invokeClearingStates = () => ClearStates()
 
     return (
-        <div className="restart-button">
-            <button onClick={invokeClearingStates}>{ResetButtonText}</button>
+        <div>
+            <button className="btn__restart" onClick={invokeClearingStates}>{ResetButtonText}</button>
         </div>
     );
 };

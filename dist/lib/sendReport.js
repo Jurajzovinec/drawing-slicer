@@ -4,7 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var nodemailer_1 = __importDefault(require("nodemailer"));
-var config_1 = __importDefault(require("../config"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
 var SendReportMessageToAdmin = /** @class */ (function () {
     function SendReportMessageToAdmin(reportMessage, level) {
         this.reportMessage = reportMessage;
@@ -16,8 +17,8 @@ var SendReportMessageToAdmin = /** @class */ (function () {
             port: 587,
             secure: false,
             auth: {
-                user: config_1["default"].NODE_MAILER_ACC,
-                pass: config_1["default"].NODE_MAILER_PASS
+                user: process.env.NODE_MAILER_ACC,
+                pass: process.env.NODE_MAILER_PASS
             },
             tls: {
                 ciphers: 'SSLv3',
@@ -25,11 +26,11 @@ var SendReportMessageToAdmin = /** @class */ (function () {
             }
         });
         var mailOptions = {
-            from: "\"Drawing Slicer Reporter \" <" + config_1["default"].NODE_MAILER_ACC + ">",
-            to: config_1["default"].NODE_MAILER_ADMIN_ACC,
+            from: "\"Drawing Slicer Reporter \" <" + process.env.NODE_MAILER_ACC + ">",
+            to: process.env.NODE_MAILER_ADMIN_ACC,
             subject: 'Drawing Slicer Issue ' + this.level,
-            text: 'Issue ' + this.level,
-            html: '<b>Issue message: </b><br> ' + this.reportMessage
+            text: "Issue level: " + this.level,
+            html: "<b>Issue message: </b><br> Issue level: " + this.level + " </b><br> " + this.reportMessage
         };
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {

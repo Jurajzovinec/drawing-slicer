@@ -59,7 +59,6 @@ function uploadFileToAWS(file) {
                 };
                 s3bucket.upload(params, function (err, data) {
                     if (err) {
-                        console.log('error in callback');
                         reject({
                             status: "Error occured while uploading " + file.name + " to S3: " + err + ".",
                             uploadedFile: file.name

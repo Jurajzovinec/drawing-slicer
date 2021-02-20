@@ -36,7 +36,6 @@ def main():
     
     try:
         pdf_object = PdfSlicer(**init_arguments())
-        logger.info(init_arguments())
         result_pdf_object = pdf_object.main_run()
         upload_to_aws_s3(result_pdf_object)
     except Exception as error:

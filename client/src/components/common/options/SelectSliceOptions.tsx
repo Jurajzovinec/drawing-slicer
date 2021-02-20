@@ -1,5 +1,5 @@
 import React from "react";
-import { DrawingFormats } from '../bodyElements/DrawingFormats';
+import { DrawingFormats } from '../../../types/DrawingFormats';
 
 interface SliceOptionsProps {
     setSliceByFormat: Function;

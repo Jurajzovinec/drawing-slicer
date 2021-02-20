@@ -1,9 +1,8 @@
 import React from "react";
+import { BarLoader } from 'react-spinners';
 
-export const BodyHeader: React.FC<{ text: string }> = ({text}) => {
+export const BodyHeader: React.FC<{ text: string }> = ({ text }) => {
     return (
-        <div className="body-header">
-            <h1>{text}</h1>
-        </div>
+        <h1>{text}</h1>
     );
 };

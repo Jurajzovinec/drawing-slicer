@@ -12,7 +12,7 @@ export const QuestionMarkReference: React.FC<QuestionMarkReferencelProps> = ({se
 
     return (
         <div className="question-mark-icon" onClick={invokeQuestionMark}>
-            <img src={questionMarkIcon} className="nav-bar-img"/>
+            <img src={questionMarkIcon} className="header--navbar-img"/>
         </div>
     );
 };

@@ -10,13 +10,14 @@ interface PageAreaInfs {
     setInfoModalMessage: Function;
     setLoadedPdfFile: Function;
     setloadedPdfFileName: Function;
+    setIsAppLoading: Function;
     dragAndDropText: string;
 }
 
-export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfNumberOfPages, setPdfFormat, setIsErrorInfoModalOpen, setInfoModalMessage, setLoadedPdfFile, dragAndDropText, setloadedPdfFileName }) => {
+export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfNumberOfPages, setPdfFormat, setIsErrorInfoModalOpen, setInfoModalMessage, setLoadedPdfFile, dragAndDropText, setloadedPdfFileName, setIsAppLoading }) => {
 
     function sendFileOnBackend(file: any): Promise<any> {
-
+        setIsAppLoading(true)
         let formData = new FormData();
         setLoadedPdfFile(formData);
         formData.append('pdffile', file);
@@ -30,9 +31,13 @@ export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfN
                 body: formData
             })
                 .then(res => {
+                    setIsAppLoading(false)
                     resolve(res.text())
                 })
-                .catch((error) => reject(error));
+                .catch((error) => {
+                    setIsAppLoading(false)
+                    reject(error)
+                });
         });
     }
 

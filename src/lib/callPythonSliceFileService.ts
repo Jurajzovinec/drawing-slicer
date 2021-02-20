@@ -5,7 +5,7 @@ export default class CallSliceFileService {
     constructor(
         public fileToSlice: string,
         public scalingFormat: "a0" | "a1" | "a2" | "a3" | "a4" | "a5" | "a6" | "a7" | "a8" | "none",
-        public slicingFormat: "a0" | "a1" | "a2" | "a3" | "a4" | "a5" | "a6" | "a7" | "a8",
+        public slicingFormat: "a0" | "a1" | "a2" | "a3" | "a4" | "a5" | "a6" | "a7" | "a8"
     ) { }
 
     runService() {
@@ -17,9 +17,11 @@ export default class CallSliceFileService {
     }
 
     handlePythonMicroService(): Promise<(object)> {
-        console.log(this.scalingFormat)
-        console.log("...handlingPythonMicroService...");
+
+        console.log("...handlingTestPythonMicroService SLICE...");
+        
         return new Promise(async (resolve, reject) => {
+            
             const pythonSliceMicroService = spawn(
                 config.PYTHON_INTERPRETER_PATH, 
                 [
@@ -28,12 +30,12 @@ export default class CallSliceFileService {
                     this.scalingFormat, 
                     this.slicingFormat
                 ]);
+
             let outputMessage: object = {}
             let upcomingData: string;
 
             pythonSliceMicroService.stdout.on('data', (data: string) => {
                 if (data.toString().includes("Ooops!")) {
-                    console.log(data.toString());
                     reject({
                         "ErrorMessage": data.toString().trim(),
                         "Status": "Fail"

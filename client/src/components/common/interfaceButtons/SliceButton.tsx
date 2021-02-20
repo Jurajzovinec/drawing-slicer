@@ -2,13 +2,13 @@ import React from "react";
 
 interface ButtonOptions {
     SliceButtonText: string;
-    FetchFunction: Function;
+    SliceFunction: Function;
 }
 
 
-export const SliceButton: React.FC<ButtonOptions> = ({ SliceButtonText, FetchFunction}) => {
+export const SliceButton: React.FC<ButtonOptions> = ({ SliceButtonText, SliceFunction}) => {
     
-    const invokeFetchFunction = () => FetchFunction()
+    const invokeFetchFunction = () => SliceFunction()
 
     return (
         <div className="slice-button">

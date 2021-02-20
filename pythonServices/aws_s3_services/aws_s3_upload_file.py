@@ -26,6 +26,6 @@ def upload_to_aws_s3(file_object):
         print(str(error), flush=True)
         exit(1)
     else:
-        return { "file_stream":file_stream, "filename":filename }
+        return { "file_stream":file_stream, "filename":file_name }
         
 #upload_to_aws_s3(download_from_aws_s3("EngineeringDrawing.pdf"))

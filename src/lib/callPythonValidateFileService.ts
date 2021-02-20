@@ -16,7 +16,7 @@ export default class CallValidateFileService {
 
     handlePythonMicroService(): Promise<(object)> {
 
-        console.log("...handlingTestPythonMicroService...");
+        console.log("...handlingTestPythonMicroService TEST...");
         
         return new Promise(async (resolve, reject) => {
             const pythonSliceMicroService = spawn(

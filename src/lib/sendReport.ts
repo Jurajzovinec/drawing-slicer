@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
-import config from '../config';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 export default class SendReportMessageToAdmin {
     constructor(
@@ -10,13 +12,13 @@ export default class SendReportMessageToAdmin {
 
     sendReport() {
 
-        let transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             host: 'smtp-mail.outlook.com',
             port: 587,
             secure: false,
             auth: {
-                user: config.NODE_MAILER_ACC,
-                pass: config.NODE_MAILER_PASS
+                user: process.env.NODE_MAILER_ACC,
+                pass: process.env.NODE_MAILER_PASS
             },
             tls: {
                 ciphers: 'SSLv3',
@@ -24,12 +26,12 @@ export default class SendReportMessageToAdmin {
             }
         })
 
-        let mailOptions = {
-            from: `"Drawing Slicer Reporter " <${config.NODE_MAILER_ACC}>`, 
-            to: config.NODE_MAILER_ADMIN_ACC, 
+        const mailOptions = {
+            from: `"Drawing Slicer Reporter " <${process.env.NODE_MAILER_ACC}>`, 
+            to: process.env.NODE_MAILER_ADMIN_ACC, 
             subject: 'Drawing Slicer Issue '+ this.level, 
-            text: 'Issue ' + this.level,
-            html: '<b>Issue message: </b><br> ' + this.reportMessage 
+            text: `Issue level: ${this.level}`,
+            html: `<b>Issue message: </b><br> Issue level: ${this.level} </b><br> ${this.reportMessage}`  
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

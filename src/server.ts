@@ -1,16 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import fs from 'fs';
-import path from 'path';
 import fileSystem from 'fs';
-
 import upload from 'express-fileupload';
-
 import CallSliceFileService from './lib/callPythonSliceFileService';
 import CallValidateFileService from './lib/callPythonValidateFileService';
 import SendReportMessageToAdmin from './lib/sendReport';
 import uploadFileToAWS from './lib/uploadFileToAWS';
 import downloadFileFromAWS from './lib/downloadFileFromAWS';
+import simplifyObject from './lib/simplifyObjectForLogger';
+import clearPdfSlicerBucket from './lib/clearPdfSlicerBucketOnAWS';
+import listPdfSlicerBucketOnAWS from './lib/listPdfSlicerBucketOnAWS';
 
 const app = express();
 const port: number = parseInt(<string>process.env.PORT, 10) || 5050
@@ -25,9 +24,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.post('/testfile', (req:any, res) => {
-    console.log('test file invoked')
-    
+app.post('/testfile', (req: any, res) => {
+
+    console.log('/testfile API invoked')
+
     if (req.files.pdffile != undefined) {
         uploadFileToAWS(req.files!.pdffile)
             .then(resolvedMessage => {
@@ -35,96 +35,94 @@ app.post('/testfile', (req:any, res) => {
                 return testSliceService.runService()
             })
             .then(response => res.send(response))
-            .catch(rejectedMessage => res.send(rejectedMessage))
+            .catch(rejectedMessage =>{
+                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+                reportToAdmin.sendReport()
+                res.send(rejectedMessage)
+            })
     } else {
         res.send('Could not handle request. No recognized data attached.')
     }
 });
 
- 
-app.get('/slice/:params',  (req, res) => {
-    
+app.get('/slice/:params', (req, res) => {
+
+    console.log('/slicefile API invoked')
+
     const postedParams = JSON.parse(req.params.params);
-    
+
     const sliceService = new CallSliceFileService(
-        postedParams.Filename, 
+        postedParams.Filename,
         (postedParams.ScaleBeforeSlice === 'true') ? postedParams.ScaleToFormat : "none",
-        postedParams.SliceBytFormat)
+        postedParams.SliceByFormat
+    )
     sliceService.runService()
-    .then(response => res.send(response))
-    .catch(err => res.send(err))
-
-
-    console.log(postedParams) 
-});
-
-app.get('/resultdata', (req, res) => {
-
-    res.contentType("application/pdf");
-    res.send(fs.readFileSync(req.headers.requestedfile!.toString()));
+        .then(response => res.send(response))
+        .catch(rejectedMessage => {
+            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+            reportToAdmin.sendReport()
+            res.send(rejectedMessage)
+        })
 
 });
 
 app.get('/exampledata', (req, res) => {
 
-    const pdfExamplesZipFolder = "public/pdf_Examples.zip";
-
-    const stat = fileSystem.statSync(pdfExamplesZipFolder);
-
-    res.writeHead(200, {
-        'Content-Type': 'application/zip',
-        'Content-Length': stat.size
-    });
-
-    const readStream = fileSystem.createReadStream(pdfExamplesZipFolder);
-    readStream.pipe(res);
-
-});
-
-app.get('/clearpdfdata', (req, res) => {
-
-    const directory = 'uploads';
-    try {
-        fs.readdir('uploads', (err, files) => {
-            if (err) throw err;
-            for (const file of files) {
-                fs.unlink(path.join(directory, file), err => {
-                    if (err) throw err;
-                });
-            }
+    console.log('/exampledata API invoked')
+    try{
+        const pdfExamplesZipFolder = "public/pdf_Examples.zip";
+        const stat = fileSystem.statSync(pdfExamplesZipFolder);
+        res.writeHead(200, {
+            'Content-Type': 'application/zip',
+            'Content-Length': stat.size
         });
-    } catch (err) {
-        console.log('Error has occured: ' + err)
+        const readStream = fileSystem.createReadStream(pdfExamplesZipFolder);
+        readStream.pipe(res);
+    } catch(e){
+        let reportToAdmin = new SendReportMessageToAdmin((typeof (e) === 'object') ? simplifyObject(e) : e, "ERROR")
+        reportToAdmin.sendReport()
     }
-    res.send('Cleared.')
-});
 
-app.get('/listpdfdata', (req, res) => {
-
-    const uploads_folder = 'uploads';
-    // console.log(upload.storage.getFilename);
-    fs.readdir(uploads_folder, (err, files) => {
-        res.send(files);
-    });
 
 });
 
-app.get('/listrootdata', (req, res) => {
+app.get('/clearawsbucket', (req, res) => {
 
-    fs.readdir(__dirname, (err, files) => {
-        res.send(files);
-    });
+    console.log('/clearawsbucket API invoked')
+
+    clearPdfSlicerBucket()
+        .then(resolvedData => res.send(resolvedData))
+        .catch(rejectedMessage => {
+            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+            reportToAdmin.sendReport()
+        });
 
 });
 
-app.post('/fileupload', function(req, res) {
+app.get('/listbucketobjects', (req, res) => {
 
-    console.log('file upload with AWS S3 invoked.');
+    console.log('/listbucketobjects API invoked')
+
+    listPdfSlicerBucketOnAWS()
+        .then(resolvedData => res.send(resolvedData))
+        .catch(rejectedMessage => {
+            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+            reportToAdmin.sendReport()
+        });
+
+});
+
+app.post('/fileupload', function (req, res) {
+
+    console.log('/fileupload API invoked')
 
     if (req.files.uploadedPdf != undefined) {
         uploadFileToAWS(req.files!.uploadedPdf)
             .then(resolvedMessage => res.send(resolvedMessage.status))
-            .catch(rejectedMessage => res.send(rejectedMessage.status))
+            .catch(rejectedMessage => {
+                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+                reportToAdmin.sendReport()
+                res.send(rejectedMessage.status)})
     } else {
         res.send('Could not handle request. No recognized data attached.')
     }
@@ -132,7 +130,7 @@ app.post('/fileupload', function(req, res) {
 
 app.get('/filedownload/:filetodownload', (req, res) => {
 
-    console.log('... File download  with S3 invoked. ...');
+    console.log('/filedownload API invoked')
 
     let newConfigParameters = JSON.parse(req.params.filetodownload);
     console.log(newConfigParameters);
@@ -140,23 +138,28 @@ app.get('/filedownload/:filetodownload', (req, res) => {
     if (JSON.parse(req.params.filetodownload)['requestedFileName']) {
         downloadFileFromAWS(JSON.parse(req.params.filetodownload)['requestedFileName'])
             .then(data => {
-                // testPdfReaderCapabilty(data.Body);
                 res.contentType("application/pdf; charset=utf-8");
                 res.setHeader('Content-Length', data.ContentLength);
                 res.end(data.Body)
             })
-            .catch(rejectedMessage => res.send(rejectedMessage))
+            .catch(rejectedMessage => {
+                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+                reportToAdmin.sendReport()
+                res.send(rejectedMessage);
+            })
     } else {
         res.send('Could not handle request. Check for missing parameter {requestedFilename: fileToGet} in the URL.')
     }
 });
- 
-app.use((err: any, req: any, res: any) => {
+
+app.use(function (err: any, req: any, res: any, next: any) {
 
     if (res.status != 200) {
-        res.send('Sorry something has broken :(.')
-        let reportToAdmin = new SendReportMessageToAdmin(err, "ERROR")
+        console.log(res.status)
+        console.log(err)
+        let reportToAdmin = new SendReportMessageToAdmin((typeof (err) === 'object') ? simplifyObject(err) : err, "ERROR")
         reportToAdmin.sendReport()
+        res.send('Sorry something has broken :(.')
     }
 })
 

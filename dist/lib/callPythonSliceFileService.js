@@ -59,8 +59,7 @@ var CallSliceFileService = /** @class */ (function () {
     };
     CallSliceFileService.prototype.handlePythonMicroService = function () {
         var _this = this;
-        console.log(this.scalingFormat);
-        console.log("...handlingPythonMicroService...");
+        console.log("...handlingTestPythonMicroService SLICE...");
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             var pythonSliceMicroService, outputMessage, upcomingData;
             return __generator(this, function (_a) {
@@ -73,7 +72,6 @@ var CallSliceFileService = /** @class */ (function () {
                 outputMessage = {};
                 pythonSliceMicroService.stdout.on('data', function (data) {
                     if (data.toString().includes("Ooops!")) {
-                        console.log(data.toString());
                         reject({
                             "ErrorMessage": data.toString().trim(),
                             "Status": "Fail"

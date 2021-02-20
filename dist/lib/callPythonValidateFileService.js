@@ -57,7 +57,7 @@ var CallValidateFileService = /** @class */ (function () {
     };
     CallValidateFileService.prototype.handlePythonMicroService = function () {
         var _this = this;
-        console.log("...handlingTestPythonMicroService...");
+        console.log("...handlingTestPythonMicroService TEST...");
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             var pythonSliceMicroService, outputMessage, upcomingData;
             return __generator(this, function (_a) {

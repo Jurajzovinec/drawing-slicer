@@ -10,7 +10,7 @@ const navigateToGitHub = (link: string)  => (event: any) => {
 export const GitHubReference: React.FC<{ link: string }> = ({link}) => {
     return (
         <div className="git-hub-ref">
-            <img src={githubIcon} className="nav-bar-img" onClick={navigateToGitHub(link)} />
+            <img src={githubIcon} className="header--navbar-img" onClick={navigateToGitHub(link)} />
         </div>
     );
 };

@@ -10,7 +10,7 @@ const navigateToLinkedIn = (link: string) => (event: any) => {
 export const LinkedInReference: React.FC<{ link: string }> = ({link}) => {
     return (
         <div className="linked-in-ref" >
-            <img src={linkedInIcon} className="nav-bar-img" onClick={navigateToLinkedIn(link)} />
+            <img src={linkedInIcon} className="header--navbar-img" onClick={navigateToLinkedIn(link)} />
         </div>
     );
 };

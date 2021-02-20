@@ -267,9 +267,9 @@ class PdfSlicer:
         
         else:
             
-            result_pdf_name = self.input_file_name+"_sliced"
-            writer.write(output_filestream)
             output_filestream = io.BytesIO()
+            result_pdf_name = self.input_file_name
+            writer.write(output_filestream)
 
             resulted_tested_pdf_file = PyPDF2.PdfFileReader(output_filestream)
             

@@ -1,7 +1,5 @@
 import path from 'path';
 
-// TODO : private data move to .ENV
-
 interface configVariablesInterface {
     PYTHON_INTERPRETER_PATH: string;
     PYTHON_SLICE_SERVICE_PATH: string;
@@ -14,7 +12,6 @@ const config: configVariablesInterface = {
     PYTHON_SLICE_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices\\service_slice_file.py')),
     PYTHON_INPUT_TEST_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices\\service_validate_file.py'))
 }
-
 
 export default config;
 

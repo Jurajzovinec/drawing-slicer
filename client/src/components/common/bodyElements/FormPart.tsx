@@ -3,7 +3,9 @@ import { CheckScaleOptionButton } from '../interfaceButtons/CheckScaleOptionButt
 import { SliceButton } from "../interfaceButtons/SliceButton";
 import { SelectScaleOptions } from "../options/SelectScaleOptions";
 import { SelectSliceOptions } from "../options/SelectSliceOptions";
-import { DrawingFormats } from '../bodyElements/DrawingFormats';
+import { DrawingFormats } from '../../../types/DrawingFormats';
+import getSlicePdfFile from '../../../lib/getSlicePdfFile';
+import sliceDrawingParameters from '../../../types/sliceDrawingParameters';
 
 interface PageAreaInfs {
     ScaleButtonText: string;
@@ -11,80 +13,48 @@ interface PageAreaInfs {
     LoadedPdfName: undefined | string;
     setIsErrorInfoModalOpen: Function;
     setInfoModalMessage: Function;
+    setIsSlicedPdfReadyOnAWS: Function
+    setIsAppLoading: Function
 }
 
-export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText, LoadedPdfName, setIsErrorInfoModalOpen, setInfoModalMessage }) => {
+export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText, LoadedPdfName, setIsErrorInfoModalOpen, setInfoModalMessage, setIsSlicedPdfReadyOnAWS, setIsAppLoading }) => {
 
     const [scaleBeforeSlice, setScaleBeforeSlice] = useState<boolean>(() => false);
     const [scaleToFormat, setScaleToFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
     const [sliceByFormat, setSliceByFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
 
-
-    const requestResultedData = (fileResultPath: string): Promise<(string)> => {
-
-        console.log("...askingForResultPDF...");
-        const urlToFetch = process.env.NODE_ENV === 'production' ? `https://drawing-slicer.herokuapp.com/filetodownload/{"requestedFileName":"${fileResultPath}"}`
-            : `http://localhost:5050/filetodownload/{"requestedFileName":"${fileResultPath}"}`;
-        return new Promise(async (resolve, reject) => {
-            fetch(urlToFetch, {
-                method: 'GET',
-            })
-                .then(response => response.blob())
-                .then(blobObj => {
-                    const blobbedObject = new Blob([blobObj])
-                    const blobUrl = window.URL.createObjectURL(blobbedObject);
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    link.setAttribute('download', 'resultedSlicedPdf.pdf');
-                    document.body.appendChild(link);
-                    link.click();
-                    link.parentNode!.removeChild(link);
-                    window.URL.revokeObjectURL(blobObj.toString());
-                    resolve('Succes')
-                })
-                .catch(err => reject(err))
-        })
+    const requestParamsForSlice: sliceDrawingParameters = {
+        scaleBeforeSlice,
+        scaleToFormat,
+        sliceByFormat,
+        filename: LoadedPdfName
     }
 
-    const clearBackendStorageAPI = (result: string): void => {
-
-        console.log("...sendingRequestToClearBackendStorage...");
-        const urlToFetch = process.env.NODE_ENV === 'production' ? "https://drawing-slicer.herokuapp.com/clearpdfdata" : "http://localhost:5050/clearpdfdata";
-        fetch(urlToFetch)
-    }
-
-    const fetchFunction = () => {
-        // console.log(LoadedPdfName)
-        const urlToFetch = process.env.NODE_ENV === 'production' ?
-            `https://drawing-slicer.herokuapp.com/slice/{"ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}` :
-            `http://localhost:5050/slice/{"Filename":"${LoadedPdfName}","ScaleBeforeSlice":"${scaleBeforeSlice}","ScaleToFormat":"${scaleToFormat}","SliceByFormat":"${sliceByFormat}"}`;
-
-        fetch(urlToFetch, {
-            method: 'GET'
-        })
-            .then(response => {
-                return response.text()
-            })
-            .then(response => {
-                console.log(response)
-                return JSON.parse(response)
-            })
+    function sliceLoadedPdfRequest(args: sliceDrawingParameters) {
+        setIsAppLoading(true)
+        setIsSlicedPdfReadyOnAWS(false)
+        getSlicePdfFile(args)
+            .then(response => response.text())
+            .then(response => JSON.parse(response))
             .then(response => {
                 if (response.Status === "Fail") {
+                    setIsAppLoading(false)
                     setInfoModalMessage(response.ErrorMessage)
                     setIsErrorInfoModalOpen(true)
+                    setIsSlicedPdfReadyOnAWS(false)
                 } else {
-                    console.log(response.ResultPdfName)
-                    requestResultedData(response.ResultPdfName)
-                        // .then(result => clearBackendStorageAPI(result))
+                    setIsAppLoading(false)
+                    setIsSlicedPdfReadyOnAWS(true)
                 }
             })
-            .catch(error => console.log(error))
-    };
+            .catch(error => {
+                setIsAppLoading(false)
+            })
+    }
 
     return (
         <>
-            <div className="scale-form">
+            <div className="form-container--scalefrom">
                 <CheckScaleOptionButton
                     ScaleButtonText={ScaleButtonText}
                     setScaleBeforeSlice={(value: boolean) => setScaleBeforeSlice(value)}
@@ -93,10 +63,10 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
                     setScaleToFormat={(value: string) => setScaleToFormat(value)}
                 />
             </div>
-            <div className="slice-form">
+            <div className="form-container--sliceform">
                 <SliceButton
                     SliceButtonText={SliceButtonText}
-                    FetchFunction={fetchFunction}
+                    SliceFunction={() => sliceLoadedPdfRequest(requestParamsForSlice)}
                 />
                 <SelectSliceOptions
                     setSliceByFormat={(value: string) => setSliceByFormat(value)}

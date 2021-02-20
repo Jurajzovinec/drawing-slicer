@@ -1,5 +1,7 @@
 # node
 node_modules
+/.pnp
+.pnp.js
 
 # python
 python_modules
@@ -14,3 +16,12 @@ desktop.ini
 
 # vs code
 .vscode/*
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+

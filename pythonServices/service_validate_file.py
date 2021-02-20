@@ -39,7 +39,6 @@ def main():
         print({'NumberOfPages':pdf_object.number_of_pages})        
         print({'DrawingFormat':pdf_object.input_drawing_format['drawing_format']})
         print({'Filename':sys.argv[1]})
-        #print({'Filename':sys.argv[1]})        
         logger.info("Successful input_test_service.py")
 
 if __name__ == "__main__":

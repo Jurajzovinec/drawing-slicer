@@ -1,4 +1,34 @@
-# Initialize pythonServices virtual python_modules (Windows)
+# Drawing Slicer !
+
+Drawing slicer is application developed mostly for DIY hobbiest who are interested in printing huge drawing formats without necessity of owning large scale printer. Drawing slicer will slice your standard ISO drawing into smaller drawings of your choice (A4 is the most favourite one).
+
+# Idea ?
+
+I came up with this idea when I needed to print template from my giant surfskate. Due to pandemic I was not able to do so, so I developed short python script which will cut my A0 design into A4 format. 
+
+1. Drawing created in CAD
+
+![](Public/README--Drawing.png)
+
+2. Sliced drawing with Drawing-Slicer and merged with tape
+
+![](Public/README--SlicedDrawing.jpg)
+
+3. Giant surfskate (cut based on template from step 2)
+
+![](Public/README--GiantSurfskate.jpg)
+
+# Backend ?
+
+Core of the backend is based on NodeJs application written in typescript. Backend however uses python microservices, in order to handle reading and cutting the sliced pdf file. Also algorithmic part of slicing is done by python microservices. Users pdf file is handled with AWS S3 bucket storage system, whose data are cleared with every succesful download.
+
+# Frontend ? 
+
+Frontend is based on React framework and as backend, also frontend is written in typescript. User actions are dynamically driven by use-state hooks. CSS naming classes uses BEM structure convention.
+
+![](Public/README--FrontendDisplay.jpg)
+
+# Initialize pythonServices virtual environment (Windows)
 
 1. Create python venv in this folder with *python -m venv python_modules* command
 2. Activate venv with >*. python_modules\Scripts\activate* command
