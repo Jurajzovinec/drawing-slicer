@@ -21,7 +21,7 @@ def init_arguments():
         
     except Exception as error:
         logger.critical(error)
-        print(str(error), flush=True)
+        raise error
         exit(1)
     else:
         logger.info(scale_to_format)
@@ -39,8 +39,8 @@ def main():
         result_pdf_object = pdf_object.main_run()
         upload_to_aws_s3(result_pdf_object)
     except Exception as error:
-        print(f"Ooops!: {str(error)}", flush=True)
         logger.critical(error)
+        raise error
         exit(1)
     else:
         print({'Success':'Successful slice_service.py'})        

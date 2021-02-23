@@ -15,7 +15,8 @@ pythonServices/unit_test_output_files/*
 desktop.ini
 
 # vs code
-.vscode/*
+.vscode
+.history
 
 # testing
 /coverage

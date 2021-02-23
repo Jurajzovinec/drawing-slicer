@@ -80,6 +80,7 @@ var CallSliceFileService = /** @class */ (function () {
                     else {
                         upcomingData = (data.toString()).replace(/'/g, '\"').trim();
                         upcomingData = upcomingData.replace(/(\r\n|\n|\r)/gm, "");
+                        console.log(upcomingData);
                         upcomingData = upcomingData.replace(/}{/g, "}SplittingDelimiter{");
                         upcomingData.split(/SplittingDelimiter/g).forEach(function (element) {
                             outputMessage = Object.assign({}, outputMessage, JSON.parse(element));

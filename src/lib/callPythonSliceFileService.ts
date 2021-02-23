@@ -43,6 +43,7 @@ export default class CallSliceFileService {
                 } else {
                     upcomingData = (data.toString()).replace(/'/g, '\"').trim();
                     upcomingData = upcomingData.replace(/(\r\n|\n|\r)/gm, "");
+                    console.log(upcomingData)
                     upcomingData = upcomingData.replace(/}{/g, "}SplittingDelimiter{");
                     upcomingData.split(/SplittingDelimiter/g).forEach(element => {
                         outputMessage = Object.assign({}, outputMessage, JSON.parse(element));

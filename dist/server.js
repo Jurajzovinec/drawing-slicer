@@ -46,7 +46,7 @@ app.post('/testfile', function (req, res) {
 app.get('/slice/:params', function (req, res) {
     console.log('/slicefile API invoked');
     var postedParams = JSON.parse(req.params.params);
-    var sliceService = new callPythonSliceFileService_1["default"](postedParams.Filename, (postedParams.ScaleBeforeSlice === 'true') ? postedParams.ScaleToFormat : "none", postedParams.SliceByFormat);
+    var sliceService = new callPythonSliceFileService_1["default"](postedParams.filename, (postedParams.scaleBeforeSlice === 'true') ? postedParams.scaleToFormat : "none", postedParams.sliceByFormat);
     sliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (rejectedMessage) {
         var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");

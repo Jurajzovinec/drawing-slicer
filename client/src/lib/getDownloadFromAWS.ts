@@ -5,7 +5,7 @@ export default function getDownloadFileFromAWS(fileResultPath: string | any): Pr
 
     console.log("...askingForResultPDF...");
 
-    const urlToFetch = `${config.BACKEND_SERVER}/filedownload/{"requestedFileName":"${fileResultPath}"}`;
+    const urlToFetch = `${config.BACKEND_SERVER}filedownload/{"requestedFileName":"${fileResultPath}"}`;
 
     return new Promise(async (resolve, reject) => {
         fetch(urlToFetch, {
@@ -22,10 +22,10 @@ export default function getDownloadFileFromAWS(fileResultPath: string | any): Pr
                 link.click();
                 link.parentNode!.removeChild(link);
                 window.URL.revokeObjectURL(blobObj.toString());
-                return 'Succes'
+                return 'OK'
             })
             .then(result => {
-                if (result === 'Succes') {
+                if (result === 'OK') {
                     deleteFileFromAWS()
                     resolve(result)
                 } else {

@@ -117,7 +117,7 @@ function App() {
         <div className="body--footercontrolbuttons-container">
           <div className="footercontrolbuttons-container--restartbutton-container">
             {isPdfConfirmed ?
-              <RestartButton ClearStates={() => RestartApp()} ResetButtonText={'Go Again !'} /> : null
+              <RestartButton ClearStates={() => RestartApp()} ResetButtonText={'Restart'} /> : null
             }
           </div>
           <div className="footercontrolbuttons-container--downloadbutton-container">

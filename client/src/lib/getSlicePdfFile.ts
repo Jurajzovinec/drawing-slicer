@@ -1,16 +1,16 @@
 import config from '../config';
 import SliceDrawingParameters from '../types/sliceDrawingParameters';
 
-export default function getSlicePdfFile (args: SliceDrawingParameters): Promise<(any)>{
+export default function getSlicePdfFile(pdfHandleParameters: SliceDrawingParameters): Promise<(any)> {
 
-    console.log("...askingForSlicedPdfFile...");
+    console.log("...requestingParamsToSlicePdf...");
 
     return new Promise((resolve, reject) => {
-        const urlToFetch = `${config.BACKEND_SERVER}//slice/${args}`
-        fetch(urlToFetch)
-        .then(response=> resolve(response))
-        .catch(error=>reject(error))
+        const urlToFetch = `${config.BACKEND_SERVER}slice/${JSON.stringify(pdfHandleParameters)}`
+        fetch(urlToFetch, {
+            method: 'GET',
+        })
+            .then(resolve)
+            .catch(error => reject(error))
     })
-
-
 }

@@ -52,9 +52,9 @@ app.get('/slice/:params', (req, res) => {
     const postedParams = JSON.parse(req.params.params);
 
     const sliceService = new CallSliceFileService(
-        postedParams.Filename,
-        (postedParams.ScaleBeforeSlice === 'true') ? postedParams.ScaleToFormat : "none",
-        postedParams.SliceByFormat
+        postedParams.filename,
+        (postedParams.scaleBeforeSlice === 'true') ? postedParams.scaleToFormat : "none",
+        postedParams.sliceByFormat
     )
     sliceService.runService()
         .then(response => res.send(response))
@@ -63,7 +63,6 @@ app.get('/slice/:params', (req, res) => {
             reportToAdmin.sendReport()
             res.send(rejectedMessage)
         })
-
 });
 
 app.get('/exampledata', (req, res) => {

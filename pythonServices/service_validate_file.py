@@ -17,7 +17,7 @@ def init_arguments():
         scale_to_format = "none"
     except Exception as error:
         logger.critical(error)
-        print(str(error), flush=True)
+        raise error
         exit(1)
     else:
         return {
@@ -32,8 +32,8 @@ def main():
     try:
         pdf_object = PdfSlicer(**init_arguments())
     except Exception as error:
-        print(f"Ooops!: {str(error)}", flush=True)
         logger.critical(error)
+        raise error
         exit(1)
     else:
         print({'NumberOfPages':pdf_object.number_of_pages})        

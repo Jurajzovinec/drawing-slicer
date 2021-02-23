@@ -18,8 +18,9 @@ def download_from_aws_s3(filename):
         my_bucket.download_fileobj(filename, file_stream)
 
     except Exception as error:
-        print(str(error), flush=True)
-        exit(1)
+        raise error
+        # print(str(error), flush=True)
+        # exit(1)
     else:
         return { "file_stream":file_stream, "filename":filename }
 

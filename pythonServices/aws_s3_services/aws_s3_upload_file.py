@@ -5,7 +5,6 @@ import sys
 import io
 from boto3.session import Session
 from dotenv import load_dotenv
-#from aws_s3_download_file import *
 
 load_dotenv()
 
@@ -23,7 +22,8 @@ def upload_to_aws_s3(file_object):
         my_bucket.upload_fileobj(file_stream, file_name)
 
     except Exception as error:
-        print(str(error), flush=True)
+        raise error
+        # print(str(error), flush=True)
         exit(1)
     else:
         return { "file_stream":file_stream, "filename":file_name }
