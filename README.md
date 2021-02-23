@@ -28,7 +28,7 @@ I came up with this idea when I needed to print template from my giant surfskate
 
 ## Backend ?
 
-Core of the backend is based on NodeJs application written in typescript. Backend however uses python microservices, in order to handle reading and cutting the sliced pdf file. Also algorithmic part of slicing is done by python microservices. Users pdf file is handled with AWS S3 bucket storage system, whose data are cleared with every succesful download.
+Core of the backend is based on NodeJs application written in typescript. Backend however uses python microservices, in order to handle reading and cutting of the pdf file. Also algorithmic part of slicing is done by python microservices. Users pdf file is handled with AWS S3 bucket storage system, whose bucket data are cleared with every succesful download.
 
 ## Frontend ? 
 
