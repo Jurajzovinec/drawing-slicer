@@ -1,4 +1,3 @@
-// is this redundant?
 import config from '../config';
 import SliceDrawingParameters from '../types/sliceDrawingParameters';
 
@@ -12,5 +11,6 @@ export default function getSlicePdfFile (args: SliceDrawingParameters): Promise<
         .then(response=> resolve(response))
         .catch(error=>reject(error))
     })
+
 
 }

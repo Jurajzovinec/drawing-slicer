@@ -35,7 +35,7 @@ app.post('/testfile', (req: any, res) => {
                 return testSliceService.runService()
             })
             .then(response => res.send(response))
-            .catch(rejectedMessage => {
+            .catch(rejectedMessage =>{
                 let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
                 reportToAdmin.sendReport()
                 res.send(rejectedMessage)
@@ -69,7 +69,7 @@ app.get('/slice/:params', (req, res) => {
 app.get('/exampledata', (req, res) => {
 
     console.log('/exampledata API invoked')
-    try {
+    try{
         const pdfExamplesZipFolder = "public/pdf_Examples.zip";
         const stat = fileSystem.statSync(pdfExamplesZipFolder);
         res.writeHead(200, {
@@ -78,7 +78,7 @@ app.get('/exampledata', (req, res) => {
         });
         const readStream = fileSystem.createReadStream(pdfExamplesZipFolder);
         readStream.pipe(res);
-    } catch (e) {
+    } catch(e){
         let reportToAdmin = new SendReportMessageToAdmin((typeof (e) === 'object') ? simplifyObject(e) : e, "ERROR")
         reportToAdmin.sendReport()
     }
@@ -91,19 +91,17 @@ app.get('/clearawsbucket', (req, res) => {
     console.log('/clearawsbucket API invoked')
 
     listPdfSlicerBucketOnAWS()
-        .then(outputMessage => {
-            if (outputMessage.status === 'OK') {
-                return clearPdfSlicerBucket(outputMessage.filesOnBucket)
-            } else {
-                return outputMessage.error
-            }
-        })
-        .then(resolvedData => res.send(resolvedData))
-        .catch(rejectedMessage => {
-            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
-            reportToAdmin.sendReport()
-        });
-
+    .then(outputMessage=>{
+        if (outputMessage.status === 'OK'){
+            clearPdfSlicerBucket(outputMessage.filesOnBucket)
+        }
+    })
+    .then(resolvedData => res.send(resolvedData))
+    .catch(rejectedMessage => {
+        let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+        reportToAdmin.sendReport()
+    });
+        
 });
 
 app.get('/listbucketobjects', (req, res) => {
@@ -129,8 +127,7 @@ app.post('/fileupload', function (req, res) {
             .catch(rejectedMessage => {
                 let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
                 reportToAdmin.sendReport()
-                res.send(rejectedMessage.status)
-            })
+                res.send(rejectedMessage.status)})
     } else {
         res.send('Could not handle request. No recognized data attached.')
     }

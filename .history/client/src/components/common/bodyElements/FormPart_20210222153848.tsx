@@ -30,7 +30,7 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
         filename: LoadedPdfName
     }
 
-    function sliceLoadedPdfRequest(args: SliceDrawingParameters):void {
+    function sliceLoadedPdfRequest(args: SliceDrawingParameters) {
         setIsAppLoading(true)
         setIsSlicedPdfReadyOnAWS(false)
         getSlicePdfFile(args)

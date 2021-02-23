@@ -23,14 +23,14 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
     const [scaleToFormat, setScaleToFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
     const [sliceByFormat, setSliceByFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
 
-    const requestParamsForSlice: SliceDrawingParameters = {
+    const requestParamsForSlice: sliceDrawingParameters = {
         scaleBeforeSlice,
         scaleToFormat,
         sliceByFormat,
         filename: LoadedPdfName
     }
 
-    function sliceLoadedPdfRequest(args: SliceDrawingParameters):void {
+    function sliceLoadedPdfRequest(args: sliceDrawingParameters) {
         setIsAppLoading(true)
         setIsSlicedPdfReadyOnAWS(false)
         getSlicePdfFile(args)

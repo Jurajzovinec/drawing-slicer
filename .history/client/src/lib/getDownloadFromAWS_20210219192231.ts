@@ -25,7 +25,7 @@ export default function getDownloadFileFromAWS(fileResultPath: string | any): Pr
                 return 'Succes'
             })
             .then(result => {
-                if (result === 'Succes') {
+                if (result == 'Succes') {
                     deleteFileFromAWS()
                     resolve(result)
                 } else {

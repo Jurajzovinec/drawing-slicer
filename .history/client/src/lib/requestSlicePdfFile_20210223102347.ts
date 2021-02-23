@@ -1,4 +1,4 @@
-// is this redundant?
+//
 import config from '../config';
 import SliceDrawingParameters from '../types/sliceDrawingParameters';
 

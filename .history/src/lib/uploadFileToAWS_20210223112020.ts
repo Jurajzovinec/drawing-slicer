@@ -4,7 +4,7 @@ import APIObjectAWS from '../types/APIObjectAWS';
 
 dotenv.config();
 
-export default function uploadFileToAWS(file: any): Promise<(APIObjectAWS)>  {
+export default function uploadFileToAWS(file: any): Promise<(OutputMessage)>  {
     return new Promise(async (resolve, reject) => {
         const s3bucket = new AWS.S3({
             accessKeyId: process.env.AWS_ACCESS_KEY,

@@ -1,10 +1,11 @@
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
-import APIObjectAWS from '../types/APIObjectAWS';
 
 dotenv.config();
 
-export default function uploadFileToAWS(file: any): Promise<(APIObjectAWS)>  {
+
+
+export default function listPdfSlicerBucketOnAWS(): Promise<any>  {
     return new Promise(async (resolve, reject) => {
         const s3bucket = new AWS.S3({
             accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -13,20 +14,25 @@ export default function uploadFileToAWS(file: any): Promise<(APIObjectAWS)>  {
         s3bucket.createBucket(() => {
             const params = {
                 Bucket: process.env.AWS_BUCKET_NAME,
-                Key: file.name,
-                Body: file.data
             };
-            s3bucket.upload(params, (err: any, data: any) => {
+            s3bucket.listObjects(params, (err: any, data: any) => {
                 if (err) {
                     reject({
                         status: `Error occured while uploading ${file.name} to S3: ${err}.`,
-                        uploadedFile: file.name
+                        // uploadedFile: file.name
+                    });
+                } else {
+                    let outputListOfFiles:any[] = []
+                    
+                    data.Contents.map(fileDetails =>{
+                        outputListOfFiles.push(fileDetails.Key)
+                    })
+                    resolve({
+                        status: `Data Success look at them.`,
+                        // uploadedFile: file.name,
+                        data: outputListOfFiles
                     });
                 }
-                resolve({
-                    status: 'OK',
-                    uploadedFile: file.name
-                });
             });
         });
     });

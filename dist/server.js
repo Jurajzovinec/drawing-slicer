@@ -73,7 +73,15 @@ app.get('/exampledata', function (req, res) {
 });
 app.get('/clearawsbucket', function (req, res) {
     console.log('/clearawsbucket API invoked');
-    clearPdfSlicerBucketOnAWS_1["default"]()
+    listPdfSlicerBucketOnAWS_1["default"]()
+        .then(function (outputMessage) {
+        if (outputMessage.status === 'OK') {
+            return clearPdfSlicerBucketOnAWS_1["default"](outputMessage.filesOnBucket);
+        }
+        else {
+            return outputMessage.error;
+        }
+    })
         .then(function (resolvedData) { return res.send(resolvedData); })["catch"](function (rejectedMessage) {
         var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
         reportToAdmin.sendReport();

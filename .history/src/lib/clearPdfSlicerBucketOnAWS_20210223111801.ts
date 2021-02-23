@@ -1,31 +1,32 @@
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
-import APIObjectAWS from '../types/APIObjectAWS';
+import ListClearFilesOnS3 from '../types/listClearFilesOnS3';
 
 dotenv.config();
 
-export default function uploadFileToAWS(file: any): Promise<(APIObjectAWS)>  {
+export default function uploadFileToAWS(filesOnBucket:object[]): Promise<ListClearFilesOnS3> {
     return new Promise(async (resolve, reject) => {
         const s3bucket = new AWS.S3({
             accessKeyId: process.env.AWS_ACCESS_KEY,
             secretAccessKey: process.env.AWS_SECRET_KEY
         });
+        
+        
         s3bucket.createBucket(() => {
             const params = {
                 Bucket: process.env.AWS_BUCKET_NAME,
-                Key: file.name,
-                Body: file.data
+                Delete: { Objects: filesOnBucket }
             };
-            s3bucket.upload(params, (err: any, data: any) => {
+            s3bucket.deleteObjects(params, (err: any, data: any) => {
                 if (err) {
                     reject({
-                        status: `Error occured while uploading ${file.name} to S3: ${err}.`,
-                        uploadedFile: file.name
+                        status: `Error occured while clearing files on ${process.env.AWS_BUCKET_NAME}`,
+                        error: err
                     });
                 }
                 resolve({
-                    status: 'OK',
-                    uploadedFile: file.name
+                    status: `Data has been sucessfully deleted from ${process.env.AWS_BUCKET_NAME}.`,
+                    data: data
                 });
             });
         });

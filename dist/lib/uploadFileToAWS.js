@@ -65,7 +65,7 @@ function uploadFileToAWS(file) {
                         });
                     }
                     resolve({
-                        status: "Data " + file.name + " has been succesfully uploaded to S3.",
+                        status: 'OK',
                         uploadedFile: file.name
                     });
                 });
