@@ -12,7 +12,6 @@ var callPythonValidateFileService_1 = __importDefault(require("./lib/callPythonV
 var sendReport_1 = __importDefault(require("./lib/sendReport"));
 var uploadFileToAWS_1 = __importDefault(require("./lib/uploadFileToAWS"));
 var downloadFileFromAWS_1 = __importDefault(require("./lib/downloadFileFromAWS"));
-var simplifyObjectForLogger_1 = __importDefault(require("./lib/simplifyObjectForLogger"));
 var clearPdfSlicerBucketOnAWS_1 = __importDefault(require("./lib/clearPdfSlicerBucketOnAWS"));
 var listPdfSlicerBucketOnAWS_1 = __importDefault(require("./lib/listPdfSlicerBucketOnAWS"));
 var app = express_1["default"]();
@@ -34,7 +33,7 @@ app.post('/testfile', function (req, res) {
             return testSliceService.runService();
         })
             .then(function (response) { return res.send(response); })["catch"](function (rejectedMessage) {
-            var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
+            var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
             reportToAdmin.sendReport();
             res.send(rejectedMessage);
         });
@@ -49,7 +48,7 @@ app.get('/slice/:params', function (req, res) {
     var sliceService = new callPythonSliceFileService_1["default"](postedParams.filename, (postedParams.scaleBeforeSlice === 'true') ? postedParams.scaleToFormat : "none", postedParams.sliceByFormat);
     sliceService.runService()
         .then(function (response) { return res.send(response); })["catch"](function (rejectedMessage) {
-        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
+        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
         reportToAdmin.sendReport();
         res.send(rejectedMessage);
     });
@@ -66,8 +65,8 @@ app.get('/exampledata', function (req, res) {
         var readStream = fs_1["default"].createReadStream(pdfExamplesZipFolder);
         readStream.pipe(res);
     }
-    catch (e) {
-        var reportToAdmin = new sendReport_1["default"]((typeof (e) === 'object') ? simplifyObjectForLogger_1["default"](e) : e, "ERROR");
+    catch (rejectedMessage) {
+        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
         reportToAdmin.sendReport();
     }
 });
@@ -83,7 +82,7 @@ app.get('/clearawsbucket', function (req, res) {
         }
     })
         .then(function (resolvedData) { return res.send(resolvedData); })["catch"](function (rejectedMessage) {
-        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
+        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
         reportToAdmin.sendReport();
     });
 });
@@ -91,7 +90,7 @@ app.get('/listbucketobjects', function (req, res) {
     console.log('/listbucketobjects API invoked');
     listPdfSlicerBucketOnAWS_1["default"]()
         .then(function (resolvedData) { return res.send(resolvedData); })["catch"](function (rejectedMessage) {
-        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
+        var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
         reportToAdmin.sendReport();
     });
 });
@@ -100,7 +99,7 @@ app.post('/fileupload', function (req, res) {
     if (req.files.uploadedPdf != undefined) {
         uploadFileToAWS_1["default"](req.files.uploadedPdf)
             .then(function (resolvedMessage) { return res.send(resolvedMessage.status); })["catch"](function (rejectedMessage) {
-            var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
+            var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
             reportToAdmin.sendReport();
             res.send(rejectedMessage.status);
         });
@@ -111,8 +110,6 @@ app.post('/fileupload', function (req, res) {
 });
 app.get('/filedownload/:filetodownload', function (req, res) {
     console.log('/filedownload API invoked');
-    var newConfigParameters = JSON.parse(req.params.filetodownload);
-    console.log(newConfigParameters);
     if (JSON.parse(req.params.filetodownload)['requestedFileName']) {
         downloadFileFromAWS_1["default"](JSON.parse(req.params.filetodownload)['requestedFileName'])
             .then(function (data) {
@@ -120,7 +117,7 @@ app.get('/filedownload/:filetodownload', function (req, res) {
             res.setHeader('Content-Length', data.ContentLength);
             res.end(data.Body);
         })["catch"](function (rejectedMessage) {
-            var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? simplifyObjectForLogger_1["default"](rejectedMessage) : rejectedMessage, "ERROR");
+            var reportToAdmin = new sendReport_1["default"]((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR");
             reportToAdmin.sendReport();
             res.send(rejectedMessage);
         });
@@ -131,9 +128,7 @@ app.get('/filedownload/:filetodownload', function (req, res) {
 });
 app.use(function (err, req, res, next) {
     if (res.status != 200) {
-        console.log(res.status);
-        console.log(err);
-        var reportToAdmin = new sendReport_1["default"]((typeof (err) === 'object') ? simplifyObjectForLogger_1["default"](err) : err, "ERROR");
+        var reportToAdmin = new sendReport_1["default"]((typeof (err) === 'object') ? JSON.stringify(err) : err, "ERROR");
         reportToAdmin.sendReport();
         res.send('Sorry something has broken :(.');
     }

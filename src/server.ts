@@ -7,7 +7,6 @@ import CallValidateFileService from './lib/callPythonValidateFileService';
 import SendReportMessageToAdmin from './lib/sendReport';
 import uploadFileToAWS from './lib/uploadFileToAWS';
 import downloadFileFromAWS from './lib/downloadFileFromAWS';
-import simplifyObject from './lib/simplifyObjectForLogger';
 import clearPdfSlicerBucket from './lib/clearPdfSlicerBucketOnAWS';
 import listPdfSlicerBucketOnAWS from './lib/listPdfSlicerBucketOnAWS';
 
@@ -36,7 +35,7 @@ app.post('/testfile', (req: any, res) => {
             })
             .then(response => res.send(response))
             .catch(rejectedMessage => {
-                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
                 reportToAdmin.sendReport()
                 res.send(rejectedMessage)
             })
@@ -59,7 +58,7 @@ app.get('/slice/:params', (req, res) => {
     sliceService.runService()
         .then(response => res.send(response))
         .catch(rejectedMessage => {
-            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
             reportToAdmin.sendReport()
             res.send(rejectedMessage)
         })
@@ -77,8 +76,8 @@ app.get('/exampledata', (req, res) => {
         });
         const readStream = fileSystem.createReadStream(pdfExamplesZipFolder);
         readStream.pipe(res);
-    } catch (e) {
-        let reportToAdmin = new SendReportMessageToAdmin((typeof (e) === 'object') ? simplifyObject(e) : e, "ERROR")
+    } catch (rejectedMessage) {
+        let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
         reportToAdmin.sendReport()
     }
 
@@ -99,7 +98,7 @@ app.get('/clearawsbucket', (req, res) => {
         })
         .then(resolvedData => res.send(resolvedData))
         .catch(rejectedMessage => {
-            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
             reportToAdmin.sendReport()
         });
 
@@ -112,7 +111,7 @@ app.get('/listbucketobjects', (req, res) => {
     listPdfSlicerBucketOnAWS()
         .then(resolvedData => res.send(resolvedData))
         .catch(rejectedMessage => {
-            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
             reportToAdmin.sendReport()
         });
 
@@ -126,7 +125,7 @@ app.post('/fileupload', function (req, res) {
         uploadFileToAWS(req.files!.uploadedPdf)
             .then(resolvedMessage => res.send(resolvedMessage.status))
             .catch(rejectedMessage => {
-                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
                 reportToAdmin.sendReport()
                 res.send(rejectedMessage.status)
             })
@@ -139,9 +138,6 @@ app.get('/filedownload/:filetodownload', (req, res) => {
 
     console.log('/filedownload API invoked')
 
-    let newConfigParameters = JSON.parse(req.params.filetodownload);
-    console.log(newConfigParameters);
-
     if (JSON.parse(req.params.filetodownload)['requestedFileName']) {
         downloadFileFromAWS(JSON.parse(req.params.filetodownload)['requestedFileName'])
             .then(data => {
@@ -150,7 +146,7 @@ app.get('/filedownload/:filetodownload', (req, res) => {
                 res.end(data.Body)
             })
             .catch(rejectedMessage => {
-                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? simplifyObject(rejectedMessage) : rejectedMessage, "ERROR")
+                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
                 reportToAdmin.sendReport()
                 res.send(rejectedMessage);
             })
@@ -162,9 +158,7 @@ app.get('/filedownload/:filetodownload', (req, res) => {
 app.use(function (err: any, req: any, res: any, next: any) {
 
     if (res.status != 200) {
-        console.log(res.status)
-        console.log(err)
-        let reportToAdmin = new SendReportMessageToAdmin((typeof (err) === 'object') ? simplifyObject(err) : err, "ERROR")
+        let reportToAdmin = new SendReportMessageToAdmin((typeof (err) === 'object') ? JSON.stringify(err) : err, "ERROR")
         reportToAdmin.sendReport()
         res.send('Sorry something has broken :(.')
     }
