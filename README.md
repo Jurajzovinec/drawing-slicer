@@ -6,7 +6,7 @@ Drawing slicer is application developed mostly for DIY hobbiest who are interest
 
 ## Idea ?
 
-I came up with this idea when I needed to print template from my giant surfskate. Due to pandemic I was not able to do so, so I developed short python script which will cut my A0 design into A4 format. 
+I came up with this idea when I needed to print template for manufacturing of my giant surfskate. Due to pandemic I was not able to do so, so I developed short python script which will cut my A0 design into A4 format. 
 
 1. Drawing created in CAD
 
