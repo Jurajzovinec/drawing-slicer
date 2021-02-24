@@ -21,5 +21,9 @@ desktop.ini
 # testing
 /coverage
 
+# production
+/dist
+/client/build
+
 
 
