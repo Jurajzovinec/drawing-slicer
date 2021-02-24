@@ -6,7 +6,7 @@ import sys
 
 
 LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(lineno)s - %(message)s"
-logging.basicConfig(filename = "SliceService.log", level = logging.DEBUG, format = LOG_FORMAT)
+logging.basicConfig(filename = "public/SliceService.log", level = logging.DEBUG, format = LOG_FORMAT)
 logger = logging.getLogger()
 logger.info("Slice service initilized.")
 logger.info(f"Arguments are {str(sys.argv)}")

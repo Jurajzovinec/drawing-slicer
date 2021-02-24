@@ -80,8 +80,6 @@ app.get('/exampledata', (req, res) => {
         let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
         reportToAdmin.sendReport()
     }
-
-
 });
 
 app.get('/clearawsbucket', (req, res) => {

@@ -4,7 +4,7 @@ import logging
 import sys
 
 LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(lineno)s - %(message)s"
-logging.basicConfig(filename = "InputTestService.log", level = logging.DEBUG, format = LOG_FORMAT)
+logging.basicConfig(filename = "public/InputTestService.log", level = logging.DEBUG, format = LOG_FORMAT)
 logger = logging.getLogger()
 logger.info("Input test service initilized.")
 logger.info(f"Arguments are {str(sys.argv)}")

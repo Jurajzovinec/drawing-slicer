@@ -9,7 +9,9 @@ pythonServices/unit_test_input_files/*
 pythonServices/unit_test_output_files/*
 
 # file types
-*.log
+/InputTestService.log
+/SliceService.log
+
 .env
 .eslintcache
 desktop.ini
