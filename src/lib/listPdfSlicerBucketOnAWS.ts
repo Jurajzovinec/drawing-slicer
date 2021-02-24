@@ -1,6 +1,5 @@
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
-import APIObjectAWSListOutputClearInput from '../types/APIObjectAWSListOutputClearInput';
 
 dotenv.config();
 
