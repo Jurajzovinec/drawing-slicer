@@ -30,7 +30,7 @@ app.post('/testfile', (req: any, res) => {
     if (req.files.pdffile != undefined) {
         uploadFileToAWS(req.files!.pdffile)
             .then(resolvedMessage => {
-                const testSliceService = new CallValidateFileService(resolvedMessage.uploadedFile)
+                const testSliceService = new CallValidateFileService(resolvedMessage.uploadedFile!)
                 return testSliceService.runService()
             })
             .then(response => res.send(response))
@@ -91,9 +91,9 @@ app.get('/clearawsbucket', (req, res) => {
     listPdfSlicerBucketOnAWS()
         .then(outputMessage => {
             if (outputMessage.status === 'OK') {
-                return clearPdfSlicerBucket(outputMessage.filesOnBucket)
-            } else {
-                return outputMessage.error
+                return clearPdfSlicerBucket(outputMessage.filesOnBucket!)
+            } else{
+                throw  outputMessage.error!
             }
         })
         .then(resolvedData => res.send(resolvedData))
@@ -121,7 +121,7 @@ app.post('/fileupload', function (req, res) {
 
     console.log('/fileupload API invoked')
 
-    if (req.files.uploadedPdf != undefined) {
+    if (req.files!.uploadedPdf != undefined) {
         uploadFileToAWS(req.files!.uploadedPdf)
             .then(resolvedMessage => res.send(resolvedMessage.status))
             .catch(rejectedMessage => {

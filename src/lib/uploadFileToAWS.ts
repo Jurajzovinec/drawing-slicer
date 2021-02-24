@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk';
+import { PutObjectRequest } from 'aws-sdk/clients/s3';
 import dotenv from 'dotenv';
 import APIObjectAWS from '../types/APIObjectAWS';
 
@@ -16,7 +17,7 @@ export default function uploadFileToAWS(file: any): Promise<(APIObjectAWS)>  {
                 Key: file.name,
                 Body: file.data
             };
-            s3bucket.upload(params, (err: any, data: any) => {
+            s3bucket.upload(params as PutObjectRequest, (err: any, data: any) => {
                 if (err) {
                     reject({
                         status: `Error occured while uploading ${file.name} to S3: ${err}.`,

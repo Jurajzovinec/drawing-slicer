@@ -1,10 +1,10 @@
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
-import APIObjectAWS from '../types/APIObjectAWS';
+import APIObjectAWSListOutputClearInput from '../types/APIObjectAWSListOutputClearInput';
 
 dotenv.config();
 
-export default function listPdfSlicerBucketOnAWS(): Promise<APIObjectAWS>  {
+export default function listPdfSlicerBucketOnAWS(): Promise<{ status: string, error?: string, filesOnBucket?: object[] }> {
     return new Promise(async (resolve, reject) => {
         const s3bucket = new AWS.S3({
             accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -12,7 +12,7 @@ export default function listPdfSlicerBucketOnAWS(): Promise<APIObjectAWS>  {
         });
         s3bucket.createBucket(() => {
             const params = {
-                Bucket: process.env.AWS_BUCKET_NAME,
+                Bucket: process.env.AWS_BUCKET_NAME!,
             };
             s3bucket.listObjects(params, (err: any, data: any) => {
                 if (err) {
@@ -21,9 +21,9 @@ export default function listPdfSlicerBucketOnAWS(): Promise<APIObjectAWS>  {
                         error: err
                     });
                 } else {
-                    let outputListOfFiles:object[] = []
-                    data.Contents.map(fileDetails =>{
-                        outputListOfFiles.push({Key: fileDetails.Key})
+                    let outputListOfFiles: object[] = []
+                    data.Contents.map((fileDetails:any) => {
+                        outputListOfFiles.push({ Key: fileDetails.Key })
                     })
                     resolve({
                         status: `OK`,
