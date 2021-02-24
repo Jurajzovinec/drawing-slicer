@@ -33,14 +33,17 @@ app.post('/testfile', (req: any, res) => {
                 const testSliceService = new CallValidateFileService(resolvedMessage.uploadedFile!)
                 return testSliceService.runService()
             })
-            .then(response => res.send(response))
+            .then(response => {
+                res.send(response)
+            })
             .catch(rejectedMessage => {
-                let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
-                reportToAdmin.sendReport()
                 res.send(rejectedMessage)
             })
     } else {
-        res.send('Could not handle request. No recognized data attached.')
+        res.send({
+            Status: 'Failed',
+            Error: 'Could not handle request. No recognized data attached.'
+        })
     }
 });
 
@@ -58,8 +61,6 @@ app.get('/slice/:params', (req, res) => {
     sliceService.runService()
         .then(response => res.send(response))
         .catch(rejectedMessage => {
-            let reportToAdmin = new SendReportMessageToAdmin((typeof (rejectedMessage) === 'object') ? JSON.stringify(rejectedMessage) : rejectedMessage, "ERROR")
-            reportToAdmin.sendReport()
             res.send(rejectedMessage)
         })
 });
@@ -90,8 +91,8 @@ app.get('/clearawsbucket', (req, res) => {
         .then(outputMessage => {
             if (outputMessage.status === 'OK') {
                 return clearPdfSlicerBucket(outputMessage.filesOnBucket!)
-            } else{
-                throw  outputMessage.error!
+            } else {
+                throw outputMessage.error!
             }
         })
         .then(resolvedData => res.send(resolvedData))

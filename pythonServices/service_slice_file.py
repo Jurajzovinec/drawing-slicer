@@ -1,15 +1,7 @@
 from application_library.pdf_slicer_lib import *
 from aws_s3_services.aws_s3_download_file import *
 from aws_s3_services.aws_s3_upload_file import *
-import logging
 import sys
-
-
-LOG_FORMAT = "%(asctime)s %(levelname)s %(filename)s %(lineno)s - %(message)s"
-logging.basicConfig(filename = "public/SliceService.log", level = logging.DEBUG, format = LOG_FORMAT)
-logger = logging.getLogger()
-logger.info("Slice service initilized.")
-logger.info(f"Arguments are {str(sys.argv)}")
 
 def init_arguments():
     
@@ -20,11 +12,8 @@ def init_arguments():
         slice_by_format = sys.argv[3]
         
     except Exception as error:
-        logger.critical(error)
         raise error
-        exit(1)
     else:
-        logger.info(scale_to_format)
         return {
                 "input_file":input_file['file_stream'], 
                 "slice_by_format":slice_by_format,
@@ -39,21 +28,18 @@ def main():
         result_pdf_object = pdf_object.main_run()
         upload_to_aws_s3(result_pdf_object)
     except Exception as error:
-        logger.critical(error)
         raise error
-        exit(1)
     else:
-        print({'Success':'Successful slice_service.py'}, flush=True)        
+        print({'Status':'OK'}, flush=True)        
         print({'ResultPdfName':result_pdf_object['filename']}, flush=True)        
-        logger.info("Successful slice_service.py")
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as error:
-        print(str(error), flush=True)
-        print(f"Ooops!, something is wrong with python microservice. Check InputTestService.log file, ErrorMsg: {str(error)}", flush=True)
-        logger.critical(str(error))
+        print({'Status':'Failed'}, flush=True)
+        print({'Error':str(error)}, flush=True)
+        exit(1)
     
     
     

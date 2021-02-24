@@ -1,0 +1,582 @@
+2021-02-24 15:40:27,877 INFO service_slice_file.py 11 - Slice service initilized.
+2021-02-24 15:40:27,885 INFO service_slice_file.py 12 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\service_slice_file.py', 'EngineeringDrawing.pdf', 'none', 'a8']
+2021-02-24 15:40:27,886 DEBUG hooks.py 416 - Changing event name from creating-client-class.iot-data to creating-client-class.iot-data-plane
+2021-02-24 15:40:27,892 DEBUG hooks.py 416 - Changing event name from before-call.apigateway to before-call.api-gateway
+2021-02-24 15:40:27,894 DEBUG hooks.py 416 - Changing event name from request-created.machinelearning.Predict to request-created.machine-learning.Predict
+2021-02-24 15:40:27,900 DEBUG hooks.py 416 - Changing event name from before-parameter-build.autoscaling.CreateLaunchConfiguration to before-parameter-build.auto-scaling.CreateLaunchConfiguration
+2021-02-24 15:40:27,901 DEBUG hooks.py 416 - Changing event name from before-parameter-build.route53 to before-parameter-build.route-53
+2021-02-24 15:40:27,903 DEBUG hooks.py 416 - Changing event name from request-created.cloudsearchdomain.Search to request-created.cloudsearch-domain.Search
+2021-02-24 15:40:27,905 DEBUG hooks.py 416 - Changing event name from docs.*.autoscaling.CreateLaunchConfiguration.complete-section to docs.*.auto-scaling.CreateLaunchConfiguration.complete-section
+2021-02-24 15:40:27,908 DEBUG hooks.py 416 - Changing event name from before-parameter-build.logs.CreateExportTask to before-parameter-build.cloudwatch-logs.CreateExportTask
+2021-02-24 15:40:27,908 DEBUG hooks.py 416 - Changing event name from docs.*.logs.CreateExportTask.complete-section to docs.*.cloudwatch-logs.CreateExportTask.complete-section
+2021-02-24 15:40:27,909 DEBUG hooks.py 416 - Changing event name from before-parameter-build.cloudsearchdomain.Search to before-parameter-build.cloudsearch-domain.Search
+2021-02-24 15:40:27,910 DEBUG hooks.py 416 - Changing event name from docs.*.cloudsearchdomain.Search.complete-section to docs.*.cloudsearch-domain.Search.complete-section
+2021-02-24 15:40:27,991 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\boto3\data\s3\2006-03-01\resources-1.json
+2021-02-24 15:40:28,022 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\data\endpoints.json
+2021-02-24 15:40:28,029 DEBUG hooks.py 210 - Event choose-service-name: calling handler <function handle_service_name_alias at 0x0000026C453174C0>
+2021-02-24 15:40:28,158 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\data\s3\2006-03-01\service-2.json
+2021-02-24 15:40:28,227 DEBUG hooks.py 210 - Event creating-client-class.s3: calling handler <function add_generate_presigned_post at 0x0000026C452B94C0>
+2021-02-24 15:40:28,228 DEBUG hooks.py 210 - Event creating-client-class.s3: calling handler <function lazy_call.<locals>._handler at 0x0000026C45222700>
+2021-02-24 15:40:28,296 DEBUG hooks.py 210 - Event creating-client-class.s3: calling handler <function add_generate_presigned_url at 0x0000026C452B9280>
+2021-02-24 15:40:28,342 DEBUG endpoint.py 292 - Setting s3 timeout as (60, 60)
+2021-02-24 15:40:28,352 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\data\_retry.json
+2021-02-24 15:40:28,356 DEBUG client.py 163 - Registering retry handlers for service: s3
+2021-02-24 15:40:28,363 DEBUG factory.py 65 - Loading s3:s3
+2021-02-24 15:40:28,372 DEBUG factory.py 65 - Loading s3:Bucket
+2021-02-24 15:40:28,373 DEBUG model.py 358 - Renaming Bucket attribute name
+2021-02-24 15:40:28,376 DEBUG hooks.py 210 - Event creating-resource-class.s3.Bucket: calling handler <function lazy_call.<locals>._handler at 0x0000026C453A7AF0>
+2021-02-24 15:40:28,380 DEBUG utils.py 580 - Acquiring 0
+2021-02-24 15:40:28,388 DEBUG tasks.py 193 - DownloadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x0000026C459E4D60>}) about to wait for the following futures []
+2021-02-24 15:40:28,389 DEBUG tasks.py 203 - DownloadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x0000026C459E4D60>}) done waiting for dependent futures
+2021-02-24 15:40:28,390 DEBUG tasks.py 146 - Executing task DownloadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x0000026C459E4D60>}) with kwargs {'client': <botocore.client.S3 object at 0x0000026C4598AA60>, 'config': <boto3.s3.transfer.TransferConfig object at 0x0000026C459CF880>, 'osutil': <s3transfer.utils.OSUtils object at 0x0000026C459E1DF0>, 'request_executor': <s3transfer.futures.BoundedExecutor object at 0x0000026C459E40A0>, 'transfer_future': <s3transfer.futures.TransferFuture object at 0x0000026C459E4D60>, 'io_executor': <s3transfer.futures.BoundedExecutor object at 0x0000026C459E4130>}
+2021-02-24 15:40:28,393 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <function sse_md5 at 0x0000026C45337AF0>
+2021-02-24 15:40:28,393 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <function validate_bucket_name at 0x0000026C45337A60>
+2021-02-24 15:40:28,394 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <bound method S3RegionRedirector.redirect_from_cache of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:28,394 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <bound method S3ArnParamHandler.handle_arn of <botocore.utils.S3ArnParamHandler object at 0x0000026C457B3F10>>
+2021-02-24 15:40:28,394 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <function generate_idempotent_uuid at 0x0000026C453378B0>
+2021-02-24 15:40:28,395 DEBUG hooks.py 210 - Event before-call.s3.HeadObject: calling handler <function add_expect_header at 0x0000026C45337DC0>
+2021-02-24 15:40:28,395 DEBUG hooks.py 210 - Event before-call.s3.HeadObject: calling handler <bound method S3RegionRedirector.set_request_url of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:28,396 DEBUG hooks.py 210 - Event before-call.s3.HeadObject: calling handler <function inject_api_version_header_if_needed at 0x0000026C4533A160>
+2021-02-24 15:40:28,396 DEBUG endpoint.py 100 - Making request for OperationModel(name=HeadObject) with params: {'url_path': '/pdf-slicer-bucket/EngineeringDrawing.pdf', 'query_string': {}, 'method': 'HEAD', 'headers': {'User-Agent': 'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource'}, 'body': b'', 'url': 'https://s3.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf', 'context': {'client_region': 'us-east-1', 'client_config': <botocore.config.Config object at 0x0000026C45675130>, 'has_streaming_input': False, 'auth_type': None, 'signing': {'bucket': 'pdf-slicer-bucket'}}}
+2021-02-24 15:40:28,397 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_not_transferring at 0x0000026C45761B80>
+2021-02-24 15:40:28,397 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x0000026C45675070>>
+2021-02-24 15:40:28,397 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x0000026C45398CA0>>
+2021-02-24 15:40:28,397 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <function set_operation_specific_signer at 0x0000026C45337790>
+2021-02-24 15:40:28,398 DEBUG hooks.py 210 - Event before-sign.s3.HeadObject: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x0000026C457B3FD0>>
+2021-02-24 15:40:28,398 DEBUG utils.py 1725 - Defaulting to S3 virtual host style addressing with path style addressing fallback.
+2021-02-24 15:40:28,398 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf
+2021-02-24 15:40:28,398 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.amazonaws.com/EngineeringDrawing.pdf
+2021-02-24 15:40:28,402 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:40:28,403 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/EngineeringDrawing.pdf
+
+host:pdf-slicer-bucket.s3.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144028Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:40:28,403 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144028Z
+20210224/us-east-1/s3/aws4_request
+d35fbb15e0cad5ad02f1220374a1be7db873d007bc69f6f67d84dcdbe97601f2
+2021-02-24 15:40:28,404 DEBUG auth.py 369 - Signature:
+0b77900d70e3bf9c4d51891fd9a739c0e046292b49f75ee1f2a09f05c5eaf89e
+2021-02-24 15:40:28,404 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_transferring at 0x0000026C45761C10>
+2021-02-24 15:40:28,405 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.amazonaws.com/EngineeringDrawing.pdf, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144028Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=0b77900d70e3bf9c4d51891fd9a739c0e046292b49f75ee1f2a09f05c5eaf89e'}>
+2021-02-24 15:40:28,406 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:40:28,407 DEBUG connectionpool.py 971 - Starting new HTTPS connection (1): pdf-slicer-bucket.s3.amazonaws.com:443
+2021-02-24 15:40:28,648 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.amazonaws.com:443 "HEAD /EngineeringDrawing.pdf HTTP/1.1" 400 0
+2021-02-24 15:40:28,678 DEBUG parsers.py 233 - Response headers: {'x-amz-request-id': '8XBJ3G1Z7TAK7MDY', 'x-amz-id-2': 'wNszr/E9pGQIYT6x0oHNOmBwoAm59h9bf0FZPsGjamE9aG6VIVkxt05HJ9h9VLC88zEVqyCcYUE=', 'Content-Type': 'application/xml', 'Date': 'Wed, 24 Feb 2021 14:40:29 GMT', 'Server': 'AmazonS3', 'Connection': 'close'}
+2021-02-24 15:40:28,679 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:40:28,687 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <botocore.retryhandler.RetryHandler object at 0x0000026C457B3E50>
+2021-02-24 15:40:28,688 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:40:28,688 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:28,689 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <function validate_bucket_name at 0x0000026C45337A60>
+2021-02-24 15:40:28,698 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <bound method S3RegionRedirector.redirect_from_cache of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:28,702 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <bound method S3ArnParamHandler.handle_arn of <botocore.utils.S3ArnParamHandler object at 0x0000026C457B3F10>>
+2021-02-24 15:40:28,703 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <function generate_idempotent_uuid at 0x0000026C453378B0>
+2021-02-24 15:40:28,704 DEBUG hooks.py 210 - Event before-call.s3.HeadBucket: calling handler <function add_expect_header at 0x0000026C45337DC0>
+2021-02-24 15:40:28,705 DEBUG hooks.py 210 - Event before-call.s3.HeadBucket: calling handler <bound method S3RegionRedirector.set_request_url of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:28,705 DEBUG hooks.py 210 - Event before-call.s3.HeadBucket: calling handler <function inject_api_version_header_if_needed at 0x0000026C4533A160>
+2021-02-24 15:40:28,706 DEBUG endpoint.py 100 - Making request for OperationModel(name=HeadBucket) with params: {'url_path': '/pdf-slicer-bucket', 'query_string': {}, 'method': 'HEAD', 'headers': {'User-Agent': 'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource'}, 'body': b'', 'url': 'https://s3.amazonaws.com/pdf-slicer-bucket', 'context': {'client_region': 'us-east-1', 'client_config': <botocore.config.Config object at 0x0000026C45675130>, 'has_streaming_input': False, 'auth_type': None, 'signing': {'bucket': 'pdf-slicer-bucket'}}}
+2021-02-24 15:40:28,707 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_not_transferring at 0x0000026C45761B80>
+2021-02-24 15:40:28,707 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x0000026C45675070>>
+2021-02-24 15:40:28,709 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x0000026C45398CA0>>
+2021-02-24 15:40:28,709 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <function set_operation_specific_signer at 0x0000026C45337790>
+2021-02-24 15:40:28,710 DEBUG hooks.py 210 - Event before-sign.s3.HeadBucket: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x0000026C457B3FD0>>
+2021-02-24 15:40:28,710 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.amazonaws.com/pdf-slicer-bucket
+2021-02-24 15:40:28,711 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.amazonaws.com/
+2021-02-24 15:40:28,711 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:40:28,712 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/
+
+host:pdf-slicer-bucket.s3.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144028Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:40:28,712 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144028Z
+20210224/us-east-1/s3/aws4_request
+6a88e15299e410462e760cf58c4aeb6e9d3cc50dc950d2b16d4ffc2102389d77
+2021-02-24 15:40:28,713 DEBUG auth.py 369 - Signature:
+e5c3c43cac2cb3750728ff5b8f41a0add18fdac314fdb36f378a2a5cd4635005
+2021-02-24 15:40:28,713 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_transferring at 0x0000026C45761C10>
+2021-02-24 15:40:28,714 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.amazonaws.com/, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144028Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=e5c3c43cac2cb3750728ff5b8f41a0add18fdac314fdb36f378a2a5cd4635005'}>
+2021-02-24 15:40:28,715 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:40:28,719 DEBUG connectionpool.py 272 - Resetting dropped connection: pdf-slicer-bucket.s3.amazonaws.com
+2021-02-24 15:40:28,921 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.amazonaws.com:443 "HEAD / HTTP/1.1" 400 0
+2021-02-24 15:40:28,922 DEBUG parsers.py 233 - Response headers: {'x-amz-bucket-region': 'eu-central-1', 'x-amz-request-id': 'BJ9S5ZFQ3N3J9P1Y', 'x-amz-id-2': 'Exam1JBP0vQCGIRbVMKAhcImWzKZ6DaPvhEpDyzt2t/7rhgnMQ85qfj5IwJ3S0kKPcBWQBZv5ps=', 'Content-Type': 'application/xml', 'Date': 'Wed, 24 Feb 2021 14:40:29 GMT', 'Server': 'AmazonS3', 'Connection': 'close'}
+2021-02-24 15:40:28,923 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:40:28,924 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <botocore.retryhandler.RetryHandler object at 0x0000026C457B3E50>
+2021-02-24 15:40:28,934 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:40:28,936 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:28,937 DEBUG utils.py 1322 - S3 client configured for region us-east-1 but the bucket pdf-slicer-bucket is in region eu-central-1; Please configure the proper region to avoid multiple unnecessary redirects and signing attempts.
+2021-02-24 15:40:28,937 DEBUG utils.py 1210 - Updating URI from https://s3.amazonaws.com/pdf-slicer-bucket to https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket
+2021-02-24 15:40:28,937 DEBUG endpoint.py 263 - Response received to retry, sleeping for 0 seconds
+2021-02-24 15:40:28,940 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_not_transferring at 0x0000026C45761B80>
+2021-02-24 15:40:28,945 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x0000026C45675070>>
+2021-02-24 15:40:28,945 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x0000026C45398CA0>>
+2021-02-24 15:40:28,946 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <function set_operation_specific_signer at 0x0000026C45337790>
+2021-02-24 15:40:28,946 DEBUG hooks.py 210 - Event before-sign.s3.HeadBucket: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x0000026C457B3FD0>>
+2021-02-24 15:40:28,947 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket
+2021-02-24 15:40:28,947 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/
+2021-02-24 15:40:28,948 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:40:28,950 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/
+
+host:pdf-slicer-bucket.s3.eu-central-1.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144028Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:40:28,951 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144028Z
+20210224/eu-central-1/s3/aws4_request
+016bc243d63eb0e261af7fff9f092ded5d9416de9e3ee90ae9b54cb0c976a8e6
+2021-02-24 15:40:28,952 DEBUG auth.py 369 - Signature:
+d41829277576e5fced748571db6f7a2068775edcbb9c400cb8d6e83a9d8db076
+2021-02-24 15:40:28,953 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_transferring at 0x0000026C45761C10>
+2021-02-24 15:40:28,953 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144028Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/eu-central-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=d41829277576e5fced748571db6f7a2068775edcbb9c400cb8d6e83a9d8db076'}>
+2021-02-24 15:40:28,954 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:40:28,955 DEBUG connectionpool.py 971 - Starting new HTTPS connection (1): pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443
+2021-02-24 15:40:29,233 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443 "HEAD / HTTP/1.1" 200 0
+2021-02-24 15:40:29,233 DEBUG parsers.py 233 - Response headers: {'x-amz-id-2': '4iPszx4coKx3gmQBPnIAFiQBSR7BRsnladnE2vfGDSWK+kWMGAAbqQ+kBC+pALNb9QtajwYzLk4=', 'x-amz-request-id': '7D07C56F737855C7', 'Date': 'Wed, 24 Feb 2021 14:40:30 GMT', 'x-amz-bucket-region': 'eu-central-1', 'Content-Type': 'application/xml', 'Server': 'AmazonS3'}
+2021-02-24 15:40:29,234 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:40:29,235 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <botocore.retryhandler.RetryHandler object at 0x0000026C457B3E50>
+2021-02-24 15:40:29,235 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:40:29,236 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:29,236 DEBUG utils.py 1278 - S3 request was previously redirected, not redirecting.
+2021-02-24 15:40:29,236 DEBUG utils.py 1322 - S3 client configured for region us-east-1 but the bucket pdf-slicer-bucket is in region eu-central-1; Please configure the proper region to avoid multiple unnecessary redirects and signing attempts.
+2021-02-24 15:40:29,237 DEBUG utils.py 1210 - Updating URI from https://s3.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf to https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf
+2021-02-24 15:40:29,237 DEBUG endpoint.py 263 - Response received to retry, sleeping for 0 seconds
+2021-02-24 15:40:29,238 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_not_transferring at 0x0000026C45761B80>
+2021-02-24 15:40:29,238 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x0000026C45675070>>
+2021-02-24 15:40:29,239 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x0000026C45398CA0>>
+2021-02-24 15:40:29,239 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <function set_operation_specific_signer at 0x0000026C45337790>
+2021-02-24 15:40:29,240 DEBUG hooks.py 210 - Event before-sign.s3.HeadObject: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x0000026C457B3FD0>>
+2021-02-24 15:40:29,240 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf
+2021-02-24 15:40:29,241 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/EngineeringDrawing.pdf
+2021-02-24 15:40:29,242 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:40:29,242 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/EngineeringDrawing.pdf
+
+host:pdf-slicer-bucket.s3.eu-central-1.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144029Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:40:29,242 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144029Z
+20210224/eu-central-1/s3/aws4_request
+aa6d7f885db35c10e1a93be020c9d7a5cd1b582768c9c5e9a5e8e1b6a2bedac3
+2021-02-24 15:40:29,245 DEBUG auth.py 369 - Signature:
+2c91d5def01803f01719033c64299eac58abc35158bd684e8e6632da75b3aaa8
+2021-02-24 15:40:29,245 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_transferring at 0x0000026C45761C10>
+2021-02-24 15:40:29,246 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/EngineeringDrawing.pdf, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144029Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/eu-central-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=2c91d5def01803f01719033c64299eac58abc35158bd684e8e6632da75b3aaa8'}>
+2021-02-24 15:40:29,247 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:40:29,304 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443 "HEAD /EngineeringDrawing.pdf HTTP/1.1" 200 0
+2021-02-24 15:40:29,305 DEBUG parsers.py 233 - Response headers: {'x-amz-id-2': 'ayWh8pQBX7XjCysuPdLLlpucjnkXo/XcVZIHOELQXSSoGqIKDi54hMwQZi28VUsUybbAqXkxakg=', 'x-amz-request-id': 'BE5CF4F0A8EAE729', 'Date': 'Wed, 24 Feb 2021 14:40:30 GMT', 'Last-Modified': 'Wed, 24 Feb 2021 14:40:22 GMT', 'ETag': '"383a0f36ba5ae0d994a6b67c5d74d0a0"', 'Accept-Ranges': 'bytes', 'Content-Type': 'application/octet-stream', 'Content-Length': '159831', 'Server': 'AmazonS3'}
+2021-02-24 15:40:29,306 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:40:29,308 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <botocore.retryhandler.RetryHandler object at 0x0000026C457B3E50>
+2021-02-24 15:40:29,308 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:40:29,309 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:29,309 DEBUG utils.py 1278 - S3 request was previously redirected, not redirecting.
+2021-02-24 15:40:29,310 DEBUG futures.py 316 - Submitting task ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'EngineeringDrawing.pdf', 'extra_args': {}}) to executor <s3transfer.futures.BoundedExecutor object at 0x0000026C459E40A0> for transfer request: 0.
+2021-02-24 15:40:29,310 DEBUG utils.py 580 - Acquiring 0
+2021-02-24 15:40:29,313 DEBUG tasks.py 193 - ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'EngineeringDrawing.pdf', 'extra_args': {}}) about to wait for the following futures []
+2021-02-24 15:40:29,314 DEBUG utils.py 593 - Releasing acquire 0/None
+2021-02-24 15:40:29,314 DEBUG tasks.py 203 - ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'EngineeringDrawing.pdf', 'extra_args': {}}) done waiting for dependent futures
+2021-02-24 15:40:29,315 DEBUG tasks.py 146 - Executing task ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'EngineeringDrawing.pdf', 'extra_args': {}}) with kwargs {'client': <botocore.client.S3 object at 0x0000026C4598AA60>, 'bucket': 'pdf-slicer-bucket', 'key': 'EngineeringDrawing.pdf', 'fileobj': <_io.BytesIO object at 0x0000026C453A2950>, 'extra_args': {}, 'callbacks': [], 'max_attempts': 5, 'download_output_manager': <s3transfer.download.DownloadSeekableOutputManager object at 0x0000026C459BE070>, 'io_chunksize': 262144, 'bandwidth_limiter': None}
+2021-02-24 15:40:29,316 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <function sse_md5 at 0x0000026C45337AF0>
+2021-02-24 15:40:29,319 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <function validate_bucket_name at 0x0000026C45337A60>
+2021-02-24 15:40:29,320 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <bound method S3RegionRedirector.redirect_from_cache of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:29,321 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <bound method S3ArnParamHandler.handle_arn of <botocore.utils.S3ArnParamHandler object at 0x0000026C457B3F10>>
+2021-02-24 15:40:29,321 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <function generate_idempotent_uuid at 0x0000026C453378B0>
+2021-02-24 15:40:29,322 DEBUG hooks.py 210 - Event before-call.s3.GetObject: calling handler <function add_expect_header at 0x0000026C45337DC0>
+2021-02-24 15:40:29,323 DEBUG hooks.py 210 - Event before-call.s3.GetObject: calling handler <bound method S3RegionRedirector.set_request_url of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:29,323 DEBUG utils.py 1210 - Updating URI from https://s3.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf to https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf
+2021-02-24 15:40:29,324 DEBUG hooks.py 210 - Event before-call.s3.GetObject: calling handler <function inject_api_version_header_if_needed at 0x0000026C4533A160>
+2021-02-24 15:40:29,324 DEBUG endpoint.py 100 - Making request for OperationModel(name=GetObject) with params: {'url_path': '/pdf-slicer-bucket/EngineeringDrawing.pdf', 'query_string': {}, 'method': 'GET', 'headers': {'User-Agent': 'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource'}, 'body': b'', 'url': 'https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf', 'context': {'client_region': 'us-east-1', 'client_config': <botocore.config.Config object at 0x0000026C45675130>, 'has_streaming_input': False, 'auth_type': None, 'signing': {'region': 'eu-central-1', 'bucket': 'pdf-slicer-bucket', 'endpoint': 'https://s3.eu-central-1.amazonaws.com'}}}
+2021-02-24 15:40:29,326 DEBUG hooks.py 210 - Event request-created.s3.GetObject: calling handler <function signal_not_transferring at 0x0000026C45761B80>
+2021-02-24 15:40:29,326 DEBUG hooks.py 210 - Event request-created.s3.GetObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x0000026C45675070>>
+2021-02-24 15:40:29,327 DEBUG hooks.py 210 - Event choose-signer.s3.GetObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x0000026C45398CA0>>
+2021-02-24 15:40:29,327 DEBUG hooks.py 210 - Event choose-signer.s3.GetObject: calling handler <function set_operation_specific_signer at 0x0000026C45337790>
+2021-02-24 15:40:29,328 DEBUG hooks.py 210 - Event before-sign.s3.GetObject: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x0000026C457B3FD0>>
+2021-02-24 15:40:29,328 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/EngineeringDrawing.pdf
+2021-02-24 15:40:29,329 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/EngineeringDrawing.pdf
+2021-02-24 15:40:29,329 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:40:29,330 DEBUG auth.py 365 - CanonicalRequest:
+GET
+/EngineeringDrawing.pdf
+
+host:pdf-slicer-bucket.s3.eu-central-1.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144029Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:40:29,330 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144029Z
+20210224/eu-central-1/s3/aws4_request
+ff1e0e564151a2b7ef38cacb11932fdf5f491fdd79e4ae4b1fe2789b8a95db6f
+2021-02-24 15:40:29,330 DEBUG auth.py 369 - Signature:
+2ed71cef2ae55b01e30c0e6852fd361d593d0ce32282f572ea089b2543b202a5
+2021-02-24 15:40:29,331 DEBUG hooks.py 210 - Event request-created.s3.GetObject: calling handler <function signal_transferring at 0x0000026C45761C10>
+2021-02-24 15:40:29,331 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=True, method=GET, url=https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/EngineeringDrawing.pdf, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144029Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/eu-central-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=2ed71cef2ae55b01e30c0e6852fd361d593d0ce32282f572ea089b2543b202a5'}>
+2021-02-24 15:40:29,332 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:40:29,387 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443 "GET /EngineeringDrawing.pdf HTTP/1.1" 200 159831
+2021-02-24 15:40:29,420 DEBUG parsers.py 233 - Response headers: {'x-amz-id-2': 'qS6UmskT4jNIc/Lqf4oc0ziT2URuNx0XqG7hpCn2u4B15WQM63t+8xbh15/aTmih1CnhUUgJtG8=', 'x-amz-request-id': '4905291807198B1E', 'Date': 'Wed, 24 Feb 2021 14:40:31 GMT', 'Last-Modified': 'Wed, 24 Feb 2021 14:40:22 GMT', 'ETag': '"383a0f36ba5ae0d994a6b67c5d74d0a0"', 'Accept-Ranges': 'bytes', 'Content-Type': 'application/octet-stream', 'Content-Length': '159831', 'Server': 'AmazonS3'}
+2021-02-24 15:40:29,427 DEBUG parsers.py 234 - Response body:
+<botocore.response.StreamingBody object at 0x0000026C45A4D760>
+2021-02-24 15:40:29,430 DEBUG hooks.py 210 - Event needs-retry.s3.GetObject: calling handler <botocore.retryhandler.RetryHandler object at 0x0000026C457B3E50>
+2021-02-24 15:40:29,431 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:40:29,433 DEBUG hooks.py 210 - Event needs-retry.s3.GetObject: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x0000026C457B3EE0>>
+2021-02-24 15:40:29,539 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 0}) about to wait for the following futures []
+2021-02-24 15:40:29,540 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 0}) done waiting for dependent futures
+2021-02-24 15:40:29,541 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 0}) with kwargs {'fileobj': <_io.BytesIO object at 0x0000026C453A2950>, 'offset': 0}
+2021-02-24 15:40:29,541 DEBUG tasks.py 193 - CompleteDownloadNOOPTask(transfer_id=0, {}) about to wait for the following futures []
+2021-02-24 15:40:29,542 DEBUG tasks.py 203 - CompleteDownloadNOOPTask(transfer_id=0, {}) done waiting for dependent futures
+2021-02-24 15:40:29,542 DEBUG tasks.py 146 - Executing task CompleteDownloadNOOPTask(transfer_id=0, {}) with kwargs {}
+2021-02-24 15:40:29,542 DEBUG utils.py 593 - Releasing acquire 0/None
+2021-02-24 15:40:29,547 INFO service_slice_file.py 27 - none
+2021-02-24 15:40:29,552 CRITICAL service_slice_file.py 42 -  Program has not found right manipulation_method to slice/scale objects. 
+                                        Accepted deviation is 0.594, 
+                                        manipulation drawing format drawing format is {'drawing_format': 'a8', 'dimensions': [52, 74]}, 
+                                        input drawing format is {'drawing_format': 'a3', 'dimensions': [297, 420]}
+2021-02-24 15:40:29,553 CRITICAL service_slice_file.py 56 -  Program has not found right manipulation_method to slice/scale objects. 
+                                        Accepted deviation is 0.594, 
+                                        manipulation drawing format drawing format is {'drawing_format': 'a8', 'dimensions': [52, 74]}, 
+                                        input drawing format is {'drawing_format': 'a3', 'dimensions': [297, 420]}
+2021-02-24 15:45:36,181 INFO service_slice_file.py 11 - Slice service initilized.
+2021-02-24 15:45:36,189 INFO service_slice_file.py 12 - Arguments are ['C:\\Users\\user\\Desktop\\CODING\\MojeProjekty\\drawingSlicer\\pythonServices\\service_slice_file.py', 'CityAreaDrawingA1.pdf', 'none', 'a8']
+2021-02-24 15:45:36,191 DEBUG hooks.py 416 - Changing event name from creating-client-class.iot-data to creating-client-class.iot-data-plane
+2021-02-24 15:45:36,194 DEBUG hooks.py 416 - Changing event name from before-call.apigateway to before-call.api-gateway
+2021-02-24 15:45:36,195 DEBUG hooks.py 416 - Changing event name from request-created.machinelearning.Predict to request-created.machine-learning.Predict
+2021-02-24 15:45:36,197 DEBUG hooks.py 416 - Changing event name from before-parameter-build.autoscaling.CreateLaunchConfiguration to before-parameter-build.auto-scaling.CreateLaunchConfiguration
+2021-02-24 15:45:36,197 DEBUG hooks.py 416 - Changing event name from before-parameter-build.route53 to before-parameter-build.route-53
+2021-02-24 15:45:36,198 DEBUG hooks.py 416 - Changing event name from request-created.cloudsearchdomain.Search to request-created.cloudsearch-domain.Search
+2021-02-24 15:45:36,199 DEBUG hooks.py 416 - Changing event name from docs.*.autoscaling.CreateLaunchConfiguration.complete-section to docs.*.auto-scaling.CreateLaunchConfiguration.complete-section
+2021-02-24 15:45:36,203 DEBUG hooks.py 416 - Changing event name from before-parameter-build.logs.CreateExportTask to before-parameter-build.cloudwatch-logs.CreateExportTask
+2021-02-24 15:45:36,203 DEBUG hooks.py 416 - Changing event name from docs.*.logs.CreateExportTask.complete-section to docs.*.cloudwatch-logs.CreateExportTask.complete-section
+2021-02-24 15:45:36,204 DEBUG hooks.py 416 - Changing event name from before-parameter-build.cloudsearchdomain.Search to before-parameter-build.cloudsearch-domain.Search
+2021-02-24 15:45:36,204 DEBUG hooks.py 416 - Changing event name from docs.*.cloudsearchdomain.Search.complete-section to docs.*.cloudsearch-domain.Search.complete-section
+2021-02-24 15:45:36,289 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\boto3\data\s3\2006-03-01\resources-1.json
+2021-02-24 15:45:36,294 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\data\endpoints.json
+2021-02-24 15:45:36,300 DEBUG hooks.py 210 - Event choose-service-name: calling handler <function handle_service_name_alias at 0x000002724C5B74C0>
+2021-02-24 15:45:36,376 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\data\s3\2006-03-01\service-2.json
+2021-02-24 15:45:36,393 DEBUG hooks.py 210 - Event creating-client-class.s3: calling handler <function add_generate_presigned_post at 0x000002724C5594C0>
+2021-02-24 15:45:36,393 DEBUG hooks.py 210 - Event creating-client-class.s3: calling handler <function lazy_call.<locals>._handler at 0x000002724C4C2700>
+2021-02-24 15:45:36,442 DEBUG hooks.py 210 - Event creating-client-class.s3: calling handler <function add_generate_presigned_url at 0x000002724C559280>
+2021-02-24 15:45:36,450 DEBUG endpoint.py 292 - Setting s3 timeout as (60, 60)
+2021-02-24 15:45:36,457 DEBUG loaders.py 174 - Loading JSON file: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\data\_retry.json
+2021-02-24 15:45:36,457 DEBUG client.py 163 - Registering retry handlers for service: s3
+2021-02-24 15:45:36,459 DEBUG factory.py 65 - Loading s3:s3
+2021-02-24 15:45:36,461 DEBUG factory.py 65 - Loading s3:Bucket
+2021-02-24 15:45:36,461 DEBUG model.py 358 - Renaming Bucket attribute name
+2021-02-24 15:45:36,462 DEBUG hooks.py 210 - Event creating-resource-class.s3.Bucket: calling handler <function lazy_call.<locals>._handler at 0x000002724C647AF0>
+2021-02-24 15:45:36,463 DEBUG utils.py 580 - Acquiring 0
+2021-02-24 15:45:36,464 DEBUG tasks.py 193 - DownloadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x000002724CC84D60>}) about to wait for the following futures []
+2021-02-24 15:45:36,465 DEBUG tasks.py 203 - DownloadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x000002724CC84D60>}) done waiting for dependent futures
+2021-02-24 15:45:36,465 DEBUG tasks.py 146 - Executing task DownloadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x000002724CC84D60>}) with kwargs {'client': <botocore.client.S3 object at 0x000002724CC2AA60>, 'config': <boto3.s3.transfer.TransferConfig object at 0x000002724CC6F880>, 'osutil': <s3transfer.utils.OSUtils object at 0x000002724CC81DF0>, 'request_executor': <s3transfer.futures.BoundedExecutor object at 0x000002724CC840A0>, 'transfer_future': <s3transfer.futures.TransferFuture object at 0x000002724CC84D60>, 'io_executor': <s3transfer.futures.BoundedExecutor object at 0x000002724CC84130>}
+2021-02-24 15:45:36,466 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <function sse_md5 at 0x000002724C5D7AF0>
+2021-02-24 15:45:36,466 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <function validate_bucket_name at 0x000002724C5D7A60>
+2021-02-24 15:45:36,466 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <bound method S3RegionRedirector.redirect_from_cache of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:36,466 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <bound method S3ArnParamHandler.handle_arn of <botocore.utils.S3ArnParamHandler object at 0x000002724CA53F10>>
+2021-02-24 15:45:36,466 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadObject: calling handler <function generate_idempotent_uuid at 0x000002724C5D78B0>
+2021-02-24 15:45:36,467 DEBUG hooks.py 210 - Event before-call.s3.HeadObject: calling handler <function add_expect_header at 0x000002724C5D7DC0>
+2021-02-24 15:45:36,467 DEBUG hooks.py 210 - Event before-call.s3.HeadObject: calling handler <bound method S3RegionRedirector.set_request_url of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:36,467 DEBUG hooks.py 210 - Event before-call.s3.HeadObject: calling handler <function inject_api_version_header_if_needed at 0x000002724C5DA160>
+2021-02-24 15:45:36,468 DEBUG endpoint.py 100 - Making request for OperationModel(name=HeadObject) with params: {'url_path': '/pdf-slicer-bucket/CityAreaDrawingA1.pdf', 'query_string': {}, 'method': 'HEAD', 'headers': {'User-Agent': 'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource'}, 'body': b'', 'url': 'https://s3.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf', 'context': {'client_region': 'us-east-1', 'client_config': <botocore.config.Config object at 0x000002724C915130>, 'has_streaming_input': False, 'auth_type': None, 'signing': {'bucket': 'pdf-slicer-bucket'}}}
+2021-02-24 15:45:36,468 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_not_transferring at 0x000002724CA01B80>
+2021-02-24 15:45:36,468 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000002724C915070>>
+2021-02-24 15:45:36,469 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x000002724C638CA0>>
+2021-02-24 15:45:36,469 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <function set_operation_specific_signer at 0x000002724C5D7790>
+2021-02-24 15:45:36,470 DEBUG hooks.py 210 - Event before-sign.s3.HeadObject: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x000002724CA53FD0>>
+2021-02-24 15:45:36,470 DEBUG utils.py 1725 - Defaulting to S3 virtual host style addressing with path style addressing fallback.
+2021-02-24 15:45:36,470 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf
+2021-02-24 15:45:36,471 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.amazonaws.com/CityAreaDrawingA1.pdf
+2021-02-24 15:45:36,471 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:45:36,471 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/CityAreaDrawingA1.pdf
+
+host:pdf-slicer-bucket.s3.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144536Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:45:36,472 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144536Z
+20210224/us-east-1/s3/aws4_request
+d0a144e9b974e59bf7adf2772ebb9a2decce9f79a2df44d33b23b0f01cad07a0
+2021-02-24 15:45:36,472 DEBUG auth.py 369 - Signature:
+5f735b0c1b1dc52b912a548b57ec9f8bfcb60245ec6ce84faaea699dade100ae
+2021-02-24 15:45:36,472 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_transferring at 0x000002724CA01C10>
+2021-02-24 15:45:36,472 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.amazonaws.com/CityAreaDrawingA1.pdf, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144536Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=5f735b0c1b1dc52b912a548b57ec9f8bfcb60245ec6ce84faaea699dade100ae'}>
+2021-02-24 15:45:36,473 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:45:36,473 DEBUG connectionpool.py 971 - Starting new HTTPS connection (1): pdf-slicer-bucket.s3.amazonaws.com:443
+2021-02-24 15:45:36,716 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.amazonaws.com:443 "HEAD /CityAreaDrawingA1.pdf HTTP/1.1" 400 0
+2021-02-24 15:45:36,719 DEBUG parsers.py 233 - Response headers: {'x-amz-request-id': '4FBD9DFB8474E5D2', 'x-amz-id-2': 'cS4GE7xpPiXF2w7eY6EE2eUghJ+zJ19NXm922lI0Z/rJ0yFsnol3qaq0gl9fJzyCRWcXQFre5F4=', 'Content-Type': 'application/xml', 'Date': 'Wed, 24 Feb 2021 14:45:36 GMT', 'Server': 'AmazonS3', 'Connection': 'close'}
+2021-02-24 15:45:36,720 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:45:36,722 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000002724CA53E50>
+2021-02-24 15:45:36,723 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:45:36,724 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:36,724 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <function validate_bucket_name at 0x000002724C5D7A60>
+2021-02-24 15:45:36,724 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <bound method S3RegionRedirector.redirect_from_cache of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:36,733 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <bound method S3ArnParamHandler.handle_arn of <botocore.utils.S3ArnParamHandler object at 0x000002724CA53F10>>
+2021-02-24 15:45:36,733 DEBUG hooks.py 210 - Event before-parameter-build.s3.HeadBucket: calling handler <function generate_idempotent_uuid at 0x000002724C5D78B0>
+2021-02-24 15:45:36,734 DEBUG hooks.py 210 - Event before-call.s3.HeadBucket: calling handler <function add_expect_header at 0x000002724C5D7DC0>
+2021-02-24 15:45:36,735 DEBUG hooks.py 210 - Event before-call.s3.HeadBucket: calling handler <bound method S3RegionRedirector.set_request_url of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:36,735 DEBUG hooks.py 210 - Event before-call.s3.HeadBucket: calling handler <function inject_api_version_header_if_needed at 0x000002724C5DA160>
+2021-02-24 15:45:36,736 DEBUG endpoint.py 100 - Making request for OperationModel(name=HeadBucket) with params: {'url_path': '/pdf-slicer-bucket', 'query_string': {}, 'method': 'HEAD', 'headers': {'User-Agent': 'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource'}, 'body': b'', 'url': 'https://s3.amazonaws.com/pdf-slicer-bucket', 'context': {'client_region': 'us-east-1', 'client_config': <botocore.config.Config object at 0x000002724C915130>, 'has_streaming_input': False, 'auth_type': None, 'signing': {'bucket': 'pdf-slicer-bucket'}}}
+2021-02-24 15:45:36,737 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_not_transferring at 0x000002724CA01B80>
+2021-02-24 15:45:36,737 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000002724C915070>>
+2021-02-24 15:45:36,737 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x000002724C638CA0>>
+2021-02-24 15:45:36,738 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <function set_operation_specific_signer at 0x000002724C5D7790>
+2021-02-24 15:45:36,738 DEBUG hooks.py 210 - Event before-sign.s3.HeadBucket: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x000002724CA53FD0>>
+2021-02-24 15:45:36,739 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.amazonaws.com/pdf-slicer-bucket
+2021-02-24 15:45:36,739 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.amazonaws.com/
+2021-02-24 15:45:36,739 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:45:36,740 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/
+
+host:pdf-slicer-bucket.s3.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144536Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:45:36,740 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144536Z
+20210224/us-east-1/s3/aws4_request
+c73dc9f37b826a34065a86463487212f93e14e4e916a9755b367a7cd85cbbc90
+2021-02-24 15:45:36,740 DEBUG auth.py 369 - Signature:
+1b97e75de44b6ecaab62945bb6c4ac19edd4ac222061cadc056d3e4c8d398560
+2021-02-24 15:45:36,741 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_transferring at 0x000002724CA01C10>
+2021-02-24 15:45:36,741 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.amazonaws.com/, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144536Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=1b97e75de44b6ecaab62945bb6c4ac19edd4ac222061cadc056d3e4c8d398560'}>
+2021-02-24 15:45:36,741 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:45:36,742 DEBUG connectionpool.py 272 - Resetting dropped connection: pdf-slicer-bucket.s3.amazonaws.com
+2021-02-24 15:45:36,949 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.amazonaws.com:443 "HEAD / HTTP/1.1" 400 0
+2021-02-24 15:45:36,952 DEBUG parsers.py 233 - Response headers: {'x-amz-bucket-region': 'eu-central-1', 'x-amz-request-id': '0QBZ5V1H8HET6P7J', 'x-amz-id-2': '36PA9j4GLkc5+/0KwRnEybg3sKuebK8mQiD9jQrhy5GZJIoa2r3mkOGxxc+Gu1PdGO0G+Szd/hE=', 'Content-Type': 'application/xml', 'Date': 'Wed, 24 Feb 2021 14:45:37 GMT', 'Server': 'AmazonS3', 'Connection': 'close'}
+2021-02-24 15:45:36,953 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:45:36,953 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <botocore.retryhandler.RetryHandler object at 0x000002724CA53E50>
+2021-02-24 15:45:36,954 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:45:36,954 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:36,954 DEBUG utils.py 1322 - S3 client configured for region us-east-1 but the bucket pdf-slicer-bucket is in region eu-central-1; Please configure the proper region to avoid multiple unnecessary redirects and signing attempts.
+2021-02-24 15:45:36,964 DEBUG utils.py 1210 - Updating URI from https://s3.amazonaws.com/pdf-slicer-bucket to https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket
+2021-02-24 15:45:36,965 DEBUG endpoint.py 263 - Response received to retry, sleeping for 0 seconds
+2021-02-24 15:45:36,965 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_not_transferring at 0x000002724CA01B80>
+2021-02-24 15:45:36,966 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000002724C915070>>
+2021-02-24 15:45:36,966 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x000002724C638CA0>>
+2021-02-24 15:45:36,966 DEBUG hooks.py 210 - Event choose-signer.s3.HeadBucket: calling handler <function set_operation_specific_signer at 0x000002724C5D7790>
+2021-02-24 15:45:36,966 DEBUG hooks.py 210 - Event before-sign.s3.HeadBucket: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x000002724CA53FD0>>
+2021-02-24 15:45:36,967 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket
+2021-02-24 15:45:36,967 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/
+2021-02-24 15:45:36,968 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:45:36,968 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/
+
+host:pdf-slicer-bucket.s3.eu-central-1.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144536Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:45:36,968 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144536Z
+20210224/eu-central-1/s3/aws4_request
+c5d7c64b10e9561d82b589c9db4082930f93599128ec62d5ed7db8ae06765e32
+2021-02-24 15:45:36,969 DEBUG auth.py 369 - Signature:
+7d30a1ce04d8ab1b5678401759c6f0f63531dec7db4065cb2271c4cdec331ecf
+2021-02-24 15:45:36,969 DEBUG hooks.py 210 - Event request-created.s3.HeadBucket: calling handler <function signal_transferring at 0x000002724CA01C10>
+2021-02-24 15:45:36,969 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144536Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/eu-central-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=7d30a1ce04d8ab1b5678401759c6f0f63531dec7db4065cb2271c4cdec331ecf'}>
+2021-02-24 15:45:36,971 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:45:36,971 DEBUG connectionpool.py 971 - Starting new HTTPS connection (1): pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443
+2021-02-24 15:45:37,230 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443 "HEAD / HTTP/1.1" 200 0
+2021-02-24 15:45:37,232 DEBUG parsers.py 233 - Response headers: {'x-amz-id-2': 'Eb0zlo7kUtKe6qaMHaTjmuIw5f0DO0743r3LIi1a9GfqozgNThXZMAw1BgVWmysEe/8n5CSUxPw=', 'x-amz-request-id': '11BDA9E66805E09C', 'Date': 'Wed, 24 Feb 2021 14:45:38 GMT', 'x-amz-bucket-region': 'eu-central-1', 'Content-Type': 'application/xml', 'Server': 'AmazonS3'}
+2021-02-24 15:45:37,233 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:45:37,234 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <botocore.retryhandler.RetryHandler object at 0x000002724CA53E50>
+2021-02-24 15:45:37,234 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:45:37,234 DEBUG hooks.py 210 - Event needs-retry.s3.HeadBucket: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:37,234 DEBUG utils.py 1278 - S3 request was previously redirected, not redirecting.
+2021-02-24 15:45:37,235 DEBUG utils.py 1322 - S3 client configured for region us-east-1 but the bucket pdf-slicer-bucket is in region eu-central-1; Please configure the proper region to avoid multiple unnecessary redirects and signing attempts.
+2021-02-24 15:45:37,235 DEBUG utils.py 1210 - Updating URI from https://s3.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf to https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf
+2021-02-24 15:45:37,245 DEBUG endpoint.py 263 - Response received to retry, sleeping for 0 seconds
+2021-02-24 15:45:37,245 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_not_transferring at 0x000002724CA01B80>
+2021-02-24 15:45:37,246 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000002724C915070>>
+2021-02-24 15:45:37,247 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x000002724C638CA0>>
+2021-02-24 15:45:37,247 DEBUG hooks.py 210 - Event choose-signer.s3.HeadObject: calling handler <function set_operation_specific_signer at 0x000002724C5D7790>
+2021-02-24 15:45:37,247 DEBUG hooks.py 210 - Event before-sign.s3.HeadObject: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x000002724CA53FD0>>
+2021-02-24 15:45:37,248 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf
+2021-02-24 15:45:37,248 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/CityAreaDrawingA1.pdf
+2021-02-24 15:45:37,248 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:45:37,248 DEBUG auth.py 365 - CanonicalRequest:
+HEAD
+/CityAreaDrawingA1.pdf
+
+host:pdf-slicer-bucket.s3.eu-central-1.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144537Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:45:37,249 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144537Z
+20210224/eu-central-1/s3/aws4_request
+e3e6a96b03585110f66f8fc456243c045cbd0f5606f38eadf2ebb82671892665
+2021-02-24 15:45:37,249 DEBUG auth.py 369 - Signature:
+f53d51a73a92ad5887871945697d5211da24eafe313d97dc3fceabf65ed6f4d2
+2021-02-24 15:45:37,250 DEBUG hooks.py 210 - Event request-created.s3.HeadObject: calling handler <function signal_transferring at 0x000002724CA01C10>
+2021-02-24 15:45:37,250 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=False, method=HEAD, url=https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/CityAreaDrawingA1.pdf, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144537Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/eu-central-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=f53d51a73a92ad5887871945697d5211da24eafe313d97dc3fceabf65ed6f4d2'}>
+2021-02-24 15:45:37,250 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:45:37,306 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443 "HEAD /CityAreaDrawingA1.pdf HTTP/1.1" 200 0
+2021-02-24 15:45:37,308 DEBUG parsers.py 233 - Response headers: {'x-amz-id-2': 'ADdcuDzT7QQkTfpvIpNUO4QSSokrY1BRjWKXeaFDcSdsA2kqS9JB7EG2FcWMHovJtmJdpnB6y6Q=', 'x-amz-request-id': 'EC03FF494A8FE00F', 'Date': 'Wed, 24 Feb 2021 14:45:38 GMT', 'Last-Modified': 'Wed, 24 Feb 2021 14:45:26 GMT', 'ETag': '"d1ec9b15f72b3e7c5505277f4708ffc0"', 'Accept-Ranges': 'bytes', 'Content-Type': 'application/octet-stream', 'Content-Length': '4283148', 'Server': 'AmazonS3'}
+2021-02-24 15:45:37,308 DEBUG parsers.py 234 - Response body:
+b''
+2021-02-24 15:45:37,309 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000002724CA53E50>
+2021-02-24 15:45:37,311 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:45:37,311 DEBUG hooks.py 210 - Event needs-retry.s3.HeadObject: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:37,311 DEBUG utils.py 1278 - S3 request was previously redirected, not redirecting.
+2021-02-24 15:45:37,311 DEBUG futures.py 316 - Submitting task ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'CityAreaDrawingA1.pdf', 'extra_args': {}}) to executor <s3transfer.futures.BoundedExecutor object at 0x000002724CC840A0> for transfer request: 0.
+2021-02-24 15:45:37,312 DEBUG utils.py 580 - Acquiring 0
+2021-02-24 15:45:37,321 DEBUG tasks.py 193 - ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'CityAreaDrawingA1.pdf', 'extra_args': {}}) about to wait for the following futures []
+2021-02-24 15:45:37,322 DEBUG utils.py 593 - Releasing acquire 0/None
+2021-02-24 15:45:37,323 DEBUG tasks.py 203 - ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'CityAreaDrawingA1.pdf', 'extra_args': {}}) done waiting for dependent futures
+2021-02-24 15:45:37,323 DEBUG tasks.py 146 - Executing task ImmediatelyWriteIOGetObjectTask(transfer_id=0, {'bucket': 'pdf-slicer-bucket', 'key': 'CityAreaDrawingA1.pdf', 'extra_args': {}}) with kwargs {'client': <botocore.client.S3 object at 0x000002724CC2AA60>, 'bucket': 'pdf-slicer-bucket', 'key': 'CityAreaDrawingA1.pdf', 'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'extra_args': {}, 'callbacks': [], 'max_attempts': 5, 'download_output_manager': <s3transfer.download.DownloadSeekableOutputManager object at 0x000002724CC5E070>, 'io_chunksize': 262144, 'bandwidth_limiter': None}
+2021-02-24 15:45:37,323 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <function sse_md5 at 0x000002724C5D7AF0>
+2021-02-24 15:45:37,323 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <function validate_bucket_name at 0x000002724C5D7A60>
+2021-02-24 15:45:37,323 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <bound method S3RegionRedirector.redirect_from_cache of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:37,324 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <bound method S3ArnParamHandler.handle_arn of <botocore.utils.S3ArnParamHandler object at 0x000002724CA53F10>>
+2021-02-24 15:45:37,324 DEBUG hooks.py 210 - Event before-parameter-build.s3.GetObject: calling handler <function generate_idempotent_uuid at 0x000002724C5D78B0>
+2021-02-24 15:45:37,325 DEBUG hooks.py 210 - Event before-call.s3.GetObject: calling handler <function add_expect_header at 0x000002724C5D7DC0>
+2021-02-24 15:45:37,326 DEBUG hooks.py 210 - Event before-call.s3.GetObject: calling handler <bound method S3RegionRedirector.set_request_url of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:37,326 DEBUG utils.py 1210 - Updating URI from https://s3.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf to https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf
+2021-02-24 15:45:37,326 DEBUG hooks.py 210 - Event before-call.s3.GetObject: calling handler <function inject_api_version_header_if_needed at 0x000002724C5DA160>
+2021-02-24 15:45:37,327 DEBUG endpoint.py 100 - Making request for OperationModel(name=GetObject) with params: {'url_path': '/pdf-slicer-bucket/CityAreaDrawingA1.pdf', 'query_string': {}, 'method': 'GET', 'headers': {'User-Agent': 'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource'}, 'body': b'', 'url': 'https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf', 'context': {'client_region': 'us-east-1', 'client_config': <botocore.config.Config object at 0x000002724C915130>, 'has_streaming_input': False, 'auth_type': None, 'signing': {'region': 'eu-central-1', 'bucket': 'pdf-slicer-bucket', 'endpoint': 'https://s3.eu-central-1.amazonaws.com'}}}
+2021-02-24 15:45:37,327 DEBUG hooks.py 210 - Event request-created.s3.GetObject: calling handler <function signal_not_transferring at 0x000002724CA01B80>
+2021-02-24 15:45:37,327 DEBUG hooks.py 210 - Event request-created.s3.GetObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000002724C915070>>
+2021-02-24 15:45:37,328 DEBUG hooks.py 210 - Event choose-signer.s3.GetObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x000002724C638CA0>>
+2021-02-24 15:45:37,328 DEBUG hooks.py 210 - Event choose-signer.s3.GetObject: calling handler <function set_operation_specific_signer at 0x000002724C5D7790>
+2021-02-24 15:45:37,328 DEBUG hooks.py 210 - Event before-sign.s3.GetObject: calling handler <bound method S3EndpointSetter.set_endpoint of <botocore.utils.S3EndpointSetter object at 0x000002724CA53FD0>>
+2021-02-24 15:45:37,328 DEBUG utils.py 1103 - Checking for DNS compatible bucket for: https://s3.eu-central-1.amazonaws.com/pdf-slicer-bucket/CityAreaDrawingA1.pdf
+2021-02-24 15:45:37,329 DEBUG utils.py 1122 - URI updated to: https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/CityAreaDrawingA1.pdf
+2021-02-24 15:45:37,329 DEBUG auth.py 364 - Calculating signature using v4 auth.
+2021-02-24 15:45:37,329 DEBUG auth.py 365 - CanonicalRequest:
+GET
+/CityAreaDrawingA1.pdf
+
+host:pdf-slicer-bucket.s3.eu-central-1.amazonaws.com
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20210224T144537Z
+
+host;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2021-02-24 15:45:37,329 DEBUG auth.py 367 - StringToSign:
+AWS4-HMAC-SHA256
+20210224T144537Z
+20210224/eu-central-1/s3/aws4_request
+bc115715c18ad12d06ae78819a5b06b9562b4fc2c53f4d40da55950ec1498d85
+2021-02-24 15:45:37,330 DEBUG auth.py 369 - Signature:
+3c62b63f1b9583a5c781fc3c9eeb1b49485446764f9de50eb633c825e1838df5
+2021-02-24 15:45:37,330 DEBUG hooks.py 210 - Event request-created.s3.GetObject: calling handler <function signal_transferring at 0x000002724CA01C10>
+2021-02-24 15:45:37,330 DEBUG endpoint.py 187 - Sending http request: <AWSPreparedRequest stream_output=True, method=GET, url=https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com/CityAreaDrawingA1.pdf, headers={'User-Agent': b'Boto3/1.17.7 Python/3.9.1 Windows/10 Botocore/1.20.7 Resource', 'X-Amz-Date': b'20210224T144537Z', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=AKIARIWICTPS5GWWZV4Q/20210224/eu-central-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3c62b63f1b9583a5c781fc3c9eeb1b49485446764f9de50eb633c825e1838df5'}>
+2021-02-24 15:45:37,330 DEBUG httpsession.py 49 - Certificate path: C:\Users\user\Desktop\CODING\MojeProjekty\drawingSlicer\python_modules\lib\site-packages\botocore\cacert.pem
+2021-02-24 15:45:37,393 DEBUG connectionpool.py 452 - https://pdf-slicer-bucket.s3.eu-central-1.amazonaws.com:443 "GET /CityAreaDrawingA1.pdf HTTP/1.1" 200 4283148
+2021-02-24 15:45:37,395 DEBUG parsers.py 233 - Response headers: {'x-amz-id-2': 'heV+sVBEEyGb8C+R9adz9Bdc1ctWeGM1DXRPYJdkZweyLnAEwlocIcr6nqaPgej2c1BCw083dqY=', 'x-amz-request-id': 'C7F020FA19D44FD8', 'Date': 'Wed, 24 Feb 2021 14:45:39 GMT', 'Last-Modified': 'Wed, 24 Feb 2021 14:45:26 GMT', 'ETag': '"d1ec9b15f72b3e7c5505277f4708ffc0"', 'Accept-Ranges': 'bytes', 'Content-Type': 'application/octet-stream', 'Content-Length': '4283148', 'Server': 'AmazonS3'}
+2021-02-24 15:45:37,396 DEBUG parsers.py 234 - Response body:
+<botocore.response.StreamingBody object at 0x000002724CCED7F0>
+2021-02-24 15:45:37,396 DEBUG hooks.py 210 - Event needs-retry.s3.GetObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000002724CA53E50>
+2021-02-24 15:45:37,397 DEBUG retryhandler.py 187 - No retry needed.
+2021-02-24 15:45:37,397 DEBUG hooks.py 210 - Event needs-retry.s3.GetObject: calling handler <bound method S3RegionRedirector.redirect_from_error of <botocore.utils.S3RegionRedirector object at 0x000002724CA53EE0>>
+2021-02-24 15:45:37,629 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 0}) about to wait for the following futures []
+2021-02-24 15:45:37,631 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 0}) done waiting for dependent futures
+2021-02-24 15:45:37,632 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 0}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 0}
+2021-02-24 15:45:37,723 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 262144}) about to wait for the following futures []
+2021-02-24 15:45:37,725 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 262144}) done waiting for dependent futures
+2021-02-24 15:45:37,725 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 262144}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 262144}
+2021-02-24 15:45:37,809 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 524288}) about to wait for the following futures []
+2021-02-24 15:45:37,812 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 524288}) done waiting for dependent futures
+2021-02-24 15:45:37,812 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 524288}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 524288}
+2021-02-24 15:45:37,913 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 786432}) about to wait for the following futures []
+2021-02-24 15:45:37,913 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 786432}) done waiting for dependent futures
+2021-02-24 15:45:37,913 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 786432}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 786432}
+2021-02-24 15:45:38,008 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 1048576}) about to wait for the following futures []
+2021-02-24 15:45:38,009 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 1048576}) done waiting for dependent futures
+2021-02-24 15:45:38,009 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 1048576}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 1048576}
+2021-02-24 15:45:38,106 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 1310720}) about to wait for the following futures []
+2021-02-24 15:45:38,108 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 1310720}) done waiting for dependent futures
+2021-02-24 15:45:38,109 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 1310720}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 1310720}
+2021-02-24 15:45:38,198 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 1572864}) about to wait for the following futures []
+2021-02-24 15:45:38,200 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 1572864}) done waiting for dependent futures
+2021-02-24 15:45:38,200 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 1572864}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 1572864}
+2021-02-24 15:45:38,290 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 1835008}) about to wait for the following futures []
+2021-02-24 15:45:38,296 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 1835008}) done waiting for dependent futures
+2021-02-24 15:45:38,296 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 1835008}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 1835008}
+2021-02-24 15:45:38,386 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 2097152}) about to wait for the following futures []
+2021-02-24 15:45:38,388 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 2097152}) done waiting for dependent futures
+2021-02-24 15:45:38,388 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 2097152}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 2097152}
+2021-02-24 15:45:38,475 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 2359296}) about to wait for the following futures []
+2021-02-24 15:45:38,477 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 2359296}) done waiting for dependent futures
+2021-02-24 15:45:38,478 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 2359296}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 2359296}
+2021-02-24 15:45:38,567 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 2621440}) about to wait for the following futures []
+2021-02-24 15:45:38,569 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 2621440}) done waiting for dependent futures
+2021-02-24 15:45:38,570 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 2621440}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 2621440}
+2021-02-24 15:45:38,658 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 2883584}) about to wait for the following futures []
+2021-02-24 15:45:38,661 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 2883584}) done waiting for dependent futures
+2021-02-24 15:45:38,661 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 2883584}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 2883584}
+2021-02-24 15:45:38,748 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 3145728}) about to wait for the following futures []
+2021-02-24 15:45:38,750 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 3145728}) done waiting for dependent futures
+2021-02-24 15:45:38,750 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 3145728}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 3145728}
+2021-02-24 15:45:38,840 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 3407872}) about to wait for the following futures []
+2021-02-24 15:45:38,842 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 3407872}) done waiting for dependent futures
+2021-02-24 15:45:38,842 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 3407872}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 3407872}
+2021-02-24 15:45:38,934 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 3670016}) about to wait for the following futures []
+2021-02-24 15:45:38,934 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 3670016}) done waiting for dependent futures
+2021-02-24 15:45:38,935 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 3670016}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 3670016}
+2021-02-24 15:45:39,023 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 3932160}) about to wait for the following futures []
+2021-02-24 15:45:39,026 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 3932160}) done waiting for dependent futures
+2021-02-24 15:45:39,026 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 3932160}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 3932160}
+2021-02-24 15:45:39,040 DEBUG tasks.py 193 - IOWriteTask(transfer_id=0, {'offset': 4194304}) about to wait for the following futures []
+2021-02-24 15:45:39,041 DEBUG tasks.py 203 - IOWriteTask(transfer_id=0, {'offset': 4194304}) done waiting for dependent futures
+2021-02-24 15:45:39,041 DEBUG tasks.py 146 - Executing task IOWriteTask(transfer_id=0, {'offset': 4194304}) with kwargs {'fileobj': <_io.BytesIO object at 0x000002724C642A90>, 'offset': 4194304}
+2021-02-24 15:45:39,041 DEBUG tasks.py 193 - CompleteDownloadNOOPTask(transfer_id=0, {}) about to wait for the following futures []
+2021-02-24 15:45:39,042 DEBUG tasks.py 203 - CompleteDownloadNOOPTask(transfer_id=0, {}) done waiting for dependent futures
+2021-02-24 15:45:39,042 DEBUG tasks.py 146 - Executing task CompleteDownloadNOOPTask(transfer_id=0, {}) with kwargs {}
+2021-02-24 15:45:39,042 DEBUG utils.py 593 - Releasing acquire 0/None
+2021-02-24 15:45:39,053 INFO service_slice_file.py 27 - none
+2021-02-24 15:45:39,057 CRITICAL service_slice_file.py 42 -  Program has not found right manipulation_method to slice/scale objects. 
+                                        Accepted deviation is 1.188, 
+                                        manipulation drawing format drawing format is {'drawing_format': 'a8', 'dimensions': [52, 74]}, 
+                                        input drawing format is {'drawing_format': 'a1', 'dimensions': [841, 594]}
+2021-02-24 15:45:39,058 CRITICAL service_slice_file.py 56 -  Program has not found right manipulation_method to slice/scale objects. 
+                                        Accepted deviation is 1.188, 
+                                        manipulation drawing format drawing format is {'drawing_format': 'a8', 'dimensions': [52, 74]}, 
+                                        input drawing format is {'drawing_format': 'a1', 'dimensions': [841, 594]}

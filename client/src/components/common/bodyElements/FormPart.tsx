@@ -37,14 +37,14 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
             .then(response => response.text())
             .then(response => JSON.parse(response))
             .then(response => {
-                if (response.Status === "Fail") {
-                    setIsAppLoading(false)
-                    setInfoModalMessage(response.ErrorMessage)
-                    setIsErrorInfoModalOpen(true)
-                    setIsSlicedPdfReadyOnAWS(false)
-                } else {
+                if (response.Status === "OK") {
                     setIsAppLoading(false)
                     setIsSlicedPdfReadyOnAWS(true)
+                } else {
+                    setIsAppLoading(false)
+                    setInfoModalMessage(response.Error)
+                    setIsErrorInfoModalOpen(true)
+                    setIsSlicedPdfReadyOnAWS(false)
                 }
             })
             .catch(error => {

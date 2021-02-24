@@ -19,15 +19,15 @@ export default class CallSliceFileService {
     handlePythonMicroService(): Promise<(object)> {
 
         console.log("...handlingTestPythonMicroService SLICE...");
-        
+
         return new Promise(async (resolve, reject) => {
-            
+
             const pythonSliceMicroService = spawn(
-                config.PYTHON_INTERPRETER_PATH, 
+                config.PYTHON_INTERPRETER_PATH,
                 [
-                    config.PYTHON_SLICE_SERVICE_PATH, 
-                    this.fileToSlice, 
-                    this.scalingFormat, 
+                    config.PYTHON_SLICE_SERVICE_PATH,
+                    this.fileToSlice,
+                    this.scalingFormat,
                     this.slicingFormat
                 ]);
 
@@ -35,26 +35,22 @@ export default class CallSliceFileService {
             let upcomingData: string;
 
             pythonSliceMicroService.stdout.on('data', (data: string) => {
-                if (data.toString().includes("Ooops!")) {
-                    reject({
-                        "ErrorMessage": data.toString().trim(),
-                        "Status": "Fail"
-                    })
-                } else {
-                    upcomingData = (data.toString()).replace(/'/g, '\"').trim();
-                    upcomingData = upcomingData.replace(/(\r\n|\n|\r)/gm, "");
-                    console.log(upcomingData)
-                    upcomingData = upcomingData.replace(/}{/g, "}SplittingDelimiter{");
-                    upcomingData.split(/SplittingDelimiter/g).forEach(element => {
-                        outputMessage = Object.assign({}, outputMessage, JSON.parse(element));
-                    });
-                }
+
+                upcomingData = (data.toString()).replace(/'/g, '\"').trim();
+                upcomingData = upcomingData.replace(/(\r\n|\n|\r)/gm, "");
+                console.log(upcomingData)
+                upcomingData = upcomingData.replace(/}{/g, "}SplittingDelimiter{");
+                upcomingData.split(/SplittingDelimiter/g).forEach(element => {
+                    outputMessage = Object.assign({}, outputMessage, JSON.parse(element));
+                });
+
             });
 
             pythonSliceMicroService.on('close', (code: string) => {
                 if (code == "0") {
-                    outputMessage = (Object.assign({}, outputMessage, { Status: "Success"}))
                     resolve(outputMessage);
+                } else {
+                    reject(outputMessage);
                 }
             });
         });

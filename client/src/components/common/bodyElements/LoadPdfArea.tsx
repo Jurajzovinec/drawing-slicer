@@ -47,13 +47,13 @@ export const LoadPdfArea: React.FC<PageAreaInfs> = ({ setIsPdfConfirmed, setPdfN
                 .then(response => {
                     response = JSON.parse(response);
 
-                    if (response.Status === "Success") {
+                    if (response.Status === "OK") {
                         setIsPdfConfirmed(true);
                         setPdfNumberOfPages(response.NumberOfPages);
                         setPdfFormat(response.DrawingFormat.toUpperCase())
                         setloadedPdfFileName(response.Filename)
                     } else {
-                        setInfoModalMessage(response.ErrorMessage)
+                        setInfoModalMessage(response.Error)
                         setIsErrorInfoModalOpen(true)
                     }
                 });

@@ -227,10 +227,7 @@ class PdfSlicer:
                 }
                 
         else:
-            raise AcceptedDeviationError(f""" Program has not found right manipulation_method to slice/scale objects. 
-                                        Accepted deviation is {accepted_deviation}, 
-                                        manipulation drawing format drawing format is {manipulation_format_dimensions}, 
-                                        input drawing format is {self.input_drawing_format}""" )
+            raise AcceptedDeviationError(f"Program has not found right manipulation_method to slice/scale objects. Accepted deviation is {accepted_deviation},   manipulation drawing format drawing format is {manipulation_format_dimensions['drawing_format']}, input drawing format is {self.input_drawing_format['drawing_format']}.")
         
         return manipulation_parameters
 
