@@ -39,9 +39,17 @@
     "start": "nodemon ./dist/server.js",
     "dev": "ts-node ./src/server.ts",
     "watch": "tsc -W",
-    "build": "cd client && npm run build",
+    
+    "install-server": "npm install",
+    "build-server":"tsc --build",
+    
     "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "build-client": "cd client && npm run build",
+
+    "install-build-server": "npm run install-server && npm run build-server",
+    "install-build-client": "npm run install-client && npm run build-client",
+
+    "heroku-postbuild": "npm run install-build-server && npm run install-build-client"
   },
   "keywords": [],
   "author": "Juraj Zovinec",
