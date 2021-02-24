@@ -43,8 +43,8 @@ def main():
         raise error
         exit(1)
     else:
-        print({'Success':'Successful slice_service.py'})        
-        print({'ResultPdfName':result_pdf_object['filename']})        
+        print({'Success':'Successful slice_service.py'}, flush=True)        
+        print({'ResultPdfName':result_pdf_object['filename']}, flush=True)        
         logger.info("Successful slice_service.py")
 
 if __name__ == "__main__":
