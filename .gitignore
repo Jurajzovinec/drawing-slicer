@@ -5,8 +5,8 @@ node_modules
 
 # python
 python_modules
-pythonServices/unit_test_input_files/*
-pythonServices/unit_test_output_files/*
+python_services/unit_test_input_files/*
+python_services/unit_test_output_files/*
 
 # file types
 /InputTestService.log
@@ -26,6 +26,8 @@ desktop.ini
 # production
 /dist
 /client/build
+
+
 
 
 

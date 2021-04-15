@@ -23,7 +23,7 @@ from application_library.pdf_slicer_lib import *
 
 def declare_files():
     
-    global standard_a1_drawing, a4_standard, a4_multipage, non_iso_drawing, multipage_drawing, drawing_with_spacebar, hebrew_file, greek_file,invalid_file_type, map_drawing, building_drawing_1
+    global standard_a1_drawing, a4_standard, a4_multipage, non_iso_drawing, multipage_drawing, drawing_with_spacebar, hebrew_file, greek_file,invalid_file_type, map_drawing, building_drawing_1, cv_file
 
     a1_multipage = 'unit_test_input_files\\A1_Multipage.pdf'
     a4_multipage = 'unit_test_input_files\\A4_Multipage.pdf'
@@ -36,7 +36,7 @@ def declare_files():
     invalid_file_type  = 'unit_test_input_files\\InvalidFileType.pd'
     building_drawing_1  = 'unit_test_input_files\\BuildingDrawing.pdf'
     map_drawing  = 'unit_test_input_files\\MapDrawing.pdf'
-    cv_file = 'unit_test_input_files\\Cvfile.pdf'
+    cv_file = 'unit_test_input_files\\CV.pdf'
     
 
 def slice_service(input_drawing_file, slice_by_format, scale_to_format):
@@ -57,11 +57,12 @@ class TestSliceService(unittest.TestCase):
     
     def test_result_types(self):
 
-        self.assertIsInstance(slice_service(drawing_with_spacebar, "a5", "none"), str , "Result of the application is not str")
-        self.assertIsInstance(slice_service(hebrew_file, "a5", "none"), str , "Result of the application is not str")
-        self.assertIsInstance(slice_service(greek_file, "a5", "none"), str , "Result of the application is not str")
-        self.assertIsInstance(slice_service(a4_standard, "a5", "none"), str , "Result of the application is not str")
-        self.assertIsInstance(slice_service(map_drawing, "a5", "none"), str , "Result of the application is not str")
+        #self.assertIsInstance(slice_service(drawing_with_spacebar, "a5", "none"), str , "Result of the application is not str")
+        #self.assertIsInstance(slice_service(hebrew_file, "a5", "none"), str , "Result of the application is not str")
+        #self.assertIsInstance(slice_service(greek_file, "a5", "none"), str , "Result of the application is not str")
+        #self.assertIsInstance(slice_service(a4_standard, "a5", "none"), str , "Result of the application is not str")
+        #self.assertIsInstance(slice_service(map_drawing, "a5", "none"), str , "Result of the application is not str")
+        self.assertIsInstance(slice_service(cv_file, "a5", "none"), str , "Result of the application is not str")
         
 if __name__ == '__main__':
     declare_files()

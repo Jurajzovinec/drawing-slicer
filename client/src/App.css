@@ -56,7 +56,6 @@ p {
 }
 
 select{
-  /*outline: none;*/
   padding: 1em 1em;
   background: none;
   color: white;
@@ -114,8 +113,9 @@ input:checked[type="checkbox"]:before{
 /* Nav bar imgs */
 .header--navbar-img{
   filter: blur(0.1em);
-  padding:10%;
-  height:80%;
+  padding-right:1em;
+  height:100%;
+  max-width: 80px;
   opacity: 0.5;
   transition: 0.3s;
 }
