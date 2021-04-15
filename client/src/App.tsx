@@ -48,11 +48,13 @@ function App() {
     <div className="App">
 
       <div className="Header">
-        < QuestionMarkReference
-          setIsQuestionMarkInfoModalOpen={(value: boolean) => setIsQuestionMarkInfoModalOpen(value)}
-        />
+
         < LinkedInReference link={"https://www.linkedin.com/in/juraj-zovinec/"} />
         < GitHubReference link={"https://github.com/Jurajzovinec/drawing-slicer"} />
+        < QuestionMarkReference
+          setIsQuestionMarkInfoModalOpen={(value: boolean) => setIsQuestionMarkInfoModalOpen(value)}
+
+        />
       </div>
 
       <div className="Body">
@@ -60,7 +62,7 @@ function App() {
         <div className="body--header">
           <BodyHeader text={"Welcome to Drawing Slicer"} />
           <div className="body--header--barloader">
-            <BarLoader color={"yellow"} width={500} height={1} loading={isAppLoading} />
+            <BarLoader color={"white"} width={500} height={10} loading={isAppLoading} />
           </div>
         </div>
 
@@ -77,7 +79,7 @@ function App() {
                   setLoadedPdfFile={(value: any) => setLoadedPdfFile(value)}
                   setloadedPdfFileName={(value: any) => setloadedPdfFileName(value)}
                   setIsAppLoading={(value: boolean) => setIsAppLoading(value)}
-                  dragAndDropText={"Drag and drop your PDF drawing here."} />
+                  dragAndDropText={"Click or drag and drop your PDF drawing here."} />
               </div> : null
           }
 
@@ -124,7 +126,7 @@ function App() {
             {isSlicedPdfReadyOnAWS ?
               <DownloadButtonSlicedPdf
                 PreparedSlicedPdf={loadedPdfFileName}
-                RestartAppStates={()=>RestartApp()}
+                RestartAppStates={() => RestartApp()}
                 RequestFileFromAws={() => getDownloadFileFromAWS(loadedPdfFileName)}
                 DownloadButtonText={"Download sliced pdf"}
                 setIsAppLoading={(value: boolean) => setIsAppLoading(value)}

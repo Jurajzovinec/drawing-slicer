@@ -1,10 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+
 body, #root,  html, .App{
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+
+  font-family: "IBM Plex Mono";
+  color:#ffff;
+  letter-spacing: 0.2em;
+  
   --header-height: 10%;
-  background-image: linear-gradient(rgb(150, 150, 150),rgb(15, 15, 15));
+  --dark-blue:rgb(0, 0, 40);
+  --light-navy:#102c45;
+  --light-blue:#525254;
+  background-color:var(--light-navy);
+  background-image:linear-gradient(var(--light-navy), var(--light-blue));
 }
 
 /* Default classes styling */
@@ -12,26 +23,20 @@ body, #root,  html, .App{
 div[aria-disabled]
 {
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 label {
-  padding: 0.5em;
-  font-family: verdana;
   font-weight: bold;
   font-size: 1em;
   letter-spacing: 0.2em;
 }
 
 button {
-  border: 2px solid #dac616;
-  border-radius: 0.5em;
-  color: rgb(10, 10, 10);
+  border: 3px solid #fff;
   background: none;
-  padding: 0.5em;
-  font-family: verdana;
+  padding: 1em;
   font-weight: bold;
-  font-size: 1em;
   letter-spacing: 0.2em;
   cursor: pointer;
   transition: 0.5s;
@@ -39,31 +44,22 @@ button {
 }
 
 button:hover{
-  background:#dac616;
-  box-shadow: 0em 0em 0.5em #dac616;
+  background:#fff;
+  color: black;
+  box-shadow: 0em 0em 0.5em #fff;
 }
 
 p {
+  margin: 2em;
   text-align:center; 
   vertical-align: middle;
-  font-family: verdana;
-  font-size: 1em;
-}
-
-h2 {
-  text-align:center; 
-  vertical-align: middle;
-  font-family: verdana;
-  font-size: 1.5em;
 }
 
 select{
-  outline: none;
-  font-family: verdana;
-  font-size: 1em;
-  padding: 0.5em 0.5em;
-  background-color:  #dac616;
-  color: black;
+  /*outline: none;*/
+  padding: 1em 1em;
+  background: none;
+  color: white;
 }
 
 input[type="checkbox"]{
@@ -74,15 +70,15 @@ input[type="checkbox"]{
   height: 3em;
   -webkit-appearance: none;
   background: none;
-  border: 2px solid #dac616;
+  border: 2px solid #fff;
   border-radius: 3em;
   cursor: pointer;
 }
 
 input:checked[type="checkbox"]
 {
-  background: #dac616;
-  box-shadow: 0em 0em 0.5em #dac616;
+  background: #fff;
+  box-shadow: 0em 0em 0.5em #fff;
 }
 
 input[type="checkbox"]:before{
@@ -91,9 +87,9 @@ input[type="checkbox"]:before{
   left: 0;
   width: 3em;
   height: 2.5em;
-  border: 2px solid #dac616;
+  border: 2px solid #fff;
   border-radius: 2.3em;
-  background-image: linear-gradient(rgb(15, 15, 15),rgb(150, 150, 150));
+  background-image: linear-gradient(var(--light-navy), var(--dark-blue));
   transition: 0.5s;
 }
 
@@ -105,18 +101,21 @@ input:checked[type="checkbox"]:before{
 /* HEADER CSS */
 
 .Header{
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: var(--header-height);
+  background-color: var(--light-navy);
+  border-bottom: 0.3em solid  white;
   display: flex;
-  flex:0.5;
-  background-color: rgb(112, 112, 112);
-  justify-content: space-around;
-  border-bottom: 0.14em solid  #dac616;
+  justify-content: flex-end;
 }
 
 /* Nav bar imgs */
 .header--navbar-img{
   filter: blur(0.1em);
-  height:100%;
+  padding:10%;
+  height:80%;
   opacity: 0.5;
   transition: 0.3s;
 }
@@ -132,22 +131,21 @@ input:checked[type="checkbox"]:before{
 
 /* app-body */
 .Body{
+  width: 100%;
+  position: fixed;
+  top:var(--header-height);
   flex-direction: column;
 }
 
 /* body-header */
 .body--header{
-  font-family: verdana;
   font-weight: bold;
-  font-size: 1em;
-  color: black;
+  color: white;
   letter-spacing: 0.2em;
-  padding: 3em;
+  padding: 4em;
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
-  /*justify-content: center;*/
-  justify-items: baseline;
+
   text-align: center;
   vertical-align: middle;
 }
@@ -161,10 +159,11 @@ input:checked[type="checkbox"]:before{
 
 
 .body--header--barloader{
-  padding: 0.5em;
+  top: 10%;
+  height: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  vertical-align: middle; 
 }
 
 /* userinterface-loadpdfareacontainer */
@@ -173,10 +172,10 @@ input:checked[type="checkbox"]:before{
   display:flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 0.15em;
+  border: 0.2em;
   border-style: dashed;
-  border-color:#dac616;
-  border-radius: 1em;
+  border-color:#fff;
+  border-radius: 2em;
   text-align: center;
   vertical-align: middle;
 }

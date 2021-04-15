@@ -2,10 +2,11 @@ import React from 'react';
 import Modal from 'react-modal';
 import './QuestionMarkInfoModal.css';
 
+// Modal.setAppElement('#root');
+
 const closeIcon = process.env.PUBLIC_URL + "/closeIcon.png";
 const downloadIcon = process.env.PUBLIC_URL + "/downloadIcon.png";
 
-Modal.setAppElement('#root');
 
 interface QuestionMarkInfoModalProps {
     isShown: boolean;

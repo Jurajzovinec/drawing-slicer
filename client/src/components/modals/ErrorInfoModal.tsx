@@ -4,7 +4,7 @@ import './ErrorInfoModal.css';
 
 const closeIcon = process.env.PUBLIC_URL + "/closeIcon.png";
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 interface ErrorInfoModalProps {
     isShown: boolean;
