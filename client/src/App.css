@@ -115,7 +115,6 @@ input:checked[type="checkbox"]:before{
   filter: blur(0.1em);
   padding-right:1em;
   height:100%;
-  max-width: 80px;
   opacity: 0.5;
   transition: 0.3s;
 }
