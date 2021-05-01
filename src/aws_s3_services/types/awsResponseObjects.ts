@@ -15,7 +15,7 @@ export interface listFilesOnBucketAwsS3Message {
 export interface downloadFileFromAwsS3Message {
     status: "OK" | "FAILED",
     downloadedFilename: string,
-    data: object,
+    data: any,
     error?: string,
 }
 
