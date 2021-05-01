@@ -4,9 +4,8 @@ import { spawnValidateRequest,spawnValidateResponse } from './types/spawnPythonS
 
 export default function spawnValidateFileService(args: spawnValidateRequest): Promise<spawnValidateResponse> {
 
-    const PYTHON_INTERPRETER_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_modules\\Scripts\\python.exe'
-    const PYTHON_VALIDATE_SERVICE_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_services\\service_validate_file.py'
-    //const PYTHON_VALIDATE_SERVICE_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_services\\application_library\\small_test_python.py'
+    const PYTHON_INTERPRETER_PATH = config.PYTHON_INTERPRETER_PATH;
+    const PYTHON_VALIDATE_SERVICE_PATH = config.PYTHON_INPUT_TEST_SERVICE_PATH;
 
     let pythonAnswerMessage: spawnValidateResponse;
 

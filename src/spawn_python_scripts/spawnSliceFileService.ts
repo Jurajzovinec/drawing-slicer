@@ -4,9 +4,11 @@ import { spawnSliceRequest, spawnSliceResponse } from './types/spawnPythonServic
 
 export default function spawnValidateFileService(args: spawnSliceRequest): Promise<spawnSliceResponse> {
 
-    const PYTHON_INTERPRETER_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_modules\\Scripts\\python.exe'
-    const PYTHON_SLICE_SERVICE_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_services\\service_slice_file.py'
-    //const PYTHON_SLICE_SERVICE_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_services\\application_library\\small_test_python.py'
+    // const PYTHON_INTERPRETER_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_modules\\Scripts\\python.exe'
+    // const PYTHON_SLICE_SERVICE_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_services\\service_slice_file.py'
+    // const PYTHON_SLICE_SERVICE_PATH = 'C:\\Users\\juraj\\Desktop\\Coding\\DrawingSlicer\\drawing-slicer\\python_services\\application_library\\small_test_python.py'
+    const PYTHON_SLICE_SERVICE_PATH = config.PYTHON_SLICE_SERVICE_PATH;
+    const PYTHON_INTERPRETER_PATH  = config.PYTHON_INTERPRETER_PATH;
 
     let pythonAnswerMessage: spawnSliceResponse;
 
