@@ -40,10 +40,37 @@ Frontend is based on React framework and as backend, also frontend is written in
 
 ## Initialize pythonServices virtual environment (Windows)
 
-1. Create python venv in this folder with *python -m venv python_modules* command
-2. Activate venv with >*. python_modules\Scripts\activate* command
-3. Install external packages with *pip install -r requirements.txt* command
-4. Set path to interpreter at config.js file
+1. Create python venv in this folder with:
+
+``` text
+python -m venv python_modules
+``` 
+
+2. Activate venv with:
+
+``` text
+. python_modules\Scripts\activate
+``` 
+
+3. Install external packages with:
+
+``` text
+pip install -r requirements.txt
+```  
+
+4. Check if path to python interpreter is set correctly at config.ts file
+
+``` javascript
+const config: configVariablesInterface = {
+    PYTHON_INTERPRETER_PATH: (process.env.NODE_ENV === 'production') ?
+        'python' : (path.resolve(process.cwd(), 'python_modules/Scripts/python')),
+    PYTHON_SLICE_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices/service_slice_file.py')),
+    PYTHON_INPUT_TEST_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices/service_validate_file.py'))
+}
+```
 
 Alternatively put this sequence into cmd.
+
+``` text
 python -m venv python_modules && python_modules\Scripts\activate && pip install -r requirements.txt
+```  

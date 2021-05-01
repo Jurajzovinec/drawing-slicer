@@ -20,7 +20,6 @@ export const CheckScaleOptionButton: React.FC<ButtonOptions> = ({ ScaleButtonTex
 
     return (
         <div className="check-scale-options-button">
-            <label>{ScaleButtonText}</label>
             <input type="checkbox" id="check-scale-options-button-id" onChange={() => isCheckedScaleOption()} />
         </div>
     );

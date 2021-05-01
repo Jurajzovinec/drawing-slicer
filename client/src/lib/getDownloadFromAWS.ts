@@ -1,7 +1,7 @@
 import config from '../config';
 import deleteFileFromAWS from './deleteFileFromAWS';
 
-export default function getDownloadFileFromAWS(fileResultPath: string | any): Promise<(string)> {
+export default function getDownloadFileFromAWS(fileResultPath: string | undefined): Promise<(string)> {
 
     console.log("...askingForResultPDF...");
 

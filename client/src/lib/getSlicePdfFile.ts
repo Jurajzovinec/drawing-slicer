@@ -5,6 +5,8 @@ export default function getSlicePdfFile(pdfHandleParameters: SliceDrawingParamet
 
     console.log("...requestingParamsToSlicePdf...");
 
+    if (!pdfHandleParameters.scaleBeforeSlice) pdfHandleParameters.scalingFormat = 'None';
+
     return new Promise((resolve, reject) => {
         const urlToFetch = `${config.BACKEND_SERVER}slice/${JSON.stringify(pdfHandleParameters)}`
         fetch(urlToFetch, {

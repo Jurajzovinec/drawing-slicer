@@ -195,10 +195,11 @@ input:checked[type="checkbox"]:before{
   flex-direction: column;
 }
 
-.form-container--scalefrom, .form-container--sliceform{
+.form-container--lineblock{
   display: flex;
   justify-content: space-between;
-  padding: 2em 3em 2em 3em;
+  align-items: center;
+  padding: 0em 3em 2em 3em;
 }
 
 .body--footercontrolbuttons-container{

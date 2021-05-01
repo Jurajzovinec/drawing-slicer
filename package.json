@@ -1,6 +1,6 @@
 {
   "name": "drawing-slicer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "server.js",
   "directories": {
@@ -36,13 +36,14 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
+    
     "start": "nodemon ./dist/server.js",
-    "dev": "ts-node ./src/server.ts",
     "watch": "tsc -W",
-    
+    "devStart": "npm run watch | npm run start",
+
     "install-server": "npm install",
-    "build-server":"tsc --build",
-    
+    "build-server": "tsc --build",
+
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
 

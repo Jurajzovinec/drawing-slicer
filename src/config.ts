@@ -7,12 +7,11 @@ interface configVariablesInterface {
 }
 
 const config: configVariablesInterface = {
-
     PYTHON_INTERPRETER_PATH: (process.env.NODE_ENV === 'production') ?
         'python' : (path.resolve(process.cwd(), 'python_modules/Scripts/python')),
-    PYTHON_SLICE_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices/service_slice_file.py')),
+    //PYTHON_SLICE_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices/service_slice_file.py')),
+    PYTHON_SLICE_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices/small_test_python.py')),
     PYTHON_INPUT_TEST_SERVICE_PATH: (path.resolve(process.cwd(), 'pythonServices/service_validate_file.py'))
-
 }
 
 export default config;

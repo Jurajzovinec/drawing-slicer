@@ -13,32 +13,36 @@ interface PageAreaInfs {
     LoadedPdfName: undefined | string;
     setIsErrorInfoModalOpen: Function;
     setInfoModalMessage: Function;
-    setIsSlicedPdfReadyOnAWS: Function
-    setIsAppLoading: Function
+    setIsSlicedPdfReadyOnAWS: Function;
+    setIsAppLoading: Function;
+    setSlicedPdfFileName: Function;
 }
 
-export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonText, LoadedPdfName, setIsErrorInfoModalOpen, setInfoModalMessage, setIsSlicedPdfReadyOnAWS, setIsAppLoading }) => {
+export const FormPart: React.FC<PageAreaInfs> = ({ setSlicedPdfFileName, ScaleButtonText, SliceButtonText, LoadedPdfName, setIsErrorInfoModalOpen, setInfoModalMessage, setIsSlicedPdfReadyOnAWS, setIsAppLoading }) => {
 
     const [scaleBeforeSlice, setScaleBeforeSlice] = useState<boolean>(() => false);
-    const [scaleToFormat, setScaleToFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
-    const [sliceByFormat, setSliceByFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
+    const [scalingFormat, setScalingFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
+    const [slicingFormat, setSlicingFormat] = useState<string>(() => DrawingFormats[0].toLowerCase());
 
     const requestParamsForSlice: SliceDrawingParameters = {
         scaleBeforeSlice,
-        scaleToFormat,
-        sliceByFormat,
+        scalingFormat,
+        slicingFormat,
         filename: LoadedPdfName
     }
 
-    function sliceLoadedPdfRequest(args: SliceDrawingParameters):void {
+    function sliceLoadedPdfRequest(args: SliceDrawingParameters): void {
+        console.log(args);
         setIsAppLoading(true)
         setIsSlicedPdfReadyOnAWS(false)
         getSlicePdfFile(args)
             .then(response => response.text())
             .then(response => JSON.parse(response))
             .then(response => {
-                if (response.Status === "OK") {
+                console.log(response)
+                if (response.status === "OK") {
                     setIsAppLoading(false)
+                    setSlicedPdfFileName(response.uploadedFileName)
                     setIsSlicedPdfReadyOnAWS(true)
                 } else {
                     setIsAppLoading(false)
@@ -54,24 +58,43 @@ export const FormPart: React.FC<PageAreaInfs> = ({ ScaleButtonText, SliceButtonT
 
     return (
         <>
-            <div className="form-container--scalefrom">
+            <div className="form-container--lineblock">
+                <label>{ScaleButtonText}</label>
                 <CheckScaleOptionButton
                     ScaleButtonText={ScaleButtonText}
                     setScaleBeforeSlice={(value: boolean) => setScaleBeforeSlice(value)}
                 />
+            </div>
+
+            <div className="form-container--lineblock">
+                <label>Scaling format</label>
                 <SelectScaleOptions
-                    setScaleToFormat={(value: string) => setScaleToFormat(value)}
+                    setScalingFormat={(value: string) => setScalingFormat(value)}
                 />
             </div>
-            <div className="form-container--sliceform">
+
+            <div className="form-container--lineblock">
+                <label>Slicing format</label>
+                <SelectSliceOptions
+                    setSlicingFormat={(value: string) => setSlicingFormat(value)}
+                />
+            </div>
+
+            <div className="form-container--lineblock">
                 <SliceButton
                     SliceButtonText={SliceButtonText}
                     SliceFunction={() => sliceLoadedPdfRequest(requestParamsForSlice)}
-                />
-                <SelectSliceOptions
-                    setSliceByFormat={(value: string) => setSliceByFormat(value)}
                 />
             </div>
         </>
     );
 };
+
+/*
+
+                <SelectScaleOptions
+                    setScalingFormat={(value: string) => setScalingFormat(value)}
+                />
+
+
+*/

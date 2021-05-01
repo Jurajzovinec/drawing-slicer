@@ -4,7 +4,8 @@ export default function deleteFileFromAWS (): void  {
 
     console.log("...sendingRequestToClearBackendStorage...");
     
-    const urlToFetch = `${config.BACKEND_SERVER}clearawsbucket`
-    fetch(urlToFetch)
+    const urlToFetch = `${config.BACKEND_SERVER}clearawsbucket`;
+    // TurnedOff temporarly
+    // fetch(urlToFetch)
 
 }

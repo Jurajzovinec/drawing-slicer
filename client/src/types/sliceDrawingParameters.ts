@@ -1,6 +1,6 @@
 export default interface SliceDrawingParameters {
     scaleBeforeSlice: boolean;
-    scaleToFormat: string | undefined;
-    sliceByFormat: string | undefined;
+    scalingFormat: string | undefined;
+    slicingFormat: string | undefined;
     filename: string | undefined;
 }

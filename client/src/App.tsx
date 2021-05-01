@@ -18,17 +18,22 @@ import getDownloadFileFromAWS from './lib/getDownloadFromAWS';
 function App() {
 
   const [isPdfConfirmed, setIsPdfConfirmed] = useState<boolean>(() => false);
+  
   const [pdfNumberOfPages, setPdfNumberOfPages] = useState<string | undefined>(() => undefined);
+  
   const [pdfFormat, setPdfFormat] = useState<string | undefined>(() => undefined);
 
   const [isErrorInfoModalOpen, setIsErrorInfoModalOpen] = useState<boolean>(() => false);
+  
   const [infoModalMessage, setInfoModalMessage] = useState<string | undefined>(() => undefined);
 
   const [isQuestionMarkInfoModalOpen, setIsQuestionMarkInfoModalOpen] = useState<boolean>(() => false);
 
-  const [loadedPdfFile, setLoadedPdfFile] = useState<undefined | File>(() => undefined);
   const [loadedPdfFileName, setloadedPdfFileName] = useState<undefined | string>(() => undefined);
+
   const [isSlicedPdfReadyOnAWS, setIsSlicedPdfReadyOnAWS] = useState<boolean>(() => false);
+  
+  const [slicedPdfFileName, setSlicedPdfFileName] = useState<undefined | string>(() => undefined);
 
   const [isAppLoading, setIsAppLoading] = useState<boolean>(() => false);
 
@@ -39,9 +44,9 @@ function App() {
     setIsPdfConfirmed(false);
     setPdfNumberOfPages(undefined);
     setPdfFormat(undefined);
-    setLoadedPdfFile(undefined);
     setloadedPdfFileName(undefined);
-    setIsSlicedPdfReadyOnAWS(false)
+    setIsSlicedPdfReadyOnAWS(false);
+    setSlicedPdfFileName(undefined);
   }
 
   return (
@@ -76,7 +81,6 @@ function App() {
                   setPdfFormat={(value: string) => setPdfFormat(value)}
                   setInfoModalMessage={(value: string | undefined) => setInfoModalMessage(value)}
                   setIsErrorInfoModalOpen={(value: boolean) => setIsErrorInfoModalOpen(value)}
-                  setLoadedPdfFile={(value: any) => setLoadedPdfFile(value)}
                   setloadedPdfFileName={(value: any) => setloadedPdfFileName(value)}
                   setIsAppLoading={(value: boolean) => setIsAppLoading(value)}
                   dragAndDropText={"Click or drag and drop your PDF drawing here."} />
@@ -92,12 +96,13 @@ function App() {
 
           <div className="userinterface--form-container" {...!isPdfConfirmed ? { "aria-disabled": true } : {}}>
             <FormPart
-              ScaleButtonText={"Scale before slice ? "}
+              ScaleButtonText={"Scale to format before slice"}
               SliceButtonText={"Slice drawing"}
               LoadedPdfName={loadedPdfFileName}
               setInfoModalMessage={(value: string | undefined) => setInfoModalMessage(value)}
               setIsErrorInfoModalOpen={(value: boolean) => setIsErrorInfoModalOpen(value)}
               setIsSlicedPdfReadyOnAWS={(value: boolean) => setIsSlicedPdfReadyOnAWS(value)}
+              setSlicedPdfFileName={(value: any) => setSlicedPdfFileName(value)}
               setIsAppLoading={(value: boolean) => setIsAppLoading(value)}
             />
           </div>
@@ -125,9 +130,9 @@ function App() {
           <div className="footercontrolbuttons-container--downloadbutton-container">
             {isSlicedPdfReadyOnAWS ?
               <DownloadButtonSlicedPdf
-                PreparedSlicedPdf={loadedPdfFileName}
+                PreparedSlicedPdf={slicedPdfFileName}
                 RestartAppStates={() => RestartApp()}
-                RequestFileFromAws={() => getDownloadFileFromAWS(loadedPdfFileName)}
+                RequestFileFromAws={() => getDownloadFileFromAWS(slicedPdfFileName)}
                 DownloadButtonText={"Download sliced pdf"}
                 setIsAppLoading={(value: boolean) => setIsAppLoading(value)}
               /> : null
@@ -136,7 +141,6 @@ function App() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
