@@ -1,6 +1,9 @@
 {
   "name": "drawing-slicer",
   "version": "1.0.1",
+  "engines": {
+    "node": "14.16.1"
+  },
   "description": "",
   "main": "server.js",
   "directories": {
