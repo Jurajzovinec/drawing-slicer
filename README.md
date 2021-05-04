@@ -72,5 +72,5 @@ const config: configVariablesInterface = {
 Alternatively put this sequence into cmd.
 
 ``` text
-python -m venv python_modules && python_modules\Scripts\activate && pip install -r requirements.txt
+python -m venv python_modules && . python_modules\Scripts\activate && pip install -r requirements.txt
 ```  
